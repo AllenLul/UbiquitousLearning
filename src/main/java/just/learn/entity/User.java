@@ -28,14 +28,6 @@ public class User {
     private String role;
 
     private String password;
-    public Map getObject(Map map){
-        User user=new User();
-        user.setGender((String) map.get("gender"));
-        user.setDepartment((String) map.get("department"));
-        user.setHeadpic((String) map.get("headpic"));
-
-        return map;
-    }
 
     public Integer getId() {
         return id;

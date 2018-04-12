@@ -69,7 +69,7 @@
         nickname,
       </if>
       <if test="department != null" >
-        " department",
+        department,
       </if>
       <if test="phone != null" >
         phone,
