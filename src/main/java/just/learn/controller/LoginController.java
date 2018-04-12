@@ -46,23 +46,14 @@ public class LoginController {
         jsonStr=jsonStr.replaceAll("\"","'");
         jsonStr=jsonStr.replaceAll(",","#");
         CookieUtil.addCookie(httpResponse,"user",jsonStr,259200);
-
         System.out.println(jsonStr);
         return ResultUtil.success("登录成功");
     }
 
     @ApiOperation(value = "登出", notes = "用户登出")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "name", value = "姓名", paramType = "query", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "password", value = "密码", paramType = "query", required = true, dataType =
-                    "String")
-    })
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public ApiResult logout(@RequestParam String name, @RequestParam String password, @RequestParam String role,
-                            HttpServletResponse httpResponse) {
-        CookieUtil.deleteCookie(name, httpResponse);
-        CookieUtil.deleteCookie(password, httpResponse);
-        CookieUtil.deleteCookie(role, httpResponse);
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ApiResult logout(HttpServletResponse httpResponse) {
+        CookieUtil.deleteCookie("user", httpResponse);
         return ResultUtil.success("退出成功");
     }
 

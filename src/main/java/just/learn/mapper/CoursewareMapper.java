@@ -1,7 +1,10 @@
 package just.learn.mapper;
 
 import just.learn.entity.Courseware;
+import just.learn.vo.QueryCondition;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface CoursewareMapper {
@@ -16,4 +19,8 @@ public interface CoursewareMapper {
     int updateByPrimaryKeySelective(Courseware record);
 
     int updateByPrimaryKey(Courseware record);
+
+    int countByCondition(QueryCondition condition);
+
+    List<Courseware> selectLimitObjects(QueryCondition condition);
 }

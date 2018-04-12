@@ -11,6 +11,17 @@
   <sql id="Base_Column_List" >
     id, name, url, type, t_id
   </sql>
+  <select id="selectLimitObjects" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from appended_document
+    LIMIT #{startRow} , #{pageSize}
+  </select>
+  <select id="countByCondition" resultType="java.lang.Integer"  >
+    select
+    COUNT(*)
+    from appended_document
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

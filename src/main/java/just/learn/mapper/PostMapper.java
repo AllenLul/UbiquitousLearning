@@ -1,7 +1,10 @@
 package just.learn.mapper;
 
 import just.learn.entity.Post;
+import just.learn.vo.QueryCondition;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface PostMapper {
@@ -16,4 +19,8 @@ public interface PostMapper {
     int updateByPrimaryKeySelective(Post record);
 
     int updateByPrimaryKey(Post record);
+
+    int countByCondition(QueryCondition condition);
+
+    List<Post> selectLimitObjects(QueryCondition condition);
 }

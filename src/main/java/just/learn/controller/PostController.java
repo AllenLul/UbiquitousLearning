@@ -3,11 +3,14 @@ import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.Post;
 import just.learn.service.PostService;
-import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Autowired;
+import just.learn.vo.QueryCondition;
+import io.swagger.annotations.ApiImplicitParam;
+import just.learn.entity.PageQueryBean;
 import java.util.List;
 @RestController
 @RequestMapping("/post")
@@ -51,6 +54,16 @@ required = true, dataType = "String")
 public ApiResult getById(@PathVariable Integer id) {
 return ResultUtil.success("查询成功",this.postService.getById(id));
 }
-
+@ApiOperation(value = "分页查询", notes = "分页查询")
+@ApiImplicitParams({
+@ApiImplicitParam(name = "currentPage", value = "当前页", paramType = "query", required = true, dataType = "Integer"),
+@ApiImplicitParam(name = "pageSize", value = "每页显示数目", paramType = "query", required = true, dataType =
+"Integer")
+})
+@RequestMapping(value = "/findLimitObjects", method = RequestMethod.POST)
+public ApiResult getLimitObjects(QueryCondition condition) {
+PageQueryBean pageQueryBean= this.postService.getLimitObjects(condition);
+return ResultUtil.success("查询成功", pageQueryBean);
+}
 
 }

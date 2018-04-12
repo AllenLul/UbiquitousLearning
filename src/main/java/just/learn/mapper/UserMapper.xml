@@ -19,7 +19,17 @@
     id, name, nickname, " department", phone, headPic, stu_num, tea_num, gender, note, 
     role, password
   </sql>
-
+  <select id="selectLimitObjects" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    LIMIT #{startRow} , #{pageSize}
+  </select>
+  <select id="countByCondition" resultType="java.lang.Integer"  >
+    select
+    COUNT(*)
+    from user
+  </select>
   <select id="login" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="Base_Column_List" />

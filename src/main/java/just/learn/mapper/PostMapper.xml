@@ -13,6 +13,18 @@
   <sql id="Base_Column_List" >
     id, name, detail, create_time, can_reply, is_top, reply_id
   </sql>
+
+  <select id="selectLimitObjects" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from post
+    LIMIT #{startRow} , #{pageSize}
+  </select>
+  <select id="countByCondition" resultType="java.lang.Integer"  >
+    select
+    COUNT(*)
+    from post
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -4,7 +4,8 @@ import just.learn.common.execption.CustomException;
 import just.learn.mapper.CourseMapper;
 import just.learn.entity.Course;
 import org.springframework.stereotype.Service;
-
+import just.learn.vo.QueryCondition;
+import just.learn.entity.PageQueryBean;
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -51,6 +52,22 @@ throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
 }
 return course;
 }
+@Override
+public PageQueryBean getLimitObjects(QueryCondition condition) {
+//根据条件查询count记录数
+int count=mapper.countByCondition(condition);
+//如果有记录才去查询分页数据
+if (count<0){
+throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
+}
+PageQueryBean result=new PageQueryBean();
+List<Course> list=mapper.selectLimitObjects(condition);
+    result.setCurrentPage(condition.getCurrentPage());
+    result.setTotalRows(count);
+    result.setPageSize(condition.getPageSize());
+    result.setItems(list);
+    return result;
+    }
 /*    @Override
 public List<Course> getAll() {
     return mapper.selectAll();

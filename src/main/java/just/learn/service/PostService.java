@@ -1,6 +1,7 @@
 package just.learn.service;
 import just.learn.entity.Post;
-
+import just.learn.entity.PageQueryBean;
+import just.learn.vo.QueryCondition;
 public interface PostService{
 
 
@@ -11,6 +12,6 @@ public boolean delete(Integer id);
 public int update(Post post);
 
 public Post getById(Integer id);
-
+PageQueryBean getLimitObjects(QueryCondition condition);
 //public   List<Post> getAll();
 }

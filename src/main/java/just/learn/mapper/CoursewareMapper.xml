@@ -13,6 +13,17 @@
   <sql id="Base_Column_List" >
     id, course_id, downlaod_times, type, url, is_pass, course_cap
   </sql>
+  <select id="selectLimitObjects" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from courseware
+    LIMIT #{startRow} , #{pageSize}
+  </select>
+  <select id="countByCondition" resultType="java.lang.Integer"  >
+    select
+    COUNT(*)
+    from courseware
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
