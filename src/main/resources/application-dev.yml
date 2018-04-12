@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    name: ubiquitouslearning
+    password: 935377012
+    username: root
+    url: jdbc:mysql://localhost:3306/ubiquitouslearning?useUnicode=true&characterEncoding=utf8
+#reids
+redis:
+    host: 127.0.0.1
+    port: 6379
+    max-idle: 5
+    max-total: 10
+    max-wait-millis: 3000
+

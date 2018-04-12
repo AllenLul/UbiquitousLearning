@@ -1,0 +1,16 @@
+package just.learn.service;
+import just.learn.entity.${modelUp};
+
+public interface ${modelUp}Service{
+
+
+public ${modelUp} insert(${modelUp} ${modelLow});
+
+public boolean delete(Integer id);
+
+public int update(${modelUp} ${modelLow});
+
+public ${modelUp} getById(Integer id);
+
+//public   List<${modelUp}> getAll();
+}

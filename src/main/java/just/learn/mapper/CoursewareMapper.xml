@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="just.learn.mapper.CoursewareMapper" >
+  <resultMap id="BaseResultMap" type="just.learn.entity.Courseware" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="downlaod_times" property="downlaodTimes" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="is_pass" property="isPass" jdbcType="CHAR" />
+    <result column="course_cap" property="courseCap" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, course_id, downlaod_times, type, url, is_pass, course_cap
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from courseware
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from courseware
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="just.learn.entity.Courseware" >
+    insert into courseware (id, course_id, downlaod_times, 
+      type, url, is_pass, course_cap
+      )
+    values (#{id,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{downlaodTimes,jdbcType=INTEGER}, 
+      #{type,jdbcType=CHAR}, #{url,jdbcType=VARCHAR}, #{isPass,jdbcType=CHAR}, #{courseCap,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="just.learn.entity.Courseware" >
+    insert into courseware
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="downlaodTimes != null" >
+        downlaod_times,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="isPass != null" >
+        is_pass,
+      </if>
+      <if test="courseCap != null" >
+        course_cap,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="downlaodTimes != null" >
+        #{downlaodTimes,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isPass != null" >
+        #{isPass,jdbcType=CHAR},
+      </if>
+      <if test="courseCap != null" >
+        #{courseCap,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Courseware" >
+    update courseware
+    <set >
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="downlaodTimes != null" >
+        downlaod_times = #{downlaodTimes,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isPass != null" >
+        is_pass = #{isPass,jdbcType=CHAR},
+      </if>
+      <if test="courseCap != null" >
+        course_cap = #{courseCap,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="just.learn.entity.Courseware" >
+    update courseware
+    set course_id = #{courseId,jdbcType=INTEGER},
+      downlaod_times = #{downlaodTimes,jdbcType=INTEGER},
+      type = #{type,jdbcType=CHAR},
+      url = #{url,jdbcType=VARCHAR},
+      is_pass = #{isPass,jdbcType=CHAR},
+      course_cap = #{courseCap,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

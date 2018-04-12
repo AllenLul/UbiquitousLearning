@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="just.learn.mapper.HomeworkMapper" >
+  <resultMap id="BaseResultMap" type="just.learn.entity.Homework" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="t_id" property="tId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, t_id, name, type, end_time, detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from homework
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from homework
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="just.learn.entity.Homework" >
+    insert into homework (id, t_id, name, type, 
+      end_time, detail)
+    values (#{id,jdbcType=INTEGER}, #{tId,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{type,jdbcType=CHAR}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="just.learn.entity.Homework" >
+    insert into homework
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tId != null" >
+        t_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null" >
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Homework" >
+    update homework
+    <set >
+      <if test="tId != null" >
+        t_id = #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="just.learn.entity.Homework" >
+    update homework
+    set t_id = #{tId,jdbcType=INTEGER},
+      name = #{name,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      detail = #{detail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="just.learn.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="just.learn.entity.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column=" department" property="department" jdbcType="CHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="headPic" property="headpic" jdbcType="VARCHAR" />
+    <result column="stu_num" property="stuNum" jdbcType="CHAR" />
+    <result column="tea_num" property="teaNum" jdbcType="CHAR" />
+    <result column="gender" property="gender" jdbcType="CHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, nickname, " department", phone, headPic, stu_num, tea_num, gender, note, 
+    role, password
+  </sql>
+
+  <select id="login" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where name=#{0} AND password=#{1}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="just.learn.entity.User" >
+    insert into user (id, name, nickname, 
+      " department", phone, headPic, 
+      stu_num, tea_num, gender, note, 
+      role, password)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{department,jdbcType=CHAR}, #{phone,jdbcType=CHAR}, #{headpic,jdbcType=VARCHAR}, 
+      #{stuNum,jdbcType=CHAR}, #{teaNum,jdbcType=CHAR}, #{gender,jdbcType=CHAR}, #{note,jdbcType=VARCHAR}, 
+      #{role,jdbcType=CHAR}, #{password,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="just.learn.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="department != null" >
+        " department",
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="headpic != null" >
+        headPic,
+      </if>
+      <if test="stuNum != null" >
+        stu_num,
+      </if>
+      <if test="teaNum != null" >
+        tea_num,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="headpic != null" >
+        #{headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="stuNum != null" >
+        #{stuNum,jdbcType=CHAR},
+      </if>
+      <if test="teaNum != null" >
+        #{teaNum,jdbcType=CHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.User" >
+    update user
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        " department" = #{department,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="headpic != null" >
+        headPic = #{headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="stuNum != null" >
+        stu_num = #{stuNum,jdbcType=CHAR},
+      </if>
+      <if test="teaNum != null" >
+        tea_num = #{teaNum,jdbcType=CHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="just.learn.entity.User" >
+    update user
+    set name = #{name,jdbcType=CHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      " department" = #{department,jdbcType=CHAR},
+      phone = #{phone,jdbcType=CHAR},
+      headPic = #{headpic,jdbcType=VARCHAR},
+      stu_num = #{stuNum,jdbcType=CHAR},
+      tea_num = #{teaNum,jdbcType=CHAR},
+      gender = #{gender,jdbcType=CHAR},
+      note = #{note,jdbcType=VARCHAR},
+      role = #{role,jdbcType=CHAR},
+      password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="just.learn.mapper.VideoMapper" >
+  <resultMap id="BaseResultMap" type="just.learn.entity.Video" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="is_pass" property="isPass" jdbcType="CHAR" />
+    <result column="length" property="length" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, course_id, name, url, is_pass, length
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from video
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="just.learn.entity.Video" >
+    insert into video (id, course_id, name, 
+      url, is_pass, length)
+    values (#{id,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, 
+      #{url,jdbcType=VARCHAR}, #{isPass,jdbcType=CHAR}, #{length,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="just.learn.entity.Video" >
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="isPass != null" >
+        is_pass,
+      </if>
+      <if test="length != null" >
+        length,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isPass != null" >
+        #{isPass,jdbcType=CHAR},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Video" >
+    update video
+    <set >
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isPass != null" >
+        is_pass = #{isPass,jdbcType=CHAR},
+      </if>
+      <if test="length != null" >
+        length = #{length,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="just.learn.entity.Video" >
+    update video
+    set course_id = #{courseId,jdbcType=INTEGER},
+      name = #{name,jdbcType=CHAR},
+      url = #{url,jdbcType=VARCHAR},
+      is_pass = #{isPass,jdbcType=CHAR},
+      length = #{length,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
