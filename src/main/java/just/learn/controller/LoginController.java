@@ -41,12 +41,6 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ApiResult login(@RequestParam String name, @RequestParam String password, HttpServletResponse httpResponse) throws UnsupportedEncodingException {
         User user = loginService.login(name, password);
-        String jsonStr=CookieUtil.transformJSONString(CookieUtil.ObjectTransformMap(user));
-        jsonStr=jsonStr.replaceAll(" ","");
-        jsonStr=jsonStr.replaceAll("\"","'");
-        jsonStr=jsonStr.replaceAll(",","#");
-        CookieUtil.addCookie(httpResponse,"user",jsonStr,259200);
-        System.out.println(jsonStr);
         return ResultUtil.success("登录成功");
     }
 

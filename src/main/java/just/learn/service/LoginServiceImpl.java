@@ -23,6 +23,10 @@ public class LoginServiceImpl implements LoginService {
         if(name==null||password==null){
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
-        return mapper.login(name,password);
+        User user=mapper.login(name,password);
+        if (user==null){
+            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
+        }
+        return user;
     }
 }
