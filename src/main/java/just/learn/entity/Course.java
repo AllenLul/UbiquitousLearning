@@ -2,7 +2,7 @@ package just.learn.entity;
 
 import java.util.Date;
 
-public class Course {
+public class Course extends Review{
     private Integer id;
 
     private Date createTime;

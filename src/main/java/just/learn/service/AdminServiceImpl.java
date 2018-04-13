@@ -10,6 +10,7 @@ import just.learn.mapper.CourseMapper;
 import just.learn.mapper.CoursewareMapper;
 import just.learn.mapper.PostMapper;
 import just.learn.mapper.UserMapper;
+import just.learn.vo.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,56 +57,39 @@ public class AdminServiceImpl implements AdminService {
         }
         return "success";
     }
-    @Transactional
-    @Override
-    public void reviewCourse(Course courses[]) {
-        if (courses == null||courses.length==0) {
-            throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
-        }
-        List<Course> pass = new ArrayList<Course>();
-        List<Course>  noPass = new ArrayList<Course>();
 
-        for (int i = 0; i < courses.length; i++) {
-            Course course = (Course) courses[i];
-            if ("1".equals(course.getHandleType())) {
-                pass.add(course);
-            } else if ("2".equals(course.getHandleType())) {
-                noPass.add(course);
-            }
-        }
-        if(!pass.isEmpty()){
-            courseMapper.pass(pass);
-        }
-        if(!noPass.isEmpty()){
-            courseMapper.noPass(noPass);
-        }
-
-
-    }
 
     @Override
     @Transactional
-    public void reviewCourseware(Courseware[] coursewares) {
-        if (coursewares == null||coursewares.length==0) {
+    public void review(ReviewVO reviewVO) {
+        if (reviewVO == null) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
-        List<Courseware> pass = new ArrayList<Courseware>();
-        List<Courseware>  noPass = new ArrayList<Courseware>();
-
-        for (int i = 0; i < coursewares.length; i++) {
-            Courseware courseware = (Courseware) coursewares[i];
-            if ("1".equals(courseware.getHandleType())) {
-                pass.add(courseware);
-            } else if ("2".equals(courseware.getHandleType())) {
-                noPass.add(courseware);
+        List pass = new ArrayList();
+        List  noPass = new ArrayList();
+        for (int i = 0; i < reviewVO.getReviews().length; i++) {
+            if ("1".equals(reviewVO.getReviews()[i].getHandleType())) {
+                pass.add(reviewVO.getReviews()[i]);
+            } else if ("2".equals(reviewVO.getReviews()[i].getHandleType())) {
+                noPass.add(reviewVO.getReviews()[i]);
             }
         }
-        if(!pass.isEmpty()){
-            coursewareMapper.pass(pass);
+        if("course".equals(reviewVO.getType())){
+            if(!pass.isEmpty()){
+                courseMapper.pass(pass);
+            }
+            if(!noPass.isEmpty()){
+                courseMapper.noPass(noPass);
+            }
+        }else if("courseware".equals(reviewVO.getType())){
+            if(!pass.isEmpty()){
+                coursewareMapper.pass(pass);
+            }
+            if(!noPass.isEmpty()){
+                coursewareMapper.noPass(noPass);
+            }
+        }else {
+            throw new CustomException(ResultEnum.TYPE_ERROR);
         }
-        if(!noPass.isEmpty()){
-            coursewareMapper.noPass(noPass);
-        }
-
     }
 }

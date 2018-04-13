@@ -9,6 +9,7 @@ import just.learn.common.utils.ResultUtil;
 import just.learn.entity.Course;
 import just.learn.entity.Courseware;
 import just.learn.service.AdminService;
+import just.learn.vo.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -36,18 +37,11 @@ public class AdminController {
         return ResultUtil.success("查询成功", adminService.importInfo(file));
     }
 
-    @ApiOperation(value = "管理员审核课程", notes = "管理员审核课程")
-    @ApiImplicitParam(name = "courses", value = "集合", required = true, dataType = "List")
-    @PostMapping(value = "/reviewCourse")
-    public ApiResult reviewCourse(@RequestBody Course[] courses) throws Exception {
-        adminService.reviewCourse(courses);
-        return ResultUtil.success("success");
-    }
     @ApiOperation(value = "管理员审核课件", notes = "管理员审核课件")
-    @ApiImplicitParam(name = "coursewares", value = "集合", required = true, dataType = "List")
-    @PostMapping(value = "/reviewCourseware")
-    public ApiResult reviewCourseware(@RequestBody Courseware[] coursewares) throws Exception {
-        adminService.reviewCourseware(coursewares);
+    @ApiImplicitParam(name = "reviewVO", value = "审核对象", required = true, dataType = "ReviewVO")
+    @PostMapping(value = "/review")
+    public ApiResult review(@RequestBody ReviewVO reviewVO) throws Exception {
+        adminService.review(reviewVO);
         return ResultUtil.success("success");
     }
 }
