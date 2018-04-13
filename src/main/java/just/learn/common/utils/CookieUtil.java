@@ -1,7 +1,6 @@
 package just.learn.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import just.learn.entity.User;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +9,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.URLDecoder;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -109,10 +107,5 @@ public class CookieUtil {
         }
         return map;
     }
-    public static void main(String[] args) {
-        User user=new User();
-        user.setDepartment("dasd");
-        user.setGender("das");
-        System.out.println(transformJSONString(ObjectTransformMap(user)));
-    }
+
 }

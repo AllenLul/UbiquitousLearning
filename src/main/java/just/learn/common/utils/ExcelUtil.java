@@ -1,6 +1,5 @@
 package just.learn.common.utils;
 
-import just.learn.entity.User;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -20,7 +19,8 @@ import java.util.Map;
  */
 public class ExcelUtil {
 
-    private ExcelUtil(){}
+    private ExcelUtil() {
+    }
 
 
     /**
@@ -30,16 +30,17 @@ public class ExcelUtil {
      * 李四   22  女   160
      * 每一行构成一个map，key值是列标题，value是列值。没有值的单元格其value值为null
      * 返回结果最外层的list对应一个excel文件，第二层的list对应一个sheet页，第三层的map对应sheet页中的一行
+     *
      * @throws Exception
      */
-    public static List<List<Map<String, String>>> readExcelWithTitle(MultipartFile file) throws Exception{
+    public static List<List<Map<String, String>>> readExcelWithTitle(MultipartFile file) throws Exception {
         InputStream is = null;
         Workbook wb = null;
         try {
             is = file.getInputStream();
             wb = new XSSFWorkbook(is);
 
-            List<List<Map<String, String>>> result = new ArrayList<List<Map<String,String>>>();//对应excel文件
+            List<List<Map<String, String>>> result = new ArrayList<List<Map<String, String>>>();//对应excel文件
 
             int sheetSize = wb.getNumberOfSheets();
             for (int i = 0; i < sheetSize; i++) {//遍历sheet页
@@ -58,6 +59,7 @@ public class ExcelUtil {
                     if (j == 0) {//第一行是标题行
                         for (int k = 0; k < cellSize; k++) {
                             Cell cell = row.getCell(k);
+
                             titles.add(cell.toString());
                         }
                     } else {//其他行是数据行
@@ -93,12 +95,14 @@ public class ExcelUtil {
     /**
      * excel导出到输出流
      * 谁调用谁负责关闭输出流
-     * @param os 输出流
+     *
+     * @param os           输出流
      * @param excelExtName excel文件的扩展名，支持xls和xlsx，不带点号
      * @param data
      * @throws IOException
      */
-    public static void writeExcel(OutputStream os, String excelExtName, Map<String,List<List<String>>> data) throws  IOException {
+    public static void writeExcel(OutputStream os, String excelExtName, Map<String, List<List<String>>> data) throws
+            IOException {
         Workbook wb = null;
         try {
             if ("xls".equals(excelExtName)) {
@@ -130,32 +134,42 @@ public class ExcelUtil {
         }
     }
 
-    public class ExcelData{
+
+
+    public class ExcelData {
         private String value;//单元格的值
         private int colSpan = 1;//单元格跨几列
         private int rowSpan = 1;//单元格跨几行
         private boolean alignCenter;//单元格是否居中，默认不居中，如果选择是，则水平和上下都居中
+
         public boolean isAlignCenter() {
             return alignCenter;
         }
+
         public void setAlignCenter(boolean alignCenter) {
             this.alignCenter = alignCenter;
         }
+
         public String getValue() {
             return value;
         }
+
         public void setValue(String value) {
             this.value = value;
         }
+
         public int getColSpan() {
             return colSpan;
         }
+
         public void setColSpan(int colSpan) {
             this.colSpan = colSpan;
         }
+
         public int getRowSpan() {
             return rowSpan;
         }
+
         public void setRowSpan(int rowSpan) {
             this.rowSpan = rowSpan;
         }
@@ -164,12 +178,15 @@ public class ExcelUtil {
     /**
      * excel导出到输出流
      * 谁调用谁负责关闭输出流
-     * @param os 输出流
+     *
+     * @param os           输出流
      * @param excelExtName excel文件的扩展名，支持xls和xlsx，不带点号
-     * @param data excel数据，map中的key是标签页的名称，value对应的list是标签页中的数据。list中的子list是标签页中的一行，子list中的对象是一个单元格的数据，包括是否居中、跨几行几列以及存的值是多少
+     * @param data         excel数据，map中的key是标签页的名称，value对应的list是标签页中的数据。list中的子list是标签页中的一行，子list
+     *                     中的对象是一个单元格的数据，包括是否居中、跨几行几列以及存的值是多少
      * @throws IOException
      */
-    public static void testWrite(OutputStream os, String excelExtName, Map<String,List<List<ExcelData>>> data) throws IOException{
+    public static void testWrite(OutputStream os, String excelExtName, Map<String, List<List<ExcelData>>> data)
+            throws IOException {
         Workbook wb = null;
         CellStyle cellStyle = null;
         boolean isXls;
@@ -202,7 +219,8 @@ public class ExcelUtil {
                     for (ExcelData excelData : cellList) {
                         if (excelData != null) {
                             if (excelData.getColSpan() > 1 || excelData.getRowSpan() > 1) {
-                                CellRangeAddress cra = new CellRangeAddress(i, i + excelData.getRowSpan() - 1, j, j + excelData.getColSpan() - 1);
+                                CellRangeAddress cra = new CellRangeAddress(i, i + excelData.getRowSpan() - 1, j, j +
+                                        excelData.getColSpan() - 1);
                                 sheet.addMergedRegion(cra);
                             }
                             Cell cell = row.createCell(j);
@@ -228,7 +246,8 @@ public class ExcelUtil {
     }
 
     public static void main(String[] args) throws Exception {
-//        List<List<Map<String, String>>> outer= ExcelUtil.readExcelWithTitle(new File("C:\\Users\\PXC\\Desktop\\test\\test.xlsx"));
+//        List<List<Map<String, String>>> outer= ExcelUtil.readExcelWithTitle(new File
+// ("C:\\Users\\PXC\\Desktop\\test\\test.xlsx"));
 //        List<Map<String,String>> result=outer.get(0);
 //        for (Map<String,String> map:result) {
 //            User user=new User();

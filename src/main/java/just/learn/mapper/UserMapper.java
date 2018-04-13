@@ -8,21 +8,21 @@ import java.util.List;
 
 @Component
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(Long id);
 
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
 
-    User login(String name, String password);
-
-    int countByCondition(QueryCondition condition);
+    User login(String number, String password);
 
     List<User> selectLimitObjects(QueryCondition condition);
+
+    int countByCondition(QueryCondition condition);
 }

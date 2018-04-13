@@ -26,6 +26,7 @@ public class ExecptionHandle {
     public ApiResult handle(Exception e ){
         if(e instanceof CustomException){//如果是自定义异常
             CustomException CustomException=(CustomException)e;
+            log.error(CustomException.getMessage());
             return ResultUtil.error(CustomException.getCode(),CustomException.getMessage());
         }else if(e instanceof MultipartException){
             return ResultUtil.error(ResultEnum.FILE_TOO_BIG.getCode(),ResultEnum.FILE_TOO_BIG.getMsg());

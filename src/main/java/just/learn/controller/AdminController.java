@@ -34,7 +34,7 @@ public class AdminController {
     @ApiOperation(value = "导入用户信息", notes = "导入用户信息")
     @PostMapping(value = "/importUser", consumes = "multipart/*", headers = "content-type=multipart/form-data")
     public ApiResult getLimitObjects(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
-        return ResultUtil.success("查询成功", adminService.importInfo(file));
+        return ResultUtil.success("导入成功", adminService.importInfo(file));
     }
 
     @ApiOperation(value = "管理员审核课件", notes = "管理员审核课件")

@@ -3,11 +3,11 @@ package just.learn.controller;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.CookieUtil;
 import just.learn.common.utils.ResultUtil;
-import just.learn.entity.User;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
+import just.learn.entity.User;
 import just.learn.service.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

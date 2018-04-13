@@ -27,7 +27,10 @@ public enum ResultEnum {
     CURRENT_USER_ERROR(511,"获取当前用户失败"),
     NO_AUTHORITY(512,"没有权限"),
     NO_ID(513, "缺少id"),
-    PROPERTY_NULL_ERROR(514,"值是空"), LOGIN_FAIL(515, "登录失败"), TYPE_ERROR(516,"类型异常" );
+    PROPERTY_NULL_ERROR(514,"值是空"),
+    LOGIN_FAIL(515, "登录失败"),
+    TYPE_ERROR(516,"类型异常" ),
+    EXECIL_NULL(517,"Excel数据为空" );
     private Integer code;
     private String msg;
 

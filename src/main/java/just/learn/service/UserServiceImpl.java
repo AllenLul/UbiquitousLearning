@@ -2,8 +2,8 @@ package just.learn.service;
 
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
-import just.learn.mapper.UserMapper;
 import just.learn.entity.User;
+import just.learn.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 import just.learn.vo.QueryCondition;
 import just.learn.entity.PageQueryBean;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(Long id) {
         if (getById(id) == null) {
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(Integer id) {
+    public User getById(Long id) {
         if (id == null) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }

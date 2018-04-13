@@ -13,8 +13,6 @@ import just.learn.vo.QueryCondition;
 import io.swagger.annotations.ApiImplicitParam;
 import just.learn.entity.PageQueryBean;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -30,9 +28,9 @@ public class UserController {
     }*/
     @ApiOperation(value = "删除", notes = "根据主键删除对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键",
-            required = true, dataType = "String")
+            required = true, dataType = "Long")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public ApiResult delete(@PathVariable Integer id) {
+    public ApiResult delete(@PathVariable Long id) {
         userService.delete(id);
         return ResultUtil.success("删除成功");
     }
@@ -55,9 +53,9 @@ public class UserController {
 
     @ApiOperation(value = "查询", notes = "根据主键查询对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键",
-            required = true, dataType = "String")
+            required = true, dataType = "Long")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ApiResult getById(@PathVariable Integer id) {
+    public ApiResult getById(@PathVariable Long id) {
         return ResultUtil.success("查询成功", this.userService.getById(id));
     }
 

@@ -8,19 +8,25 @@
     <result column="department" property="department" jdbcType="CHAR" />
     <result column="phone" property="phone" jdbcType="CHAR" />
     <result column="headPic" property="headpic" jdbcType="VARCHAR" />
-    <result column="number" property="number" jdbcType="CHAR" />
+    <result column="number" property="number" jdbcType="BIGINT" />
     <result column="gender" property="gender" jdbcType="CHAR" />
     <result column="note" property="note" jdbcType="VARCHAR" />
-    <result column="role" property="role" jdbcType="CHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, nickname, department, phone, headPic, number, gender, note, role, password
   </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
   <select id="selectLimitObjects" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
-    from post
+    from user
     LIMIT #{startRow} , #{pageSize}
   </select>
   <select id="countByCondition" resultType="java.lang.Integer"  >
@@ -28,13 +34,7 @@
     COUNT(*)
     from user
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -45,7 +45,7 @@
       password)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR}, 
       #{department,jdbcType=CHAR}, #{phone,jdbcType=CHAR}, #{headpic,jdbcType=VARCHAR}, 
-      #{number,jdbcType=CHAR}, #{gender,jdbcType=CHAR}, #{note,jdbcType=VARCHAR}, #{role,jdbcType=CHAR}, 
+      #{number,jdbcType=BIGINT}, #{gender,jdbcType=CHAR}, #{note,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="just.learn.entity.User" >
@@ -105,7 +105,7 @@
         #{headpic,jdbcType=VARCHAR},
       </if>
       <if test="number != null" >
-        #{number,jdbcType=CHAR},
+        #{number,jdbcType=BIGINT},
       </if>
       <if test="gender != null" >
         #{gender,jdbcType=CHAR},
@@ -114,7 +114,7 @@
         #{note,jdbcType=VARCHAR},
       </if>
       <if test="role != null" >
-        #{role,jdbcType=CHAR},
+        #{role,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
@@ -140,7 +140,7 @@
         headPic = #{headpic,jdbcType=VARCHAR},
       </if>
       <if test="number != null" >
-        number = #{number,jdbcType=CHAR},
+        number = #{number,jdbcType=BIGINT},
       </if>
       <if test="gender != null" >
         gender = #{gender,jdbcType=CHAR},
@@ -149,7 +149,7 @@
         note = #{note,jdbcType=VARCHAR},
       </if>
       <if test="role != null" >
-        role = #{role,jdbcType=CHAR},
+        role = #{role,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
@@ -164,10 +164,10 @@
       department = #{department,jdbcType=CHAR},
       phone = #{phone,jdbcType=CHAR},
       headPic = #{headpic,jdbcType=VARCHAR},
-      number = #{number,jdbcType=CHAR},
+      number = #{number,jdbcType=BIGINT},
       gender = #{gender,jdbcType=CHAR},
       note = #{note,jdbcType=VARCHAR},
-      role = #{role,jdbcType=CHAR},
+      role = #{role,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
