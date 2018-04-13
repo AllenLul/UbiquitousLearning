@@ -35,7 +35,7 @@ public class LoginController {
 
     @ApiOperation(value = "登录", notes = "用户登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "name", value = "姓名", paramType = "query", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "number", value = "编号", paramType = "query", required = true, dataType = "String"),
             @ApiImplicitParam(name = "password", value = "密码", paramType = "query", required = true, dataType =
                     "String")
     })
