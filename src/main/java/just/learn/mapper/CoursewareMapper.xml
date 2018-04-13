@@ -9,9 +9,10 @@
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="is_pass" property="isPass" jdbcType="CHAR" />
     <result column="course_cap" property="courseCap" jdbcType="VARCHAR" />
+    <result column="handle_type" property="handleType" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, course_id, downlaod_times, type, url, is_pass, course_cap
+    id, course_id, downlaod_times, type, url, is_pass, course_cap, handle_type
   </sql>
   <select id="selectLimitObjects" resultMap="BaseResultMap" >
     select
@@ -36,11 +37,11 @@
   </delete>
   <insert id="insert" parameterType="just.learn.entity.Courseware" >
     insert into courseware (id, course_id, downlaod_times, 
-      type, url, is_pass, course_cap
-      )
+      type, url, is_pass, course_cap, 
+      handle_type)
     values (#{id,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{downlaodTimes,jdbcType=INTEGER}, 
-      #{type,jdbcType=CHAR}, #{url,jdbcType=VARCHAR}, #{isPass,jdbcType=CHAR}, #{courseCap,jdbcType=VARCHAR}
-      )
+      #{type,jdbcType=CHAR}, #{url,jdbcType=VARCHAR}, #{isPass,jdbcType=CHAR}, #{courseCap,jdbcType=VARCHAR}, 
+      #{handleType,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="just.learn.entity.Courseware" >
     insert into courseware
@@ -66,6 +67,9 @@
       <if test="courseCap != null" >
         course_cap,
       </if>
+      <if test="handleType != null" >
+        handle_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -88,6 +92,9 @@
       </if>
       <if test="courseCap != null" >
         #{courseCap,jdbcType=VARCHAR},
+      </if>
+      <if test="handleType != null" >
+        #{handleType,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -112,6 +119,9 @@
       <if test="courseCap != null" >
         course_cap = #{courseCap,jdbcType=VARCHAR},
       </if>
+      <if test="handleType != null" >
+        handle_type = #{handleType,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -122,7 +132,8 @@
       type = #{type,jdbcType=CHAR},
       url = #{url,jdbcType=VARCHAR},
       is_pass = #{isPass,jdbcType=CHAR},
-      course_cap = #{courseCap,jdbcType=VARCHAR}
+      course_cap = #{courseCap,jdbcType=VARCHAR},
+      handle_type = #{handleType,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

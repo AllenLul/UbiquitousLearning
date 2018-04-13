@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2018-04-13 10:42:00
+Date: 2018-04-13 17:00:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,13 +43,19 @@ CREATE TABLE `course` (
   `name` char(30) COLLATE utf8_bin NOT NULL,
   `t_id` int(11) NOT NULL,
   `type` char(10) COLLATE utf8_bin DEFAULT NULL,
+  `handle_type` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES ('1', '2018-04-12 08:00:00', 'string', 'string', '0', '1');
+INSERT INTO `course` VALUES ('1', '2018-04-12 08:00:00', 'string', 'string', '0', '1', '0');
+INSERT INTO `course` VALUES ('2', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '0');
+INSERT INTO `course` VALUES ('3', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '0');
+INSERT INTO `course` VALUES ('4', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '0');
+INSERT INTO `course` VALUES ('5', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '0');
+INSERT INTO `course` VALUES ('6', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '0');
 
 -- ----------------------------
 -- Table structure for courseware
@@ -63,6 +69,7 @@ CREATE TABLE `courseware` (
   `url` varchar(255) COLLATE utf8_bin NOT NULL,
   `is_pass` char(1) COLLATE utf8_bin NOT NULL DEFAULT '1',
   `course_cap` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '0',
+  `handle_type` char(1) COLLATE utf8_bin DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -100,17 +107,18 @@ CREATE TABLE `post` (
   `can_reply` char(1) COLLATE utf8_bin DEFAULT '0',
   `is_top` char(1) COLLATE utf8_bin DEFAULT '1',
   `reply_id` int(11) DEFAULT NULL,
+  `is_pass` char(1) COLLATE utf8_bin NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of post
 -- ----------------------------
-INSERT INTO `post` VALUES ('2', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0');
-INSERT INTO `post` VALUES ('3', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0');
-INSERT INTO `post` VALUES ('4', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0');
-INSERT INTO `post` VALUES ('5', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0');
-INSERT INTO `post` VALUES ('6', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0');
+INSERT INTO `post` VALUES ('2', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '1');
+INSERT INTO `post` VALUES ('3', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '1');
+INSERT INTO `post` VALUES ('4', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '1');
+INSERT INTO `post` VALUES ('5', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '1');
+INSERT INTO `post` VALUES ('6', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '1');
 
 -- ----------------------------
 -- Table structure for user

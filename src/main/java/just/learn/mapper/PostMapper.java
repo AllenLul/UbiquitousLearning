@@ -20,7 +20,7 @@ public interface PostMapper {
 
     int updateByPrimaryKey(Post record);
 
-    int countByCondition(QueryCondition condition);
-
     List<Post> selectLimitObjects(QueryCondition condition);
+
+    int countByCondition(QueryCondition condition);
 }

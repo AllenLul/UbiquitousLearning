@@ -40,7 +40,8 @@ public class LoginController {
                     "String")
     })
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ApiResult login(@RequestParam String number, @RequestParam String password, HttpServletResponse httpResponse) throws UnsupportedEncodingException {
+    public ApiResult login(@RequestParam String number, @RequestParam String password, HttpServletResponse
+            httpResponse) throws UnsupportedEncodingException {
         User user = loginService.login(number, password);
         return ResultUtil.success("登录成功");
     }

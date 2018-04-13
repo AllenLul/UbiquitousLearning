@@ -15,6 +15,8 @@ public class Courseware {
 
     private String courseCap;
 
+    private String handleType;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class Courseware {
 
     public void setCourseCap(String courseCap) {
         this.courseCap = courseCap == null ? null : courseCap.trim();
+    }
+
+    public String getHandleType() {
+        return handleType;
+    }
+
+    public void setHandleType(String handleType) {
+        this.handleType = handleType == null ? null : handleType.trim();
     }
 }

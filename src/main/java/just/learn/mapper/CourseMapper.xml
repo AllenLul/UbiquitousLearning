@@ -8,9 +8,10 @@
     <result column="name" property="name" jdbcType="CHAR" />
     <result column="t_id" property="tId" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="CHAR" />
+    <result column="handle_type" property="handleType" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, create_time, indexPic, name, t_id, type
+    id, create_time, indexPic, name, t_id, type, handle_type
   </sql>
   <select id="selectLimitObjects" resultMap="BaseResultMap" >
     select
@@ -35,9 +36,11 @@
   </delete>
   <insert id="insert" parameterType="just.learn.entity.Course" >
     insert into course (id, create_time, indexPic, 
-      name, t_id, type)
+      name, t_id, type, handle_type
+      )
     values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{indexpic,jdbcType=VARCHAR}, 
-      #{name,jdbcType=CHAR}, #{tId,jdbcType=INTEGER}, #{type,jdbcType=CHAR})
+      #{name,jdbcType=CHAR}, #{tId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{handleType,jdbcType=CHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="just.learn.entity.Course" >
     insert into course
@@ -60,6 +63,9 @@
       <if test="type != null" >
         type,
       </if>
+      <if test="handleType != null" >
+        handle_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -79,6 +85,9 @@
       </if>
       <if test="type != null" >
         #{type,jdbcType=CHAR},
+      </if>
+      <if test="handleType != null" >
+        #{handleType,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -100,6 +109,9 @@
       <if test="type != null" >
         type = #{type,jdbcType=CHAR},
       </if>
+      <if test="handleType != null" >
+        handle_type = #{handleType,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -109,7 +121,26 @@
       indexPic = #{indexpic,jdbcType=VARCHAR},
       name = #{name,jdbcType=CHAR},
       t_id = #{tId,jdbcType=INTEGER},
-      type = #{type,jdbcType=CHAR}
+      type = #{type,jdbcType=CHAR},
+      handle_type = #{handleType,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="pass" parameterType="java.util.List" >
+    update course
+    set handle_type = '1'
+    where id IN
+    <foreach collection="list" item="item" index="index"
+             separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+  <update id="noPass" parameterType="java.util.List" >
+    update course
+    set handle_type = '2'
+    where id IN
+    <foreach collection="list" item="item" index="index"
+             separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
   </update>
 </mapper>

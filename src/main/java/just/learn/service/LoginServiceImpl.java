@@ -10,18 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
 public class LoginServiceImpl implements LoginService {
     @Autowired
     private UserMapper mapper;
+
     @Override
     public User login(String number, String password) {
-        if(number==null||password==null){
+        if (number == null || password == null) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
-        User user=mapper.login(number,password);
-        if (user==null){
+        User user = mapper.login(number, password);
+        if (user == null) {
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
         return user;

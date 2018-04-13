@@ -17,6 +17,8 @@ public class Post {
 
     private Integer replyId;
 
+    private String isPass;
+
     public Integer getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class Post {
 
     public void setReplyId(Integer replyId) {
         this.replyId = replyId;
+    }
+
+    public String getIsPass() {
+        return isPass;
+    }
+
+    public void setIsPass(String isPass) {
+        this.isPass = isPass == null ? null : isPass.trim();
     }
 }

@@ -2,9 +2,10 @@ package just.learn.mapper;
 
 import just.learn.entity.AppendedDocument;
 import just.learn.vo.QueryCondition;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface AppendedDocumentMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -15,6 +15,8 @@ public class Course {
 
     private String type;
 
+    private String handleType;
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +63,13 @@ public class Course {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+
+    public String getHandleType() {
+        return handleType;
+    }
+
+    public void setHandleType(String handleType) {
+        this.handleType = handleType == null ? null : handleType.trim();
     }
 }

@@ -28,6 +28,7 @@ public class BaseController {
     public ApiResult getLanguage() {
         return ResultUtil.success();
     }
+
     //处理日期
     @InitBinder
     public void initBinder(ServletRequestDataBinder binder) {

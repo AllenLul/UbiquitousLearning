@@ -20,6 +20,10 @@ public interface CourseMapper {
 
     int updateByPrimaryKey(Course record);
 
+    void pass(List list);
+
+    void noPass(List list);
+
     int countByCondition(QueryCondition condition);
 
     List<Course> selectLimitObjects(QueryCondition condition);

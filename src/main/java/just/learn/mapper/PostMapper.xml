@@ -9,11 +9,11 @@
     <result column="can_reply" property="canReply" jdbcType="CHAR" />
     <result column="is_top" property="isTop" jdbcType="CHAR" />
     <result column="reply_id" property="replyId" jdbcType="INTEGER" />
+    <result column="is_pass" property="isPass" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, detail, create_time, can_reply, is_top, reply_id
+    id, name, detail, create_time, can_reply, is_top, reply_id, is_pass
   </sql>
-
   <select id="selectLimitObjects" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
@@ -38,10 +38,10 @@
   <insert id="insert" parameterType="just.learn.entity.Post" >
     insert into post (id, name, detail, 
       create_time, can_reply, is_top, 
-      reply_id)
+      reply_id, is_pass)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{canReply,jdbcType=CHAR}, #{isTop,jdbcType=CHAR}, 
-      #{replyId,jdbcType=INTEGER})
+      #{replyId,jdbcType=INTEGER}, #{isPass,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="just.learn.entity.Post" >
     insert into post
@@ -67,6 +67,9 @@
       <if test="replyId != null" >
         reply_id,
       </if>
+      <if test="isPass != null" >
+        is_pass,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -89,6 +92,9 @@
       </if>
       <if test="replyId != null" >
         #{replyId,jdbcType=INTEGER},
+      </if>
+      <if test="isPass != null" >
+        #{isPass,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -113,6 +119,9 @@
       <if test="replyId != null" >
         reply_id = #{replyId,jdbcType=INTEGER},
       </if>
+      <if test="isPass != null" >
+        is_pass = #{isPass,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -123,7 +132,8 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       can_reply = #{canReply,jdbcType=CHAR},
       is_top = #{isTop,jdbcType=CHAR},
-      reply_id = #{replyId,jdbcType=INTEGER}
+      reply_id = #{replyId,jdbcType=INTEGER},
+      is_pass = #{isPass,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

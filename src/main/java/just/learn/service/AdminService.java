@@ -2,6 +2,8 @@ package just.learn.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * @author Ethanp
  * @version V1.0
@@ -11,4 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface AdminService {
     public String importInfo(MultipartFile file) throws Exception;
+
+    void review(String type, List list);
 }
