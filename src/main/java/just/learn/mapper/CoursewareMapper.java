@@ -23,4 +23,8 @@ public interface CoursewareMapper {
     int countByCondition(QueryCondition condition);
 
     List<Courseware> selectLimitObjects(QueryCondition condition);
+
+    void pass(List<Courseware> pass);
+
+    void noPass(List<Courseware> noPass);
 }

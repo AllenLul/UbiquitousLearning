@@ -7,6 +7,7 @@ import just.learn.entity.Course;
 import just.learn.entity.Courseware;
 import just.learn.entity.User;
 import just.learn.mapper.CourseMapper;
+import just.learn.mapper.CoursewareMapper;
 import just.learn.mapper.PostMapper;
 import just.learn.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,11 @@ import java.util.Map;
 @Service
 public class AdminServiceImpl implements AdminService {
     @Autowired
-    private UserMapper userMapper;
+    private CoursewareMapper coursewareMapper;
     @Autowired
     private CourseMapper courseMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Transactional
     @Override
@@ -53,40 +56,56 @@ public class AdminServiceImpl implements AdminService {
         }
         return "success";
     }
-
+    @Transactional
     @Override
-    public void review(String type, List list) {
-        if (type == null || list == null) {
+    public void reviewCourse(Course courses[]) {
+        if (courses == null||courses.length==0) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
-        List pass = new ArrayList();
-        List noPass = new ArrayList();
+        List<Course> pass = new ArrayList<Course>();
+        List<Course>  noPass = new ArrayList<Course>();
 
-        if ("course".equals(type)) {
-            for (int i = 0; i < list.size(); i++) {
-                Course course = (Course) list.get(i);
-                if ("1".equals(course.getHandleType())) {
-                    courseMapper.pass(pass);
-                } else if ("2".equals(course.getHandleType())) {
-                    courseMapper.noPass(noPass);
-                } else {
-                    return;
-                }
+        for (int i = 0; i < courses.length; i++) {
+            Course course = (Course) courses[i];
+            if ("1".equals(course.getHandleType())) {
+                pass.add(course);
+            } else if ("2".equals(course.getHandleType())) {
+                noPass.add(course);
             }
-
-        } else if ("courseware".equals(type)) {
-            for (int i = 0; i < list.size(); i++) {
-                Courseware courseware = (Courseware) list.get(i);
-                if ("1".equals(courseware.getHandleType())) {
-                    courseMapper.pass(pass);
-                } else if ("2".equals(courseware.getHandleType())) {
-                    courseMapper.noPass(noPass);
-                } else {
-                    return;
-                }
-            }
-        } else {
-            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
+        if(!pass.isEmpty()){
+            courseMapper.pass(pass);
+        }
+        if(!noPass.isEmpty()){
+            courseMapper.noPass(noPass);
+        }
+
+
+    }
+
+    @Override
+    @Transactional
+    public void reviewCourseware(Courseware[] coursewares) {
+        if (coursewares == null||coursewares.length==0) {
+            throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
+        }
+        List<Courseware> pass = new ArrayList<Courseware>();
+        List<Courseware>  noPass = new ArrayList<Courseware>();
+
+        for (int i = 0; i < coursewares.length; i++) {
+            Courseware courseware = (Courseware) coursewares[i];
+            if ("1".equals(courseware.getHandleType())) {
+                pass.add(courseware);
+            } else if ("2".equals(courseware.getHandleType())) {
+                noPass.add(courseware);
+            }
+        }
+        if(!pass.isEmpty()){
+            coursewareMapper.pass(pass);
+        }
+        if(!noPass.isEmpty()){
+            coursewareMapper.noPass(noPass);
+        }
+
     }
 }

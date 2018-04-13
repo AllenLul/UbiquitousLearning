@@ -136,4 +136,22 @@
       handle_type = #{handleType,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="pass" parameterType="java.util.List" >
+    update courseware
+    set handle_type = '1'
+    where id IN
+    <foreach collection="list" item="item" index="index"
+             separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+  <update id="noPass" parameterType="java.util.List" >
+    update courseware
+    set handle_type = '2'
+    where id IN
+    <foreach collection="list" item="item" index="index"
+             separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
 </mapper>

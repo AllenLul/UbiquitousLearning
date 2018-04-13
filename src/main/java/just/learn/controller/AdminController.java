@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
+import just.learn.entity.Course;
+import just.learn.entity.Courseware;
 import just.learn.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,15 +36,18 @@ public class AdminController {
         return ResultUtil.success("查询成功", adminService.importInfo(file));
     }
 
-    @ApiOperation(value = "管理员审核", notes = "管理员审核")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "type", value = "类型", paramType = "query", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "list", value = "集合", paramType = "query", required = true, dataType =
-                    "List")
-    })
-    @PostMapping(value = "/review")
-    public ApiResult review(@RequestParam String type, @RequestParam List list) throws Exception {
-        adminService.review(type, list);
-        return null;
+    @ApiOperation(value = "管理员审核课程", notes = "管理员审核课程")
+    @ApiImplicitParam(name = "courses", value = "集合", required = true, dataType = "List")
+    @PostMapping(value = "/reviewCourse")
+    public ApiResult reviewCourse(@RequestBody Course[] courses) throws Exception {
+        adminService.reviewCourse(courses);
+        return ResultUtil.success("success");
+    }
+    @ApiOperation(value = "管理员审核课件", notes = "管理员审核课件")
+    @ApiImplicitParam(name = "coursewares", value = "集合", required = true, dataType = "List")
+    @PostMapping(value = "/reviewCourseware")
+    public ApiResult reviewCourseware(@RequestBody Courseware[] coursewares) throws Exception {
+        adminService.reviewCourseware(coursewares);
+        return ResultUtil.success("success");
     }
 }
