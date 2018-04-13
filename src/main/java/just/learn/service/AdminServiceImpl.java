@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +37,7 @@ public class AdminServiceImpl implements AdminService {
             user.setNickname(map.get("nickname"));
             user.setNote(map.get("note"));
             user.setRole(map.get("role").substring(0,1));
-            user.setStuNum(map.get("stuNum"));
-            user.setTeaNum(map.get("teaNum"));
+            user.setNumber(map.get("number"));
             user.setPhone(map.get("phone"));
             userMapper.insertSelective(user);
         }

@@ -7,6 +7,7 @@ import just.learn.entity.User;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+
 import just.learn.service.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,8 +40,8 @@ public class LoginController {
                     "String")
     })
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ApiResult login(@RequestParam String name, @RequestParam String password, HttpServletResponse httpResponse) throws UnsupportedEncodingException {
-        User user = loginService.login(name, password);
+    public ApiResult login(@RequestParam String number, @RequestParam String password, HttpServletResponse httpResponse) throws UnsupportedEncodingException {
+        User user = loginService.login(number, password);
         return ResultUtil.success("登录成功");
     }
 

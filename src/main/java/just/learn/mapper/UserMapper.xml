@@ -5,37 +5,18 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="CHAR" />
     <result column="nickname" property="nickname" jdbcType="VARCHAR" />
-    <result column=" department" property="department" jdbcType="CHAR" />
+    <result column="department" property="department" jdbcType="CHAR" />
     <result column="phone" property="phone" jdbcType="CHAR" />
     <result column="headPic" property="headpic" jdbcType="VARCHAR" />
-    <result column="stu_num" property="stuNum" jdbcType="CHAR" />
-    <result column="tea_num" property="teaNum" jdbcType="CHAR" />
+    <result column="number" property="number" jdbcType="CHAR" />
     <result column="gender" property="gender" jdbcType="CHAR" />
     <result column="note" property="note" jdbcType="VARCHAR" />
     <result column="role" property="role" jdbcType="CHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, nickname, " department", phone, headPic, stu_num, tea_num, gender, note, 
-    role, password
+    id, name, nickname, department, phone, headPic, number, gender, note, role, password
   </sql>
-  <select id="selectLimitObjects" resultMap="BaseResultMap" >
-    select
-    <include refid="Base_Column_List" />
-    from user
-    LIMIT #{startRow} , #{pageSize}
-  </select>
-  <select id="countByCondition" resultType="java.lang.Integer"  >
-    select
-    COUNT(*)
-    from user
-  </select>
-  <select id="login" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from user
-    where name=#{0} AND password=#{1}
-  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -48,13 +29,13 @@
   </delete>
   <insert id="insert" parameterType="just.learn.entity.User" >
     insert into user (id, name, nickname, 
-      " department", phone, headPic, 
-      stu_num, tea_num, gender, note, 
-      role, password)
+      department, phone, headPic, 
+      number, gender, note, role, 
+      password)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR}, 
       #{department,jdbcType=CHAR}, #{phone,jdbcType=CHAR}, #{headpic,jdbcType=VARCHAR}, 
-      #{stuNum,jdbcType=CHAR}, #{teaNum,jdbcType=CHAR}, #{gender,jdbcType=CHAR}, #{note,jdbcType=VARCHAR}, 
-      #{role,jdbcType=CHAR}, #{password,jdbcType=VARCHAR})
+      #{number,jdbcType=CHAR}, #{gender,jdbcType=CHAR}, #{note,jdbcType=VARCHAR}, #{role,jdbcType=CHAR}, 
+      #{password,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="just.learn.entity.User" >
     insert into user
@@ -77,11 +58,8 @@
       <if test="headpic != null" >
         headPic,
       </if>
-      <if test="stuNum != null" >
-        stu_num,
-      </if>
-      <if test="teaNum != null" >
-        tea_num,
+      <if test="number != null" >
+        number,
       </if>
       <if test="gender != null" >
         gender,
@@ -115,11 +93,8 @@
       <if test="headpic != null" >
         #{headpic,jdbcType=VARCHAR},
       </if>
-      <if test="stuNum != null" >
-        #{stuNum,jdbcType=CHAR},
-      </if>
-      <if test="teaNum != null" >
-        #{teaNum,jdbcType=CHAR},
+      <if test="number != null" >
+        #{number,jdbcType=CHAR},
       </if>
       <if test="gender != null" >
         #{gender,jdbcType=CHAR},
@@ -145,7 +120,7 @@
         nickname = #{nickname,jdbcType=VARCHAR},
       </if>
       <if test="department != null" >
-        " department" = #{department,jdbcType=CHAR},
+        department = #{department,jdbcType=CHAR},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=CHAR},
@@ -153,11 +128,8 @@
       <if test="headpic != null" >
         headPic = #{headpic,jdbcType=VARCHAR},
       </if>
-      <if test="stuNum != null" >
-        stu_num = #{stuNum,jdbcType=CHAR},
-      </if>
-      <if test="teaNum != null" >
-        tea_num = #{teaNum,jdbcType=CHAR},
+      <if test="number != null" >
+        number = #{number,jdbcType=CHAR},
       </if>
       <if test="gender != null" >
         gender = #{gender,jdbcType=CHAR},
@@ -178,11 +150,10 @@
     update user
     set name = #{name,jdbcType=CHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
-      " department" = #{department,jdbcType=CHAR},
+      department = #{department,jdbcType=CHAR},
       phone = #{phone,jdbcType=CHAR},
       headPic = #{headpic,jdbcType=VARCHAR},
-      stu_num = #{stuNum,jdbcType=CHAR},
-      tea_num = #{teaNum,jdbcType=CHAR},
+      number = #{number,jdbcType=CHAR},
       gender = #{gender,jdbcType=CHAR},
       note = #{note,jdbcType=VARCHAR},
       role = #{role,jdbcType=CHAR},
