@@ -3,12 +3,12 @@ package just.learn.common.enums;
 /**
  * Created by llf on 2018/4/13.
  */
-public enum GenderEnum {
+public enum RoleEnum {
 
-    MALE("male","男"),FEMALE("female","女");
+    STUDENT("student","学生"),TEACHER("teacher","老师"),MANAGER("manager","管理员");
     private String  value;
     private String description;
-    GenderEnum(String value,String description) {
+    RoleEnum(String value,String description) {
         this.value = value;
         this.description = description;
     }
@@ -23,11 +23,12 @@ public enum GenderEnum {
         if (value==null||value.isEmpty()){
             return  null;
         }
-        for (GenderEnum ge:GenderEnum.values()) {
-            if (value.equals(ge.value)){
-                return ge.description;
+        for (RoleEnum role:RoleEnum.values()) {
+            if (value.equals(role.value)){
+                return role.description;
             }
         }
         return null;
     }
+
 }
