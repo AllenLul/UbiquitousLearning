@@ -34,8 +34,8 @@ public class GetTypeByHead {
         mFileTypes.put("504B0304", "docx");
         mFileTypes.put("52617221", "rar");
         mFileTypes.put("57415645", "wav");
-        mFileTypes.put("41564920", "avi");
-        mFileTypes.put("2E524D46", "rm");
+        mFileTypes.put("52494646", "avi");
+        mFileTypes.put("00000020", "mp4");
         mFileTypes.put("000001BA", "mpg");
         mFileTypes.put("000001B3", "mpg");
         mFileTypes.put("6D6F6F76", "mov");
