@@ -8,6 +8,7 @@ import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.Course;
 import just.learn.entity.Courseware;
+import just.learn.entity.User;
 import just.learn.service.AdminService;
 import just.learn.vo.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,14 @@ import java.util.List;
 @RestController
 @RequestMapping("admin")
 public class AdminController {
+
     @Autowired
     @Qualifier("adminServiceImpl")
     private AdminService adminService;
 
     @ApiOperation(value = "导入用户信息", notes = "导入用户信息")
     @PostMapping(value = "/importUser", consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public ApiResult getLimitObjects(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
+    public ApiResult importUser(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
         return ResultUtil.success("导入成功", adminService.importInfo(file));
     }
 
@@ -44,4 +46,6 @@ public class AdminController {
         adminService.review(reviewVO);
         return ResultUtil.success("success");
     }
+
+
 }

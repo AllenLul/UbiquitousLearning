@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: learn
+  http:
+    multipart:
+      max-file-size: 200Mb
+      max-request-size: 200Mb
   messages:
     encoding: UTF-8
     basename: /messages/messages

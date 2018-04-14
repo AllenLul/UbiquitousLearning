@@ -1,5 +1,6 @@
 package just.learn.controller;
 
+import just.learn.common.enums.ResultEnum;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.User;
@@ -16,7 +17,11 @@ import just.learn.entity.PageQueryBean;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
+    private User currentUser;
+    public UserController(){
+        currentUser=new User();
+        currentUser.setRole("admin");
+        }
     @Autowired
     @Qualifier("userServiceImpl")
     private UserService userService;
@@ -31,7 +36,12 @@ public class UserController {
             required = true, dataType = "Long")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Long id) {
-        userService.delete(id);
+        if("admin".equals(currentUser.getRole())){
+            userService.delete(id);
+        }else{
+            return ResultUtil.error(ResultEnum.NO_AUTHORITY.getCode(),ResultEnum.NO_AUTHORITY.getMsg());
+        }
+
         return ResultUtil.success("删除成功");
     }
 
@@ -47,6 +57,8 @@ public class UserController {
     @ApiImplicitParam(name = "user", value = "实体对象", required = true, dataType = "User")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody User user) {
+
+
         userService.update(user);
         return ResultUtil.success("更新成功");
     }
