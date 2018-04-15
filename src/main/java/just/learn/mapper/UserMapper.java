@@ -25,4 +25,7 @@ public interface UserMapper {
     List<User> selectLimitObjects(QueryCondition condition);
 
     int countByCondition(QueryCondition condition);
+
+
+    List<User> getUsersByCourseId(Integer id);
 }

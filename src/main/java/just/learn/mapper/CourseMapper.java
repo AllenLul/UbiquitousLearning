@@ -1,6 +1,7 @@
 package just.learn.mapper;
 
 import just.learn.entity.Course;
+import just.learn.entity.User;
 import just.learn.vo.QueryCondition;
 import org.springframework.stereotype.Component;
 
@@ -27,4 +28,9 @@ public interface CourseMapper {
     int countByCondition(QueryCondition condition);
 
     List<Course> selectLimitObjects(QueryCondition condition);
+
+
+    List<Course> getCoursesByUserId(Long id);
+
+
 }

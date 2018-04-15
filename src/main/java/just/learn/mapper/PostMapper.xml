@@ -9,10 +9,10 @@
     <result column="can_reply" property="canReply" jdbcType="CHAR" />
     <result column="is_top" property="isTop" jdbcType="CHAR" />
     <result column="reply_id" property="replyId" jdbcType="INTEGER" />
-    <result column="is_pass" property="isPass" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, detail, create_time, can_reply, is_top, reply_id, is_pass
+    id, name, detail, create_time, can_reply, is_top, reply_id, user_id
   </sql>
   <select id="selectLimitObjects" resultMap="BaseResultMap" >
     select
@@ -38,10 +38,10 @@
   <insert id="insert" parameterType="just.learn.entity.Post" >
     insert into post (id, name, detail, 
       create_time, can_reply, is_top, 
-      reply_id, is_pass)
+      reply_id, user_id)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{canReply,jdbcType=CHAR}, #{isTop,jdbcType=CHAR}, 
-      #{replyId,jdbcType=INTEGER}, #{isPass,jdbcType=CHAR})
+      #{replyId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="just.learn.entity.Post" >
     insert into post
@@ -67,8 +67,8 @@
       <if test="replyId != null" >
         reply_id,
       </if>
-      <if test="isPass != null" >
-        is_pass,
+      <if test="userId != null" >
+        user_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -93,8 +93,8 @@
       <if test="replyId != null" >
         #{replyId,jdbcType=INTEGER},
       </if>
-      <if test="isPass != null" >
-        #{isPass,jdbcType=CHAR},
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -119,8 +119,8 @@
       <if test="replyId != null" >
         reply_id = #{replyId,jdbcType=INTEGER},
       </if>
-      <if test="isPass != null" >
-        is_pass = #{isPass,jdbcType=CHAR},
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -133,7 +133,7 @@
       can_reply = #{canReply,jdbcType=CHAR},
       is_top = #{isTop,jdbcType=CHAR},
       reply_id = #{replyId,jdbcType=INTEGER},
-      is_pass = #{isPass,jdbcType=CHAR}
+      user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

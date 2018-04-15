@@ -1,40 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="just.learn.mapper.CourseMapper" >
-  <resultMap id="BaseResultMap" type="just.learn.entity.Course" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="indexPic" property="indexpic" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="CHAR" />
-    <result column="t_id" property="tId" jdbcType="INTEGER" />
-    <result column="type" property="type" jdbcType="CHAR" />
-    <result column="handle_type" property="handleType" jdbcType="CHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="just.learn.mapper.CourseMapper">
+    <resultMap id="BaseResultMap" type="just.learn.entity.Course">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="indexPic" property="indexpic" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="CHAR"/>
+        <result column="t_id" property="tId" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="CHAR"/>
+        <result column="handle_type" property="handleType" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, create_time, indexPic, name, t_id, type, handle_type
   </sql>
-  <select id="selectLimitObjects" resultMap="BaseResultMap" >
-    select
-    <include refid="Base_Column_List" />
-    from course
-    LIMIT #{startRow} , #{pageSize}
+
+    <select id="getCoursesByUserId" resultMap="BaseResultMap" resultType="java.lang.Long">
+   select *from course
+     where course.id in
+  (
+  SELECT DISTINCT
+    user_course.course_id
+  FROM
+    user_course,
+    user
+  WHERE user.id = user_course.user_id
+    AND user.id = #{id}
+    )
   </select>
-  <select id="countByCondition" resultType="java.lang.Integer"  >
+    <select id="selectLimitObjects" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from course
+        LIMIT #{startRow} , #{pageSize}
+    </select>
+    <select id="countByCondition" resultType="java.lang.Integer">
     select
     COUNT(*)
     from course
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from course
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from course
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from course
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="just.learn.entity.Course" >
+    <insert id="insert" parameterType="just.learn.entity.Course">
     insert into course (id, create_time, indexPic, 
       name, t_id, type, handle_type
       )
@@ -42,80 +56,80 @@
       #{name,jdbcType=CHAR}, #{tId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{handleType,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="just.learn.entity.Course" >
-    insert into course
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="indexpic != null" >
-        indexPic,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="tId != null" >
-        t_id,
-      </if>
-      <if test="type != null" >
-        type,
-      </if>
-      <if test="handleType != null" >
-        handle_type,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="indexpic != null" >
-        #{indexpic,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=CHAR},
-      </if>
-      <if test="tId != null" >
-        #{tId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null" >
-        #{type,jdbcType=CHAR},
-      </if>
-      <if test="handleType != null" >
-        #{handleType,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Course" >
-    update course
-    <set >
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="indexpic != null" >
-        indexPic = #{indexpic,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=CHAR},
-      </if>
-      <if test="tId != null" >
-        t_id = #{tId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null" >
-        type = #{type,jdbcType=CHAR},
-      </if>
-      <if test="handleType != null" >
-        handle_type = #{handleType,jdbcType=CHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="just.learn.entity.Course" >
+    <insert id="insertSelective" parameterType="just.learn.entity.Course">
+        insert into course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="indexpic != null">
+                indexPic,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="tId != null">
+                t_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="handleType != null">
+                handle_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="indexpic != null">
+                #{indexpic,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=CHAR},
+            </if>
+            <if test="tId != null">
+                #{tId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=CHAR},
+            </if>
+            <if test="handleType != null">
+                #{handleType,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Course">
+        update course
+        <set>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="indexpic != null">
+                indexPic = #{indexpic,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=CHAR},
+            </if>
+            <if test="tId != null">
+                t_id = #{tId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=CHAR},
+            </if>
+            <if test="handleType != null">
+                handle_type = #{handleType,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="just.learn.entity.Course">
     update course
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       indexPic = #{indexpic,jdbcType=VARCHAR},
@@ -125,22 +139,22 @@
       handle_type = #{handleType,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="pass" parameterType="java.util.List" >
-    update course
-    set handle_type = '1'
-    where id IN
-    <foreach collection="list" item="item" index="index"
-             separator="," open="(" close=")">
-      #{item.id}
-    </foreach>
-  </update>
-  <update id="noPass" parameterType="java.util.List" >
-    update course
-    set handle_type = '2'
-    where id IN
-    <foreach collection="list" item="item" index="index"
-             separator="," open="(" close=")">
-      #{item.id}
-    </foreach>
-  </update>
+    <update id="pass" parameterType="java.util.List">
+        update course
+        set handle_type = '1'
+        where id IN
+        <foreach collection="list" item="item" index="index"
+                 separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+    </update>
+    <update id="noPass" parameterType="java.util.List">
+        update course
+        set handle_type = '2'
+        where id IN
+        <foreach collection="list" item="item" index="index"
+                 separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+    </update>
 </mapper>

@@ -1,6 +1,7 @@
 package just.learn.mapper;
 
 import just.learn.entity.Courseware;
+import just.learn.entity.User;
 import just.learn.vo.QueryCondition;
 import org.springframework.stereotype.Component;
 
@@ -27,4 +28,5 @@ public interface CoursewareMapper {
     void pass(List<Courseware> pass);
 
     void noPass(List<Courseware> noPass);
+
 }

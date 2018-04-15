@@ -1,7 +1,7 @@
 package just.learn.entity;
 
 import java.util.Date;
-
+/*课程*/
 public class Course extends Review{
     private Integer id;
 

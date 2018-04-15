@@ -51,6 +51,7 @@ public class PostServiceImpl implements PostService {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
         Post post = mapper.selectByPrimaryKey(id);
+
         if (post == null) {
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }

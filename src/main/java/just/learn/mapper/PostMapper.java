@@ -5,7 +5,6 @@ import just.learn.vo.QueryCondition;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
 @Component
 public interface PostMapper {
     int deleteByPrimaryKey(Integer id);
@@ -20,7 +19,7 @@ public interface PostMapper {
 
     int updateByPrimaryKey(Post record);
 
-    List<Post> selectLimitObjects(QueryCondition condition);
-
     int countByCondition(QueryCondition condition);
+
+    List<Post> selectLimitObjects(QueryCondition condition);
 }

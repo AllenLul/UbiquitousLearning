@@ -1,5 +1,5 @@
 package just.learn.entity;
-
+/*附件*/
 public class AppendedDocument {
     private Integer id;
 

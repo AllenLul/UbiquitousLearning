@@ -10,6 +10,7 @@ import java.util.List;
  * @Description: TODO
  * @date 2018/4/12 18:19
  */
+/*分页*/
 public class PageQueryBean {
 
     private static final int DEFAULT_PAGE_SIZE = 10;

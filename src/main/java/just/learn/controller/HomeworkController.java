@@ -13,8 +13,6 @@ import just.learn.vo.QueryCondition;
 import io.swagger.annotations.ApiImplicitParam;
 import just.learn.entity.PageQueryBean;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/homework")
 public class HomeworkController {
@@ -37,7 +35,7 @@ public class HomeworkController {
         return ResultUtil.success("删除成功");
     }
 
-    @ApiOperation(value = "添加", notes = "添加对象")
+    @ApiOperation(value = "学生交作业", notes = "学生交作业")
     @ApiImplicitParam(name = "homework", value = "实体对象", required = true, dataType = "Homework")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody Homework homework) {

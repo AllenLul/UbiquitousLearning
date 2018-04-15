@@ -18,10 +18,12 @@ import just.learn.entity.PageQueryBean;
 @RequestMapping("/user")
 public class UserController {
     private User currentUser;
-    public UserController(){
-        currentUser=new User();
+
+    public UserController() {
+        currentUser = new User();
         currentUser.setRole("admin");
-        }
+    }
+
     @Autowired
     @Qualifier("userServiceImpl")
     private UserService userService;
@@ -36,10 +38,10 @@ public class UserController {
             required = true, dataType = "Long")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Long id) {
-        if("admin".equals(currentUser.getRole())){
+        if ("admin".equals(currentUser.getRole())) {
             userService.delete(id);
-        }else{
-            return ResultUtil.error(ResultEnum.NO_AUTHORITY.getCode(),ResultEnum.NO_AUTHORITY.getMsg());
+        } else {
+            return ResultUtil.error(ResultEnum.NO_AUTHORITY.getCode(), ResultEnum.NO_AUTHORITY.getMsg());
         }
 
         return ResultUtil.success("删除成功");
@@ -83,5 +85,8 @@ public class UserController {
         PageQueryBean pageQueryBean = this.userService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
     }
+
+
+
 
 }

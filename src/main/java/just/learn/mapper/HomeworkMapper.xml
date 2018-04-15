@@ -3,14 +3,15 @@
 <mapper namespace="just.learn.mapper.HomeworkMapper" >
   <resultMap id="BaseResultMap" type="just.learn.entity.Homework" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="t_id" property="tId" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="CHAR" />
     <result column="type" property="type" jdbcType="CHAR" />
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
     <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, t_id, name, type, end_time, detail
+    id, course_id, name, type, end_time, detail, user_id
   </sql>
   <select id="selectLimitObjects" resultMap="BaseResultMap" >
     select
@@ -34,10 +35,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="just.learn.entity.Homework" >
-    insert into homework (id, t_id, name, type, 
-      end_time, detail)
-    values (#{id,jdbcType=INTEGER}, #{tId,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{type,jdbcType=CHAR}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR})
+    insert into homework (id, course_id, name, 
+      type, end_time, detail, 
+      user_id)
+    values (#{id,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, 
+      #{type,jdbcType=CHAR}, #{endTime,jdbcType=TIMESTAMP}, #{detail,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="just.learn.entity.Homework" >
     insert into homework
@@ -45,8 +48,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="tId != null" >
-        t_id,
+      <if test="courseId != null" >
+        course_id,
       </if>
       <if test="name != null" >
         name,
@@ -60,13 +63,16 @@
       <if test="detail != null" >
         detail,
       </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="tId != null" >
-        #{tId,jdbcType=INTEGER},
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=CHAR},
@@ -80,13 +86,16 @@
       <if test="detail != null" >
         #{detail,jdbcType=VARCHAR},
       </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Homework" >
     update homework
     <set >
-      <if test="tId != null" >
-        t_id = #{tId,jdbcType=INTEGER},
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=CHAR},
@@ -100,16 +109,20 @@
       <if test="detail != null" >
         detail = #{detail,jdbcType=VARCHAR},
       </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="just.learn.entity.Homework" >
     update homework
-    set t_id = #{tId,jdbcType=INTEGER},
+    set course_id = #{courseId,jdbcType=INTEGER},
       name = #{name,jdbcType=CHAR},
       type = #{type,jdbcType=CHAR},
       end_time = #{endTime,jdbcType=TIMESTAMP},
-      detail = #{detail,jdbcType=VARCHAR}
+      detail = #{detail,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -36,7 +36,7 @@ public class CreateCode  {
         ve.setProperty("output.encoding", "utf-8");
         ve.init();
 
-        String[]strsUp={"AppendedDocument","Course","Courseware","Homework","Post","User","Video"};
+        String[]strsUp={"UserCourse"};
         String[]strsLow=new String[strsUp.length];
         for (int i = 0; i < strsUp.length; i++) {
             strsLow[i]=(strsUp[i].substring(0,1).toLowerCase()+strsUp[i].substring(1,strsUp[i].length()));
