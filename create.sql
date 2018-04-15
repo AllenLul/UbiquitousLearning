@@ -1,8 +1,8 @@
 /*
-SQLyog Trial v11.01 (32 bit)
+SQLyog Ultimate v12.5.1 (64 bit)
 MySQL - 5.5.28 : Database - ubiquitouslearning
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -48,7 +48,13 @@ CREATE TABLE `course` (
 
 /*Data for the table `course` */
 
-insert  into `course`(`id`,`create_time`,`indexPic`,`name`,`t_id`,`type`,`handle_type`) values (1,'2018-04-12 08:00:00','string','string',0,'1','1'),(2,'2018-04-13 08:00:00','string','string',0,'1','2'),(3,'2018-04-13 08:00:00','string','string',0,'1','1'),(4,'2018-04-13 08:00:00','string','string',0,'1','2'),(5,'2018-04-13 08:00:00','string','string',0,'1','0'),(6,'2018-04-13 08:00:00','string','string',0,'1','0');
+insert  into `course`(`id`,`create_time`,`indexPic`,`name`,`t_id`,`type`,`handle_type`) values 
+(1,'2018-04-12 08:00:00','string','string',0,'1','1'),
+(2,'2018-04-13 08:00:00','string','string',0,'1','2'),
+(3,'2018-04-13 08:00:00','string','string',0,'1','1'),
+(4,'2018-04-13 08:00:00','string','string',0,'1','2'),
+(5,'2018-04-13 08:00:00','string','string',0,'1','0'),
+(6,'2018-04-13 08:00:00','string','string',0,'1','0');
 
 /*Table structure for table `courseware` */
 
@@ -68,7 +74,12 @@ CREATE TABLE `courseware` (
 
 /*Data for the table `courseware` */
 
-insert  into `courseware`(`id`,`course_id`,`downlaod_times`,`type`,`url`,`is_pass`,`course_cap`,`handle_type`) values (1,0,0,'string','string','1','string','1'),(2,0,0,'string','string','1','string','2'),(3,0,0,'string','string','1','string','1'),(4,0,0,'string','string','1','string','2'),(5,0,0,'string','string','1','string','0');
+insert  into `courseware`(`id`,`course_id`,`downlaod_times`,`type`,`url`,`is_pass`,`course_cap`,`handle_type`) values 
+(1,0,0,'string','string','1','string','1'),
+(2,0,0,'string','string','1','string','2'),
+(3,0,0,'string','string','1','string','1'),
+(4,0,0,'string','string','1','string','2'),
+(5,0,0,'string','string','1','string','0');
 
 /*Table structure for table `homework` */
 
@@ -76,11 +87,12 @@ DROP TABLE IF EXISTS `homework`;
 
 CREATE TABLE `homework` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `t_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
   `name` char(20) COLLATE utf8_bin NOT NULL,
   `type` char(10) COLLATE utf8_bin NOT NULL,
   `end_time` datetime NOT NULL,
   `detail` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -98,12 +110,18 @@ CREATE TABLE `post` (
   `can_reply` char(1) COLLATE utf8_bin DEFAULT '0',
   `is_top` char(1) COLLATE utf8_bin DEFAULT '1',
   `reply_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `post` */
 
-insert  into `post`(`id`,`name`,`detail`,`create_time`,`can_reply`,`is_top`,`reply_id`) values (2,'string','string','2018-04-12 08:00:00','1','1',0),(3,'string','string','2018-04-12 08:00:00','1','1',0),(4,'string','string','2018-04-12 08:00:00','1','1',0),(5,'string','string','2018-04-12 08:00:00','1','1',0),(6,'string','string','2018-04-12 08:00:00','1','1',0);
+insert  into `post`(`id`,`name`,`detail`,`create_time`,`can_reply`,`is_top`,`reply_id`,`user_id`) values 
+(2,'string','string','2018-04-12 08:00:00','1','1',0,0),
+(3,'string','string','2018-04-12 08:00:00','1','1',0,0),
+(4,'string','string','2018-04-12 08:00:00','1','1',0,0),
+(5,'string','string','2018-04-12 08:00:00','1','1',0,0),
+(6,'string','string','2018-04-12 08:00:00','1','1',0,0);
 
 /*Table structure for table `user` */
 
@@ -122,11 +140,52 @@ CREATE TABLE `user` (
   `role` varchar(30) COLLATE utf8_bin DEFAULT '无',
   `password` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`nickname`,`department`,`phone`,`headPic`,`number`,`gender`,`note`,`role`,`password`) values (8,'asd','asd','asd','12312.0','asd',1,'女','asd','student','asd'),(9,'asda','asdasdas','rfwe','3546354.0','asd',1,'男','asds','teacher','dafgsd'),(10,'asd','asd','asd','12312.0','asd',123141,'女','asd','student','asd'),(11,'asda','asdasdas','rfwe','3546354.0','asd',1,'男','asds','teacher','dafgsd'),(12,'asd','asd','asd','12312.0','asd',123141,'女','asd','student','asd'),(13,'asda','asdasdas','rfwe','3546354.0','asd',1,'男','asds','teacher','dafgsd'),(14,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),(15,'asda','asdasdas','rfwe','1','asd',1,'男','asds','teacher','dafgsd'),(16,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),(17,'asda','asdasdas','rfwe','1','asd',1,'男','asds','teacher','dafgsd'),(18,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),(19,'asda','asdasdas','rfwe','1','asd',1,'男','asds','teacher','dafgsd'),(20,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),(21,'asda','asdasdas','rfwe','1','asd',12411434,'男','asds','teacher','dafgsd'),(22,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),(23,'asda','asdasdas','rfwe','1','asd',12411434,'男','asds','teacher','dafgsd'),(24,'asd','asd','asd','18852861545','asd',123141,'女','asd','student','asd'),(25,'asda','asdasdas','rfwe','18852897377','asd',12411434,'男','asds','teacher','dafgsd'),(26,'asd','asd','asd','18852861545',NULL,123141,'女','asd','student','asd'),(27,'asda','asdasdas','rfwe','18852897377',NULL,12411434,'男','asds','teacher','dafgsd');
+insert  into `user`(`id`,`name`,`nickname`,`department`,`phone`,`headPic`,`number`,`gender`,`note`,`role`,`password`) values 
+(8,'asd','asd','asd','12312.0','asd',1,'女','asd','student','asd'),
+(9,'asda','asdasdas','rfwe','3546354.0','asd',1,'男','asds','teacher','dafgsd'),
+(10,'asd','asd','asd','12312.0','asd',123141,'女','asd','student','asd'),
+(11,'asda','asdasdas','rfwe','3546354.0','asd',1,'男','asds','teacher','dafgsd'),
+(12,'asd','asd','asd','12312.0','asd',123141,'女','asd','student','asd'),
+(13,'asda','asdasdas','rfwe','3546354.0','asd',1,'男','asds','teacher','dafgsd'),
+(14,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
+(15,'asda','asdasdas','rfwe','1','asd',1,'男','asds','teacher','dafgsd'),
+(16,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
+(17,'asda','asdasdas','rfwe','1','asd',1,'男','asds','teacher','dafgsd'),
+(18,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
+(19,'asda','asdasdas','rfwe','1','asd',1,'男','asds','teacher','dafgsd'),
+(20,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
+(21,'asda','asdasdas','rfwe','1','asd',12411434,'男','asds','teacher','dafgsd'),
+(22,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
+(23,'asda','asdasdas','rfwe','1','asd',12411434,'男','asds','teacher','dafgsd'),
+(24,'asd','asd','asd','18852861545','asd',123141,'女','asd','student','asd'),
+(25,'asda','asdasdas','rfwe','18852897377','asd',12411434,'男','asds','teacher','dafgsd'),
+(26,'asd','asd','asd','18852861545',NULL,123141,'女','asd','student','asd'),
+(27,'asda','asdasdas','rfwe','18852897377',NULL,12411434,'男','asds','teacher','dafgsd'),
+(28,'asd','asd','asd','18852861545',NULL,123141,'女','asd','student','asd'),
+(29,'asda','asdasdas','rfwe','18852897377',NULL,12411434,'男','asds','teacher','dafgsd');
+
+/*Table structure for table `user_course` */
+
+DROP TABLE IF EXISTS `user_course`;
+
+CREATE TABLE `user_course` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `gmt_create` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `user_course` */
+
+insert  into `user_course`(`id`,`user_id`,`course_id`,`gmt_create`) values 
+(2,8,1,'2018-04-15 11:50:48'),
+(3,8,2,'2018-04-15 11:55:05'),
+(4,9,2,'2018-04-15 13:26:46');
 
 /*Table structure for table `video` */
 
