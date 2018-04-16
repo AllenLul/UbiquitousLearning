@@ -9,12 +9,14 @@ import io.swagger.annotations.ApiOperation;
 
 import just.learn.entity.User;
 import just.learn.service.LoginServiceImpl;
+import just.learn.service.jwt.AuthService;
+import just.learn.vo.jwt.JwtAuthenticationRequest;
+import just.learn.vo.jwt.JwtAuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
@@ -29,21 +31,34 @@ import java.io.UnsupportedEncodingException;
 @RestController
 @RequestMapping("user")
 public class LoginController {
+
+    @Value("${jwt.header}")
+    private String tokenHeader;
+
+    @Value("${jwt.expiration}")
+    private Long expiration;
     @Autowired
     @Qualifier("loginServiceImpl")
     private LoginServiceImpl loginService;
+    private AuthService authService;
 
     @ApiOperation(value = "登录", notes = "用户登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "number", value = "编号", paramType = "query", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "username", value = "学号/教师号", paramType = "query", required = true, dataType = "String"),
             @ApiImplicitParam(name = "password", value = "密码", paramType = "query", required = true, dataType =
                     "String")
     })
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ApiResult login(@RequestParam String number, @RequestParam String password, HttpServletResponse
-            httpResponse) throws UnsupportedEncodingException {
-        User user = loginService.login(number, password);
-        return ResultUtil.success("登录成功");
+    public ResponseEntity<?> login( @RequestBody JwtAuthenticationRequest authenticationRequest,
+                            HttpServletResponse response) throws UnsupportedEncodingException {
+//        User user = loginService.login(number, password);
+        final String token = authService.login(authenticationRequest.getUsername(),
+                authenticationRequest.getPassword());
+        // Return the token
+        addAuthCookie(response,token);
+       return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+
+//        return ResultUtil.success("登录成功");
     }
 
     @ApiOperation(value = "登出", notes = "用户登出")
@@ -51,6 +66,11 @@ public class LoginController {
     public ApiResult logout(HttpServletResponse httpResponse) {
         CookieUtil.deleteCookie("user", httpResponse);
         return ResultUtil.success("退出成功");
+    }
+
+
+    private void addAuthCookie(HttpServletResponse response,String token)throws UnsupportedEncodingException{
+        CookieUtil.addCookie(response,tokenHeader,token,Math.toIntExact(expiration));
     }
 
 }

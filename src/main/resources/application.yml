@@ -35,3 +35,12 @@ mybatis:
 logging:
   config: classpath:logback.xml
 
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  tokenHead: "Bearer"
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
