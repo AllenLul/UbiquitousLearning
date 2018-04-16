@@ -29,6 +29,13 @@
     AND course.id = #{id}
     )
   </select>
+
+  <select id="selectByNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where number = #{number}
+  </select>
   <select id="selectLimitObjects" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
