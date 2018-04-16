@@ -5,7 +5,6 @@ import just.learn.common.execption.CustomException;
 import just.learn.entity.Course;
 import just.learn.entity.User;
 import just.learn.mapper.CourseMapper;
-import just.learn.mapper.CoursewareMapper;
 import just.learn.mapper.UserCourseMapper;
 import just.learn.entity.UserCourse;
 import just.learn.mapper.UserMapper;

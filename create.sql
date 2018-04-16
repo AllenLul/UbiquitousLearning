@@ -1,25 +1,24 @@
 /*
-SQLyog Ultimate v12.5.1 (64 bit)
-MySQL - 5.5.28 : Database - ubiquitouslearning
-*********************************************************************
+Navicat MySQL Data Transfer
+
+Source Server         : 本地mysql
+Source Server Version : 50528
+Source Host           : localhost:3306
+Source Database       : ubiquitouslearning
+
+Target Server Type    : MYSQL
+Target Server Version : 50528
+File Encoding         : 65001
+
+Date: 2018-04-16 12:26:31
 */
 
-/*!40101 SET NAMES utf8 */;
+SET FOREIGN_KEY_CHECKS=0;
 
-/*!40101 SET SQL_MODE=''*/;
-
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`ubiquitouslearning` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
-
-USE `ubiquitouslearning`;
-
-/*Table structure for table `appended_document` */
-
+-- ----------------------------
+-- Table structure for appended_document
+-- ----------------------------
 DROP TABLE IF EXISTS `appended_document`;
-
 CREATE TABLE `appended_document` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -29,12 +28,14 @@ CREATE TABLE `appended_document` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `appended_document` */
+-- ----------------------------
+-- Records of appended_document
+-- ----------------------------
 
-/*Table structure for table `course` */
-
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
 DROP TABLE IF EXISTS `course`;
-
 CREATE TABLE `course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `create_time` datetime NOT NULL,
@@ -46,20 +47,20 @@ CREATE TABLE `course` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `course` */
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+INSERT INTO `course` VALUES ('1', '2018-04-12 08:00:00', 'string', 'string', '0', '1', '1');
+INSERT INTO `course` VALUES ('2', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '2');
+INSERT INTO `course` VALUES ('3', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '1');
+INSERT INTO `course` VALUES ('4', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '2');
+INSERT INTO `course` VALUES ('5', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '0');
+INSERT INTO `course` VALUES ('6', '2018-04-13 08:00:00', 'string', 'string', '0', '1', '0');
 
-insert  into `course`(`id`,`create_time`,`indexPic`,`name`,`t_id`,`type`,`handle_type`) values 
-(1,'2018-04-12 08:00:00','string','string',0,'1','1'),
-(2,'2018-04-13 08:00:00','string','string',0,'1','2'),
-(3,'2018-04-13 08:00:00','string','string',0,'1','1'),
-(4,'2018-04-13 08:00:00','string','string',0,'1','2'),
-(5,'2018-04-13 08:00:00','string','string',0,'1','0'),
-(6,'2018-04-13 08:00:00','string','string',0,'1','0');
-
-/*Table structure for table `courseware` */
-
+-- ----------------------------
+-- Table structure for courseware
+-- ----------------------------
 DROP TABLE IF EXISTS `courseware`;
-
 CREATE TABLE `courseware` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `course_id` int(11) NOT NULL,
@@ -72,19 +73,19 @@ CREATE TABLE `courseware` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `courseware` */
+-- ----------------------------
+-- Records of courseware
+-- ----------------------------
+INSERT INTO `courseware` VALUES ('1', '0', '0', 'string', 'string', '1', 'string', '1');
+INSERT INTO `courseware` VALUES ('2', '0', '0', 'string', 'string', '1', 'string', '2');
+INSERT INTO `courseware` VALUES ('3', '0', '0', 'string', 'string', '1', 'string', '1');
+INSERT INTO `courseware` VALUES ('4', '0', '0', 'string', 'string', '1', 'string', '2');
+INSERT INTO `courseware` VALUES ('5', '0', '0', 'string', 'string', '1', 'string', '0');
 
-insert  into `courseware`(`id`,`course_id`,`downlaod_times`,`type`,`url`,`is_pass`,`course_cap`,`handle_type`) values 
-(1,0,0,'string','string','1','string','1'),
-(2,0,0,'string','string','1','string','2'),
-(3,0,0,'string','string','1','string','1'),
-(4,0,0,'string','string','1','string','2'),
-(5,0,0,'string','string','1','string','0');
-
-/*Table structure for table `homework` */
-
+-- ----------------------------
+-- Table structure for homework
+-- ----------------------------
 DROP TABLE IF EXISTS `homework`;
-
 CREATE TABLE `homework` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `course_id` int(11) NOT NULL,
@@ -96,12 +97,14 @@ CREATE TABLE `homework` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `homework` */
+-- ----------------------------
+-- Records of homework
+-- ----------------------------
 
-/*Table structure for table `post` */
-
+-- ----------------------------
+-- Table structure for post
+-- ----------------------------
 DROP TABLE IF EXISTS `post`;
-
 CREATE TABLE `post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -114,19 +117,19 @@ CREATE TABLE `post` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `post` */
+-- ----------------------------
+-- Records of post
+-- ----------------------------
+INSERT INTO `post` VALUES ('2', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '0');
+INSERT INTO `post` VALUES ('3', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '0');
+INSERT INTO `post` VALUES ('4', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '0');
+INSERT INTO `post` VALUES ('5', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '0');
+INSERT INTO `post` VALUES ('6', 'string', 'string', '2018-04-12 08:00:00', '1', '1', '0', '0');
 
-insert  into `post`(`id`,`name`,`detail`,`create_time`,`can_reply`,`is_top`,`reply_id`,`user_id`) values 
-(2,'string','string','2018-04-12 08:00:00','1','1',0,0),
-(3,'string','string','2018-04-12 08:00:00','1','1',0,0),
-(4,'string','string','2018-04-12 08:00:00','1','1',0,0),
-(5,'string','string','2018-04-12 08:00:00','1','1',0,0),
-(6,'string','string','2018-04-12 08:00:00','1','1',0,0);
-
-/*Table structure for table `user` */
-
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
 DROP TABLE IF EXISTS `user`;
-
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` char(15) COLLATE utf8_bin NOT NULL,
@@ -134,44 +137,24 @@ CREATE TABLE `user` (
   `department` char(15) COLLATE utf8_bin DEFAULT NULL,
   `phone` char(15) COLLATE utf8_bin DEFAULT NULL,
   `headPic` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `number` int(35) unsigned NOT NULL,
+  `number` varchar(35) COLLATE utf8_bin NOT NULL,
   `gender` char(2) COLLATE utf8_bin NOT NULL,
   `note` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `role` varchar(30) COLLATE utf8_bin DEFAULT '无',
   `password` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `user` */
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('30', 'asd', 'asd', 'asd', '18852861545', null, '123141', '女', 'asd', 'student', 'asd');
+INSERT INTO `user` VALUES ('31', 'asda', 'asdasdas', 'rfwe', '18852897377', null, '12411434', '男', 'asds', 'teacher', 'dafgsd');
 
-insert  into `user`(`id`,`name`,`nickname`,`department`,`phone`,`headPic`,`number`,`gender`,`note`,`role`,`password`) values 
-(8,'asd','asd','asd','12312.0','asd',1,'女','asd','student','asd'),
-(9,'asda','asdasdas','rfwe','3546354.0','asd',1,'男','asds','teacher','dafgsd'),
-(10,'asd','asd','asd','12312.0','asd',123141,'女','asd','student','asd'),
-(11,'asda','asdasdas','rfwe','3546354.0','asd',1,'男','asds','teacher','dafgsd'),
-(12,'asd','asd','asd','12312.0','asd',123141,'女','asd','student','asd'),
-(13,'asda','asdasdas','rfwe','3546354.0','asd',1,'男','asds','teacher','dafgsd'),
-(14,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
-(15,'asda','asdasdas','rfwe','1','asd',1,'男','asds','teacher','dafgsd'),
-(16,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
-(17,'asda','asdasdas','rfwe','1','asd',1,'男','asds','teacher','dafgsd'),
-(18,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
-(19,'asda','asdasdas','rfwe','1','asd',1,'男','asds','teacher','dafgsd'),
-(20,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
-(21,'asda','asdasdas','rfwe','1','asd',12411434,'男','asds','teacher','dafgsd'),
-(22,'asd','asd','asd','1','asd',123141,'女','asd','student','asd'),
-(23,'asda','asdasdas','rfwe','1','asd',12411434,'男','asds','teacher','dafgsd'),
-(24,'asd','asd','asd','18852861545','asd',123141,'女','asd','student','asd'),
-(25,'asda','asdasdas','rfwe','18852897377','asd',12411434,'男','asds','teacher','dafgsd'),
-(26,'asd','asd','asd','18852861545',NULL,123141,'女','asd','student','asd'),
-(27,'asda','asdasdas','rfwe','18852897377',NULL,12411434,'男','asds','teacher','dafgsd'),
-(28,'asd','asd','asd','18852861545',NULL,123141,'女','asd','student','asd'),
-(29,'asda','asdasdas','rfwe','18852897377',NULL,12411434,'男','asds','teacher','dafgsd');
-
-/*Table structure for table `user_course` */
-
+-- ----------------------------
+-- Table structure for user_course
+-- ----------------------------
 DROP TABLE IF EXISTS `user_course`;
-
 CREATE TABLE `user_course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -180,17 +163,17 @@ CREATE TABLE `user_course` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `user_course` */
+-- ----------------------------
+-- Records of user_course
+-- ----------------------------
+INSERT INTO `user_course` VALUES ('2', '8', '1', '2018-04-15 11:50:48');
+INSERT INTO `user_course` VALUES ('3', '8', '2', '2018-04-15 11:55:05');
+INSERT INTO `user_course` VALUES ('4', '9', '2', '2018-04-15 13:26:46');
 
-insert  into `user_course`(`id`,`user_id`,`course_id`,`gmt_create`) values 
-(2,8,1,'2018-04-15 11:50:48'),
-(3,8,2,'2018-04-15 11:55:05'),
-(4,9,2,'2018-04-15 13:26:46');
-
-/*Table structure for table `video` */
-
+-- ----------------------------
+-- Table structure for video
+-- ----------------------------
 DROP TABLE IF EXISTS `video`;
-
 CREATE TABLE `video` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `course_id` int(11) NOT NULL,
@@ -201,9 +184,6 @@ CREATE TABLE `video` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-/*Data for the table `video` */
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+-- ----------------------------
+-- Records of video
+-- ----------------------------

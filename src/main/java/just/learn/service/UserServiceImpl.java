@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Integer id) {
         if (getById(id) == null) {
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(Long id) {
+    public User getById(Integer id) {
         if (id == null) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }

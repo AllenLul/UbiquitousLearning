@@ -35,9 +35,9 @@ public class UserController {
     }*/
     @ApiOperation(value = "删除", notes = "根据主键删除对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键",
-            required = true, dataType = "Long")
+            required = true, dataType = "Integer")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public ApiResult delete(@PathVariable Long id) {
+    public ApiResult delete(@PathVariable Integer id) {
         if ("admin".equals(currentUser.getRole())) {
             userService.delete(id);
         } else {
@@ -67,9 +67,9 @@ public class UserController {
 
     @ApiOperation(value = "查询", notes = "根据主键查询对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键",
-            required = true, dataType = "Long")
+            required = true, dataType = "Integer")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ApiResult getById(@PathVariable Long id) {
+    public ApiResult getById(@PathVariable Integer id) {
         return ResultUtil.success("查询成功", this.userService.getById(id));
     }
 

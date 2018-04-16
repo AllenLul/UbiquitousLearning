@@ -63,9 +63,9 @@ public class AdminServiceImpl implements AdminService {
         return "success";
     }
 
-    public static Long getNumber(String value){
+    public static String getNumber(String value){
         BigDecimal bd1 = new BigDecimal(Double.parseDouble(value));
-        return Long.parseLong(bd1.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString().split("\\.")[0]);
+        return bd1.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString().split("\\.")[0];
     }
     @Override
     @Transactional
