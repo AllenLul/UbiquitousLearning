@@ -82,10 +82,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // swagger start
                 .antMatchers("/swagger-ui.html/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
-                .antMatchers("/images/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
-                .antMatchers("/configuration/*").permitAll()
                 // swagger end
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated()
