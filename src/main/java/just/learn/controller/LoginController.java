@@ -40,6 +40,8 @@ public class LoginController {
     @Autowired
     @Qualifier("loginServiceImpl")
     private LoginServiceImpl loginService;
+    @Autowired
+    @Qualifier("authServiceImpl")
     private AuthService authService;
 
     @ApiOperation(value = "登录", notes = "用户登录")
