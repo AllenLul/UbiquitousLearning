@@ -107,5 +107,20 @@ public class CookieUtil {
         }
         return map;
     }
-
+    /**
+     * 获取cookie值
+     *
+     * @param request
+     * @return
+     */
+    public static String getCookie(HttpServletRequest request, String cookieName) {
+        Cookie cookies[] = request.getCookies();
+        if(cookies == null)return null;
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(cookieName)) {
+                return cookie.getValue();
+            }
+        }
+        return null;
+    }
 }

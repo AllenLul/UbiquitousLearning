@@ -57,8 +57,6 @@ public class LoginController {
         // Return the token
         addAuthCookie(response,token);
        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
-
-//        return ResultUtil.success("登录成功");
     }
 
     @ApiOperation(value = "登出", notes = "用户登出")

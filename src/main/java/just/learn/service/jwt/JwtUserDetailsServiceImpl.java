@@ -28,8 +28,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         /**
          * TODO
          * */
-        User user = new User();
-//       User user = userMapper.selectByNumber(number);
+       User user = userMapper.selectByNumber(number);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with number '%s'.", number));
         } else {
