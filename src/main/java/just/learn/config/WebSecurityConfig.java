@@ -73,16 +73,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.woff2",
                         "/**/*.ttf",
                         "/**/ueditor/**",
-                        "/captcha-image",
-                        "/swagger-ui.html",
-                        "/swagger-resource"
+                        "/captcha-image"
                 ).permitAll()
                 // 对于获取token的rest api要允许匿名访问
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/examine/**").permitAll()
                 .antMatchers("/verify/**").permitAll()
-                .antMatchers("/swagger-ui.html").permitAll()
-                .antMatchers("/swagger-resource").permitAll()
+                // swagger start
+                .antMatchers("/swagger-ui.html/**").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/configuration/*").permitAll()
+                // swagger end
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated()
                 ;
@@ -91,4 +95,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 禁用缓存
         httpSecurity.headers().cacheControl();
     }
+
 }
