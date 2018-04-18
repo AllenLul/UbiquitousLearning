@@ -45,11 +45,6 @@ public class LoginController {
     private AuthService authService;
 
     @ApiOperation(value = "登录", notes = "用户登录")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "学号/教师号", paramType = "query", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "password", value = "密码", paramType = "query", required = true, dataType =
-                    "String")
-    })
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> login( @RequestBody JwtAuthenticationRequest authenticationRequest,
                             HttpServletResponse response) throws UnsupportedEncodingException {
@@ -64,7 +59,7 @@ public class LoginController {
     @ApiOperation(value = "登出", notes = "用户登出")
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ApiResult logout(HttpServletResponse httpResponse) {
-        CookieUtil.deleteCookie("user", httpResponse);
+        CookieUtil.deleteCookie(tokenHeader, httpResponse);
         return ResultUtil.success("退出成功");
     }
 
