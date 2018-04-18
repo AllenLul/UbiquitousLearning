@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2018-04-16 12:26:31
+Date: 2018-04-18 10:04:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -142,14 +142,15 @@ CREATE TABLE `user` (
   `note` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `role` varchar(30) COLLATE utf8_bin DEFAULT '无',
   `password` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `number` (`number`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('30', 'asd', 'asd', 'asd', '18852861545', null, '123141', '女', 'asd', 'student', 'asd');
-INSERT INTO `user` VALUES ('31', 'asda', 'asdasdas', 'rfwe', '18852897377', null, '12411434', '男', 'asds', 'teacher', 'dafgsd');
+INSERT INTO `user` VALUES ('32', 'a', null, 'a', 'a', 'a', 'a', 'a', 'a', 'd', 'test');
+INSERT INTO `user` VALUES ('36', 'a', null, 'a', 'a', 'a', 'aa', 'a', 'a', 'd', '$2a$10$e1k2akV4ZuO1CLrDhUOJouf8awpKgbiy2D5WA7fah4leiTePWF4DG');
 
 -- ----------------------------
 -- Table structure for user_course
