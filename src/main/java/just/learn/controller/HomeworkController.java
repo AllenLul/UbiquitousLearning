@@ -15,7 +15,7 @@ import just.learn.entity.PageQueryBean;
 
 @RestController
 @RequestMapping("/homework")
-public class HomeworkController {
+public class HomeworkController extends BaseController{
 
     @Autowired
     @Qualifier("homeworkServiceImpl")

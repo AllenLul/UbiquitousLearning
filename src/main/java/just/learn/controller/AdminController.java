@@ -4,12 +4,16 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import just.learn.common.enums.ResultEnum;
+import just.learn.common.enums.RoleEnum;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
+import just.learn.common.utils.WebUtils;
 import just.learn.entity.Course;
 import just.learn.entity.Courseware;
 import just.learn.entity.User;
 import just.learn.service.AdminService;
+import just.learn.service.jwt.JwtUser;
 import just.learn.vo.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,7 +31,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin")
-public class AdminController {
+public class AdminController extends BaseController{
 
     @Autowired
     @Qualifier("adminServiceImpl")
@@ -36,6 +40,7 @@ public class AdminController {
     @ApiOperation(value = "导入用户信息", notes = "导入用户信息")
     @PostMapping(value = "/importUser", consumes = "multipart/*", headers = "content-type=multipart/form-data")
     public ApiResult importUser(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
+        isManager();
         return ResultUtil.success("导入成功", adminService.importInfo(file));
     }
 
@@ -43,6 +48,7 @@ public class AdminController {
     @ApiImplicitParam(name = "reviewVO", value = "审核对象", required = true, dataType = "ReviewVO")
     @PostMapping(value = "/review")
     public ApiResult review(@RequestBody ReviewVO reviewVO) throws Exception {
+        isManager();
         adminService.review(reviewVO);
         return ResultUtil.success("success");
     }

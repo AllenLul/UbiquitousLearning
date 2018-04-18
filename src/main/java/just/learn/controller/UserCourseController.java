@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/userCourse")
-public class UserCourseController {
+public class UserCourseController extends BaseController{
 
     @Autowired
     @Qualifier("userCourseServiceImpl")
@@ -33,6 +33,7 @@ public class UserCourseController {
     @ApiImplicitParam(name = "userCourses", value = "实体对象", required = true, dataType = "List")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ApiResult delete(@RequestBody UserCourse[] userCourses) {
+        isManager();
         userCourseService.deleteUserCourses(userCourses);
         return ResultUtil.success("删除成功");
     }

@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/courseware")
-public class CoursewareController {
+public class CoursewareController extends BaseController{
 
     @Autowired
     @Qualifier("coursewareServiceImpl")
@@ -33,6 +33,7 @@ public class CoursewareController {
             required = true, dataType = "String")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
+        isManager();
         coursewareService.delete(id);
         return ResultUtil.success("删除成功");
     }

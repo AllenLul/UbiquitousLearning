@@ -16,7 +16,7 @@ import just.learn.entity.PageQueryBean;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController{
     private User currentUser;
 
     public UserController() {
@@ -38,12 +38,7 @@ public class UserController {
             required = true, dataType = "Integer")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
-        if ("admin".equals(currentUser.getRole())) {
-            userService.delete(id);
-        } else {
-            return ResultUtil.error(ResultEnum.NO_AUTHORITY.getCode(), ResultEnum.NO_AUTHORITY.getMsg());
-        }
-
+        isManager();
         return ResultUtil.success("删除成功");
     }
 
@@ -59,8 +54,6 @@ public class UserController {
     @ApiImplicitParam(name = "user", value = "实体对象", required = true, dataType = "User")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody User user) {
-
-
         userService.update(user);
         return ResultUtil.success("更新成功");
     }
