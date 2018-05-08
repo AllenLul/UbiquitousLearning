@@ -16,5 +16,7 @@ public interface UserService {
     public User getById(Integer id);
 
     PageQueryBean getLimitObjects(QueryCondition condition);
+
+    User getByNumber(String number);
 //public   List<User> getAll();
 }

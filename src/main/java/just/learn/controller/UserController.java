@@ -1,6 +1,5 @@
 package just.learn.controller;
 
-import just.learn.common.enums.ResultEnum;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.User;
@@ -64,6 +63,13 @@ public class UserController extends BaseController{
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ApiResult getById(@PathVariable Integer id) {
         return ResultUtil.success("查询成功", this.userService.getById(id));
+    }
+    @ApiOperation(value = "根据编号查询对象", notes = "根据编号查询对象")
+    @ApiImplicitParam(paramType = "query", name = "number", value = "编号",
+            required = true, dataType = "String")
+    @RequestMapping(value = "/getByNumber", method = RequestMethod.POST)
+    public ApiResult getByNumber(@RequestParam String number) {
+        return ResultUtil.success("查询成功", this.userService.getByNumber(number));
     }
 
     @ApiOperation(value = "分页查询", notes = "分页查询")

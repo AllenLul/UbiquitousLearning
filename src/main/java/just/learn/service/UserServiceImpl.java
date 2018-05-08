@@ -76,6 +76,18 @@ public class UserServiceImpl implements UserService {
         result.setItems(list);
         return result;
     }
+
+    @Override
+    public User getByNumber(String number) {
+        if (number == null) {
+            throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
+        }
+        User user = mapper.selectByNumber(number);
+        if (user == null) {
+            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
+        }
+        return user;
+    }
 /*    @Override
 public List<User> getAll() {
     return mapper.selectAll();
