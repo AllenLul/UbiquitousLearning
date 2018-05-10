@@ -4,7 +4,6 @@ import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.entity.User;
 import just.learn.mapper.UserMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import just.learn.vo.QueryCondition;
 import just.learn.entity.PageQueryBean;
@@ -23,8 +22,6 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
-        BCryptPasswordEncoder util = new BCryptPasswordEncoder();
-        user.setPassword(util.encode(user.getPassword()));
         mapper.insertSelective(user);
         return user;
     }

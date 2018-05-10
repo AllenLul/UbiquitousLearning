@@ -1,8 +1,12 @@
 package just.learn.controller;
 
+import just.learn.common.enums.ResultEnum;
+import just.learn.common.enums.RoleEnum;
+import just.learn.common.execption.CustomException;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.User;
+import just.learn.entity.UserElement;
 import just.learn.service.UserService;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -37,7 +41,10 @@ public class UserController extends BaseController{
             required = true, dataType = "Integer")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
-        isManager();
+        UserElement ue= getCurrentUser();
+        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         return ResultUtil.success("删除成功");
     }
 
@@ -45,6 +52,10 @@ public class UserController extends BaseController{
     @ApiImplicitParam(name = "user", value = "实体对象", required = true, dataType = "User")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody User user) {
+        UserElement ue= getCurrentUser();
+        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         userService.insert(user);
         return ResultUtil.success("增加成功");
     }
@@ -53,6 +64,7 @@ public class UserController extends BaseController{
     @ApiImplicitParam(name = "user", value = "实体对象", required = true, dataType = "User")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody User user) {
+        UserElement ue= getCurrentUser();
         userService.update(user);
         return ResultUtil.success("更新成功");
     }
@@ -62,14 +74,20 @@ public class UserController extends BaseController{
             required = true, dataType = "Integer")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ApiResult getById(@PathVariable Integer id) {
-        return ResultUtil.success("查询成功", this.userService.getById(id));
+        UserElement ue= getCurrentUser();
+        User user=this.userService.getById(id);
+        user.setPassword(null);
+        return ResultUtil.success("查询成功", user);
     }
     @ApiOperation(value = "根据编号查询对象", notes = "根据编号查询对象")
     @ApiImplicitParam(paramType = "query", name = "number", value = "编号",
             required = true, dataType = "String")
     @RequestMapping(value = "/getByNumber", method = RequestMethod.POST)
     public ApiResult getByNumber(@RequestParam String number) {
-        return ResultUtil.success("查询成功", this.userService.getByNumber(number));
+        UserElement ue= getCurrentUser();
+        User user=this.userService.getByNumber(number);
+        user.setPassword(null);
+        return ResultUtil.success("查询成功", user);
     }
 
     @ApiOperation(value = "分页查询", notes = "分页查询")

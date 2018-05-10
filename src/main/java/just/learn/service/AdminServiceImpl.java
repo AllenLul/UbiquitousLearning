@@ -9,7 +9,6 @@ import just.learn.mapper.CoursewareMapper;
 import just.learn.mapper.UserMapper;
 import just.learn.vo.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,7 +46,6 @@ public class AdminServiceImpl implements AdminService {
         if(result.isEmpty()){
             throw new CustomException(ResultEnum.EXECIL_NULL);
         }
-        BCryptPasswordEncoder util = new BCryptPasswordEncoder();
         for (Map<String, String> map : result) {
             User user = new User();
             String number=getNumber(map.get("编号"));
@@ -55,7 +53,7 @@ public class AdminServiceImpl implements AdminService {
             user.setHeadpic(map.get("头像路径"));
             user.setDepartment(map.get("学院"));
             user.setGender(map.get("性别"));
-            user.setPassword(util.encode(map.get("密码")));
+            user.setPassword(map.get("密码"));
             user.setName(map.get("姓名"));
             user.setNickname(map.get("昵称"));
             user.setNote(map.get("说明"));

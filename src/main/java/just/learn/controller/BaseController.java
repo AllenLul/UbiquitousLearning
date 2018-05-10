@@ -1,70 +1,48 @@
 package just.learn.controller;
 
+import just.learn.cache.CommonCacheUtil;
+import just.learn.common.constants.Constants;
 import just.learn.common.enums.ResultEnum;
-import just.learn.common.enums.RoleEnum;
 import just.learn.common.execption.CustomException;
-import just.learn.common.resp.ApiResult;
-import just.learn.common.utils.ResultUtil;
-import io.swagger.annotations.ApiOperation;
-import just.learn.common.utils.WebUtils;
-import just.learn.service.jwt.JwtUser;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
+import just.learn.entity.UserElement;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Ethanp
  * @version V1.0
- * @Package com.pxc.learn.controller
+ * @Package cn.jihangyu.glowworm.common.base
  * @Description: TODO
- * @date 2018/4/4 16:25
+ * @date 2018/2/7 12:15
  */
-@RestController
-@RequestMapping("/")
+@Slf4j
 public class BaseController {
+    @Autowired
+    private CommonCacheUtil cacheUtil;
+    protected UserElement getCurrentUser(){
+        //前端把token放到header中
+        HttpServletRequest request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        String token=request.getHeader(Constants.REQUEST_TOKEN_KEY);
+        if(!StringUtils.isBlank(token)){
+            try {
+                UserElement ue=cacheUtil.getUserByToken(token);
+                if (ue != null) {
+                    return ue;
+                }else {
+                    throw new CustomException(ResultEnum.NO_LOGIN);
+                }
 
-
-    //处理日期
-    @InitBinder
-    public void initBinder(ServletRequestDataBinder binder) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
-    }
-
-    void isManager(){
-        boolean flag=false;
-        JwtUser jwtUser= WebUtils.getCurrentUser();
-        List roles= (List) jwtUser.getAuthorities();
-        for (Object role: roles) {
-            if(RoleEnum.MANAGER.getValue().equals(role.toString())){
-                    flag=true;
+            }catch (Exception e){
+                log.error("fail to get user by token",e);
+                throw  e;
             }
+        }else {
+            throw new CustomException(ResultEnum.NO_LOGIN);
         }
-        if(!flag){
-            throw new CustomException(ResultEnum.NO_AUTHORITY);
-        }
-
-    }
-    void isManagerOrTeacher(){
-        boolean flag=false;
-        JwtUser jwtUser= WebUtils.getCurrentUser();
-        List roles= (List) jwtUser.getAuthorities();
-        for (Object role: roles) {
-            if(RoleEnum.MANAGER.getValue().equals(role.toString())||RoleEnum.TEACHER.getValue().equals(role.toString())){
-                flag=true;
-            }
-        }
-        if(!flag){
-            throw new CustomException(ResultEnum.NO_AUTHORITY);
-        }
-
     }
 }

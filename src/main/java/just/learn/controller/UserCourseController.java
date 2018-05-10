@@ -33,7 +33,7 @@ public class UserCourseController extends BaseController{
     @ApiImplicitParam(name = "userCourses", value = "实体对象", required = true, dataType = "List")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ApiResult delete(@RequestBody UserCourse[] userCourses) {
-        isManager();
+
         userCourseService.deleteUserCourses(userCourses);
         return ResultUtil.success("删除成功");
     }

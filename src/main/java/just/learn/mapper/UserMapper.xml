@@ -30,6 +30,12 @@
     )
   </select>
 
+  <select id="selectByNumberAndPassword" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where number = #{0} AND password=#{1}
+  </select>
   <select id="selectByNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="Base_Column_List" />

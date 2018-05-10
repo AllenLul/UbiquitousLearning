@@ -3,22 +3,14 @@ package just.learn.controller;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.CookieUtil;
 import just.learn.common.utils.ResultUtil;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-
-import just.learn.entity.User;
 import just.learn.service.LoginServiceImpl;
-import just.learn.service.jwt.AuthService;
-import just.learn.vo.jwt.JwtAuthenticationRequest;
-import just.learn.vo.jwt.JwtAuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -40,21 +32,15 @@ public class LoginController {
     @Autowired
     @Qualifier("loginServiceImpl")
     private LoginServiceImpl loginService;
-    @Autowired
-    @Qualifier("authServiceImpl")
-    private AuthService authService;
 
-    @ApiOperation(value = "登录", notes = "用户登录")
+
+    @ApiOperation(value = "用户登录", notes = "用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<?> login( @RequestBody JwtAuthenticationRequest authenticationRequest,
-                            HttpServletResponse response) throws UnsupportedEncodingException {
-//        User user = loginService.login(number, password);
-        final String token = authService.login(authenticationRequest.getUsername(),
-                authenticationRequest.getPassword());
-        // Return the token
-        addAuthCookie(response,token);
-       return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+    public ApiResult login(@RequestParam String username,@RequestParam String password) throws IOException {
+        String token=loginService.login(username,password);
+        return ResultUtil.success("token",token);
     }
+
 
     @ApiOperation(value = "登出", notes = "用户登出")
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

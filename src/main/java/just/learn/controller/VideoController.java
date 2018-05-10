@@ -33,7 +33,7 @@ public class VideoController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
-        isManager();
+
         videoService.delete(id);
         return ResultUtil.success("删除成功");
     }

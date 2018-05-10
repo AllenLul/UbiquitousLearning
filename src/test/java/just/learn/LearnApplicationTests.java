@@ -8,9 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -26,9 +24,8 @@ public class LearnApplicationTests {
 	@Test
 	@Rollback
 	public  void testInsert(){
-		BCryptPasswordEncoder util = new BCryptPasswordEncoder();
 		User user=new User();
-		user.setPassword(util.encode("test"));
+		user.setPassword("test");
 		user.setRole("d");
 		user.setNumber("aa");
 		user.setNote("a");

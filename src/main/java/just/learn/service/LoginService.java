@@ -11,5 +11,5 @@ import just.learn.entity.User;
  */
 public interface LoginService {
 
-    User login(String name, String password);
+    String login(String name, String password);
 }

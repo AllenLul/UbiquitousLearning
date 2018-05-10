@@ -33,7 +33,7 @@ public class CourseController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
-        isManagerOrTeacher();
+
         courseService.delete(id);
         return ResultUtil.success("删除成功");
     }
@@ -42,7 +42,7 @@ public class CourseController extends BaseController{
     @ApiImplicitParam(name = "course", value = "实体对象", required = true, dataType = "Course")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody Course course) {
-        isManagerOrTeacher();
+
         courseService.insert(course);
         return ResultUtil.success("增加成功");
     }
@@ -51,7 +51,7 @@ public class CourseController extends BaseController{
     @ApiImplicitParam(name = "course", value = "实体对象", required = true, dataType = "Course")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody Course course) {
-        isManagerOrTeacher();
+
         courseService.update(course);
         return ResultUtil.success("更新成功");
     }
