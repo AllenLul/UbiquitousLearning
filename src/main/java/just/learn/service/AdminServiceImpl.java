@@ -8,6 +8,7 @@ import just.learn.mapper.CourseMapper;
 import just.learn.mapper.CoursewareMapper;
 import just.learn.mapper.UserMapper;
 import just.learn.vo.ReviewVO;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,7 +54,7 @@ public class AdminServiceImpl implements AdminService {
             user.setHeadpic(map.get("头像路径"));
             user.setDepartment(map.get("学院"));
             user.setGender(map.get("性别"));
-            user.setPassword(map.get("密码"));
+            user.setPassword(DigestUtils.md5Hex(map.get("密码")));
             user.setName(map.get("姓名"));
             user.setNickname(map.get("昵称"));
             user.setNote(map.get("说明"));

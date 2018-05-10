@@ -1,8 +1,12 @@
 package just.learn.controller;
 
+import just.learn.common.enums.ResultEnum;
+import just.learn.common.enums.RoleEnum;
+import just.learn.common.execption.CustomException;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.Courseware;
+import just.learn.entity.UserElement;
 import just.learn.service.CoursewareService;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +37,10 @@ public class CoursewareController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
-
+        UserElement ue= getCurrentUser();
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         coursewareService.delete(id);
         return ResultUtil.success("删除成功");
     }
@@ -42,6 +49,11 @@ public class CoursewareController extends BaseController{
     @ApiImplicitParam(name = "courseware", value = "实体对象", required = true, dataType = "Courseware")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody Courseware courseware) {
+
+        UserElement ue= getCurrentUser();
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         coursewareService.insert(courseware);
         return ResultUtil.success("增加成功");
     }
@@ -50,6 +62,10 @@ public class CoursewareController extends BaseController{
     @ApiImplicitParam(name = "courseware", value = "实体对象", required = true, dataType = "Courseware")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody Courseware courseware) {
+        UserElement ue= getCurrentUser();
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         coursewareService.update(courseware);
         return ResultUtil.success("更新成功");
     }

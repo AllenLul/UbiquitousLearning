@@ -3,6 +3,7 @@ package just.learn.controller;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.UserCourse;
+import just.learn.entity.UserElement;
 import just.learn.service.UserCourseService;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +34,7 @@ public class UserCourseController extends BaseController{
     @ApiImplicitParam(name = "userCourses", value = "实体对象", required = true, dataType = "List")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ApiResult delete(@RequestBody UserCourse[] userCourses) {
-
+        UserElement ue= getCurrentUser();
         userCourseService.deleteUserCourses(userCourses);
         return ResultUtil.success("删除成功");
     }
@@ -42,6 +43,7 @@ public class UserCourseController extends BaseController{
     @ApiImplicitParam(name = "userCourse", value = "实体对象", required = true, dataType = "UserCourse")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody UserCourse userCourse) {
+        UserElement ue= getCurrentUser();
         userCourse.setGmtCreate(new Date());
         userCourseService.insert(userCourse);
         return ResultUtil.success("增加成功");
@@ -51,6 +53,7 @@ public class UserCourseController extends BaseController{
     @ApiImplicitParam(name = "userCourse", value = "实体对象", required = true, dataType = "UserCourse")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody UserCourse userCourse) {
+        UserElement ue= getCurrentUser();
         userCourseService.update(userCourse);
         return ResultUtil.success("更新成功");
     }
@@ -60,6 +63,7 @@ public class UserCourseController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ApiResult getById(@PathVariable Integer id) {
+        UserElement ue= getCurrentUser();
         return ResultUtil.success("查询成功", this.userCourseService.getById(id));
     }
 
@@ -72,6 +76,7 @@ public class UserCourseController extends BaseController{
     })
     @RequestMapping(value = "/findLimitObjects", method = RequestMethod.POST)
     public ApiResult getLimitObjects(QueryCondition condition) {
+        UserElement ue= getCurrentUser();
         PageQueryBean pageQueryBean = this.userCourseService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
     }
@@ -80,6 +85,7 @@ public class UserCourseController extends BaseController{
             required = true, dataType = "Long")
     @RequestMapping(value = "/getCoursesByUserId/{id}", method = RequestMethod.GET)
     public ApiResult getCoursesById(@PathVariable Long id) {
+        UserElement ue= getCurrentUser();
         return ResultUtil.success("查询成功", this.userCourseService.getCoursesById(id));
     }
     @ApiOperation(value = "查询一个课程的所有选课的同学", notes = "查询一个课程的所有选课的同学")
@@ -87,6 +93,7 @@ public class UserCourseController extends BaseController{
             required = true, dataType = "Integer")
     @RequestMapping(value = "/getUsersByCourseId/{id}", method = RequestMethod.GET)
     public ApiResult getUsersByCourseId(@PathVariable Integer id) {
+        UserElement ue= getCurrentUser();
         return ResultUtil.success("查询成功", this.userCourseService.getUsersByCourseId(id));
     }
 

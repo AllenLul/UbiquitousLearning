@@ -3,6 +3,7 @@ package just.learn;
 import javafx.application.Application;
 import just.learn.entity.User;
 import just.learn.mapper.UserMapper;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class LearnApplicationTests {
 	@Rollback
 	public  void testInsert(){
 		User user=new User();
-		user.setPassword("test");
-		user.setRole("d");
-		user.setNumber("aa");
+		user.setPassword( DigestUtils.md5Hex("test"));
+		user.setRole("manager");
+		user.setNumber("testMd5");
 		user.setNote("a");
 		user.setDepartment("a");
 		user.setPhone("a");

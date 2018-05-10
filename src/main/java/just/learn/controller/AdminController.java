@@ -3,8 +3,12 @@ package just.learn.controller;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import just.learn.common.enums.ResultEnum;
+import just.learn.common.enums.RoleEnum;
+import just.learn.common.execption.CustomException;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
+import just.learn.entity.UserElement;
 import just.learn.service.AdminService;
 import just.learn.vo.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +34,10 @@ public class AdminController extends BaseController{
     @ApiOperation(value = "导入用户信息", notes = "导入用户信息")
     @PostMapping(value = "/importUser", consumes = "multipart/*", headers = "content-type=multipart/form-data")
     public ApiResult importUser(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
-
+        UserElement ue= getCurrentUser();
+        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         return ResultUtil.success("导入成功", adminService.importInfo(file));
     }
 
@@ -38,7 +45,10 @@ public class AdminController extends BaseController{
     @ApiImplicitParam(name = "reviewVO", value = "审核对象", required = true, dataType = "ReviewVO")
     @PostMapping(value = "/review")
     public ApiResult review(@RequestBody ReviewVO reviewVO) throws Exception {
-
+        UserElement ue= getCurrentUser();
+        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         adminService.review(reviewVO);
         return ResultUtil.success("success");
     }

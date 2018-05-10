@@ -1,7 +1,11 @@
 package just.learn.controller;
 
+import just.learn.common.enums.ResultEnum;
+import just.learn.common.enums.RoleEnum;
+import just.learn.common.execption.CustomException;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
+import just.learn.entity.UserElement;
 import just.learn.entity.Video;
 import just.learn.service.VideoService;
 import io.swagger.annotations.ApiImplicitParams;
@@ -33,7 +37,10 @@ public class VideoController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
-
+        UserElement ue=getCurrentUser();
+        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         videoService.delete(id);
         return ResultUtil.success("删除成功");
     }
@@ -42,6 +49,10 @@ public class VideoController extends BaseController{
     @ApiImplicitParam(name = "video", value = "实体对象", required = true, dataType = "Video")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody Video video) {
+        UserElement ue=getCurrentUser();
+        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         videoService.insert(video);
         return ResultUtil.success("增加成功");
     }
@@ -50,6 +61,10 @@ public class VideoController extends BaseController{
     @ApiImplicitParam(name = "video", value = "实体对象", required = true, dataType = "Video")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody Video video) {
+        UserElement ue=getCurrentUser();
+        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         videoService.update(video);
         return ResultUtil.success("更新成功");
     }
@@ -59,6 +74,7 @@ public class VideoController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ApiResult getById(@PathVariable Integer id) {
+
         return ResultUtil.success("查询成功", this.videoService.getById(id));
     }
 

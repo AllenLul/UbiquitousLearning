@@ -1,8 +1,12 @@
 package just.learn.controller;
 
+import just.learn.common.enums.ResultEnum;
+import just.learn.common.enums.RoleEnum;
+import just.learn.common.execption.CustomException;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.Course;
+import just.learn.entity.UserElement;
 import just.learn.service.CourseService;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +37,10 @@ public class CourseController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
-
+        UserElement ue= getCurrentUser();
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         courseService.delete(id);
         return ResultUtil.success("删除成功");
     }
@@ -42,7 +49,10 @@ public class CourseController extends BaseController{
     @ApiImplicitParam(name = "course", value = "实体对象", required = true, dataType = "Course")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody Course course) {
-
+        UserElement ue= getCurrentUser();
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
         courseService.insert(course);
         return ResultUtil.success("增加成功");
     }

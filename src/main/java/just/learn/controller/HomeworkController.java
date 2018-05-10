@@ -3,6 +3,7 @@ package just.learn.controller;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.Homework;
+import just.learn.entity.UserElement;
 import just.learn.service.HomeworkService;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -31,6 +32,7 @@ public class HomeworkController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
+        UserElement ue= getCurrentUser();
         homeworkService.delete(id);
         return ResultUtil.success("删除成功");
     }
@@ -39,6 +41,7 @@ public class HomeworkController extends BaseController{
     @ApiImplicitParam(name = "homework", value = "实体对象", required = true, dataType = "Homework")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody Homework homework) {
+        UserElement ue= getCurrentUser();
         homeworkService.insert(homework);
         return ResultUtil.success("增加成功");
     }
@@ -47,6 +50,7 @@ public class HomeworkController extends BaseController{
     @ApiImplicitParam(name = "homework", value = "实体对象", required = true, dataType = "Homework")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody Homework homework) {
+        UserElement ue= getCurrentUser();
         homeworkService.update(homework);
         return ResultUtil.success("更新成功");
     }
@@ -56,6 +60,7 @@ public class HomeworkController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ApiResult getById(@PathVariable Integer id) {
+        UserElement ue= getCurrentUser();
         return ResultUtil.success("查询成功", this.homeworkService.getById(id));
     }
 
@@ -68,6 +73,7 @@ public class HomeworkController extends BaseController{
     })
     @RequestMapping(value = "/findLimitObjects", method = RequestMethod.POST)
     public ApiResult getLimitObjects(QueryCondition condition) {
+        UserElement ue= getCurrentUser();
         PageQueryBean pageQueryBean = this.homeworkService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
     }

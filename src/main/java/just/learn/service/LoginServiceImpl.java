@@ -26,7 +26,7 @@ public class LoginServiceImpl implements LoginService {
     public String login(String number, String password) {
 
         //查找用户是否存在
-        User user=userMapper.selectByNumberAndPassword(number,password);
+        User user=userMapper.selectByNumberAndPassword(number,DigestUtils.md5Hex(password));
         if(user==null){
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
@@ -34,7 +34,7 @@ public class LoginServiceImpl implements LoginService {
         UserElement ue=new UserElement();
         ue.setToken(token);
         ue.setUserNumber(number);
-        ue.setRole(user.getRole());//管理员权限直接在数据库去修改，默认都是普通用户
+        ue.setRole(user.getRole());
         cacheUtil.putTokenWhenLogin(ue);//把token 存入缓存
         return token;
     }
