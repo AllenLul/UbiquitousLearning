@@ -24,10 +24,7 @@ public class AppendedDocumentController {
     private AppendedDocumentService appendedDocumentService;
 
 
-    /*@RequestMapping(value="/getAll",method= RequestMethod.GET) ApiResult getAll() {
-    List<AppendedDocument> appendedDocuments = this.appendedDocumentService.getAll();
-    return ResultUtil.success("查询所有对象成功",appendedDocuments);
-    }*/
+
     @ApiOperation(value = "删除", notes = "根据主键删除对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键",
             required = true, dataType = "String")
@@ -61,7 +58,7 @@ public class AppendedDocumentController {
         return ResultUtil.success("查询成功", this.appendedDocumentService.getById(id));
     }
 
-    @ApiOperation(value = "分页查询", notes = "分页查询")
+  /*  @ApiOperation(value = "分页查询", notes = "分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "currentPage", value = "当前页", paramType = "query", required = true, dataType =
                     "Integer"),
@@ -72,6 +69,6 @@ public class AppendedDocumentController {
     public ApiResult getLimitObjects(QueryCondition condition) {
         PageQueryBean pageQueryBean = this.appendedDocumentService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
-    }
+    }*/
 
 }

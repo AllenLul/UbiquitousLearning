@@ -57,7 +57,7 @@ public class CoursewareServiceImpl implements CoursewareService {
         return courseware;
     }
 
-    @Override
+/*    @Override
     public PageQueryBean getLimitObjects(QueryCondition condition) {
 //根据条件查询count记录数
         int count = mapper.countByCondition(condition);
@@ -72,9 +72,6 @@ public class CoursewareServiceImpl implements CoursewareService {
         result.setPageSize(condition.getPageSize());
         result.setItems(list);
         return result;
-    }
-/*    @Override
-public List<Courseware> getAll() {
-    return mapper.selectAll();
     }*/
+
 }

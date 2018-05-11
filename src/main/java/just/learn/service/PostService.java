@@ -15,6 +15,5 @@ public interface PostService {
 
     public Post getById(Integer id);
 
-    PageQueryBean getLimitObjects(QueryCondition condition);
-//public   List<Post> getAll();
+
 }

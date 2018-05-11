@@ -15,6 +15,4 @@ public interface HomeworkService {
 
     public Homework getById(Integer id);
 
-    PageQueryBean getLimitObjects(QueryCondition condition);
-//public   List<Homework> getAll();
 }

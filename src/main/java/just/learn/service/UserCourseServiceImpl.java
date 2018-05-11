@@ -5,8 +5,8 @@ import just.learn.common.execption.CustomException;
 import just.learn.entity.Course;
 import just.learn.entity.User;
 import just.learn.mapper.CourseMapper;
-import just.learn.mapper.UserCourseMapper;
 import just.learn.entity.UserCourse;
+import just.learn.mapper.UserCourseMapper;
 import just.learn.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,22 +66,7 @@ public class UserCourseServiceImpl implements UserCourseService {
         return userCourse;
     }
 
-    @Override
-    public PageQueryBean getLimitObjects(QueryCondition condition) {
-//根据条件查询count记录数
-        int count = mapper.countByCondition(condition);
-//如果有记录才去查询分页数据
-        if (count < 0) {
-            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
-        }
-        PageQueryBean result = new PageQueryBean();
-        List<UserCourse> list = mapper.selectLimitObjects(condition);
-        result.setCurrentPage(condition.getCurrentPage());
-        result.setTotalRows(count);
-        result.setPageSize(condition.getPageSize());
-        result.setItems(list);
-        return result;
-    }
+
 
     @Override
     @Transactional
@@ -113,8 +98,5 @@ public class UserCourseServiceImpl implements UserCourseService {
 
         return userMapper.getUsersByCourseId(id);
     }
-/*    @Override
-public List<UserCourse> getAll() {
-    return mapper.selectAll();
-    }*/
+
 }

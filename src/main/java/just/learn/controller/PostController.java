@@ -61,7 +61,7 @@ public class PostController {
         return ResultUtil.success("查询成功", this.postService.getById(id));
     }
 
-    @ApiOperation(value = "分页查询", notes = "分页查询")
+/*    @ApiOperation(value = "分页查询", notes = "分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "currentPage", value = "当前页", paramType = "query", required = true, dataType =
                     "Integer"),
@@ -72,6 +72,6 @@ public class PostController {
     public ApiResult getLimitObjects(QueryCondition condition) {
         PageQueryBean pageQueryBean = this.postService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
-    }
+    }*/
 
 }

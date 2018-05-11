@@ -1,8 +1,7 @@
 package just.learn.service;
 
 import just.learn.entity.Video;
-import just.learn.entity.PageQueryBean;
-import just.learn.vo.QueryCondition;
+
 
 public interface VideoService {
 
@@ -15,6 +14,4 @@ public interface VideoService {
 
     public Video getById(Integer id);
 
-    PageQueryBean getLimitObjects(QueryCondition condition);
-//public   List<Video> getAll();
 }

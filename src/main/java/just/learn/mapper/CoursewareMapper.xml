@@ -11,19 +11,99 @@
     <result column="course_cap" property="courseCap" jdbcType="VARCHAR" />
     <result column="handle_type" property="handleType" jdbcType="CHAR" />
   </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List" >
     id, course_id, downlaod_times, type, url, is_pass, course_cap, handle_type
   </sql>
-  <select id="selectLimitObjects" resultMap="BaseResultMap" >
+  <update id="pass" parameterType="java.util.List" >
+    update courseware
+    set handle_type = '1'
+    where id IN
+    <foreach collection="list" item="item" index="index"
+             separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+  <update id="noPass" parameterType="java.util.List" >
+    update courseware
+    set handle_type = '2'
+    where id IN
+    <foreach collection="list" item="item" index="index"
+             separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="just.learn.entity.CoursewareExample" >
     select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
     <include refid="Base_Column_List" />
     from courseware
-    LIMIT #{startRow} , #{pageSize}
-  </select>
-  <select id="countByCondition" resultType="java.lang.Integer"  >
-    select
-    COUNT(*)
-    from courseware
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -34,6 +114,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from courseware
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="just.learn.entity.CoursewareExample" >
+    delete from courseware
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="just.learn.entity.Courseware" >
     insert into courseware (id, course_id, downlaod_times, 
@@ -98,6 +184,58 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="just.learn.entity.CoursewareExample" resultType="java.lang.Integer" >
+    select count(*) from courseware
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update courseware
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.courseId != null" >
+        course_id = #{record.courseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.downlaodTimes != null" >
+        downlaod_times = #{record.downlaodTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=CHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isPass != null" >
+        is_pass = #{record.isPass,jdbcType=CHAR},
+      </if>
+      <if test="record.courseCap != null" >
+        course_cap = #{record.courseCap,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handleType != null" >
+        handle_type = #{record.handleType,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update courseware
+    set id = #{record.id,jdbcType=INTEGER},
+      course_id = #{record.courseId,jdbcType=INTEGER},
+      downlaod_times = #{record.downlaodTimes,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=CHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      is_pass = #{record.isPass,jdbcType=CHAR},
+      course_cap = #{record.courseCap,jdbcType=VARCHAR},
+      handle_type = #{record.handleType,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Courseware" >
     update courseware
     <set >
@@ -135,23 +273,5 @@
       course_cap = #{courseCap,jdbcType=VARCHAR},
       handle_type = #{handleType,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="pass" parameterType="java.util.List" >
-    update courseware
-    set handle_type = '1'
-    where id IN
-    <foreach collection="list" item="item" index="index"
-             separator="," open="(" close=")">
-      #{item.id}
-    </foreach>
-  </update>
-  <update id="noPass" parameterType="java.util.List" >
-    update courseware
-    set handle_type = '2'
-    where id IN
-    <foreach collection="list" item="item" index="index"
-             separator="," open="(" close=")">
-      #{item.id}
-    </foreach>
   </update>
 </mapper>

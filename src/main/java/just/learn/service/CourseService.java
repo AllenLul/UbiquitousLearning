@@ -17,8 +17,6 @@ public interface CourseService {
 
     public Course getById(Integer id);
 
-    PageQueryBean getLimitObjects(QueryCondition condition);
-
 
     List<Course> getRecommend();
 }

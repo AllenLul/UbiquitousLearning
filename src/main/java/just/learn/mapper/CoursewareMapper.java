@@ -1,32 +1,34 @@
 package just.learn.mapper;
 
-import just.learn.entity.Courseware;
-import just.learn.entity.User;
-import just.learn.vo.QueryCondition;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
+import just.learn.entity.Courseware;
+import just.learn.entity.CoursewareExample;
+import org.apache.ibatis.annotations.Param;
 
-@Component
 public interface CoursewareMapper {
+    int countByExample(CoursewareExample example);
+
+    int deleteByExample(CoursewareExample example);
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Courseware record);
 
     int insertSelective(Courseware record);
 
+    List<Courseware> selectByExample(CoursewareExample example);
+
     Courseware selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") Courseware record, @Param("example") CoursewareExample example);
+
+    int updateByExample(@Param("record") Courseware record, @Param("example") CoursewareExample example);
 
     int updateByPrimaryKeySelective(Courseware record);
 
     int updateByPrimaryKey(Courseware record);
 
-    int countByCondition(QueryCondition condition);
-
-    List<Courseware> selectLimitObjects(QueryCondition condition);
-
     void pass(List<Courseware> pass);
 
     void noPass(List<Courseware> noPass);
-
 }

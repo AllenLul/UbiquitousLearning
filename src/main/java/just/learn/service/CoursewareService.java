@@ -15,6 +15,4 @@ public interface CoursewareService {
 
     public Courseware getById(Integer id);
 
-    PageQueryBean getLimitObjects(QueryCondition condition);
-//public   List<Courseware> getAll();
 }

@@ -1,6 +1,6 @@
 package just.learn.entity;
-/*课件*/
-public class Courseware extends Review{
+
+public class Courseware {
     private Integer id;
 
     private Integer courseId;

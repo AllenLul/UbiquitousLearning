@@ -7,9 +7,9 @@ import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
 import just.learn.entity.UserElement;
 import just.learn.entity.Video;
-import just.learn.service.VideoService;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import just.learn.service.VideoService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +17,13 @@ import just.learn.vo.QueryCondition;
 import io.swagger.annotations.ApiImplicitParam;
 import just.learn.entity.PageQueryBean;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/video")
 public class VideoController extends BaseController{
 
     @Autowired
     @Qualifier("videoServiceImpl")
-    private VideoService videoService;
+    protected VideoService videoService;
 
 
     /*@RequestMapping(value="/getAll",method= RequestMethod.GET) ApiResult getAll() {
@@ -78,7 +76,7 @@ public class VideoController extends BaseController{
         return ResultUtil.success("查询成功", this.videoService.getById(id));
     }
 
-    @ApiOperation(value = "分页查询", notes = "分页查询")
+   /* @ApiOperation(value = "分页查询", notes = "分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "currentPage", value = "当前页", paramType = "query", required = true, dataType =
                     "Integer"),
@@ -89,6 +87,6 @@ public class VideoController extends BaseController{
     public ApiResult getLimitObjects(QueryCondition condition) {
         PageQueryBean pageQueryBean = this.videoService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
-    }
+    }*/
 
 }

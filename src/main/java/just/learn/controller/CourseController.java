@@ -70,7 +70,7 @@ public class CourseController extends BaseController{
     public ApiResult getRecommend() {
 
        //UserElement ue=getCurrentUser();
-        return ResultUtil.success("更新成功", courseService.getRecommend());
+        return ResultUtil.success("查询成功", courseService.getRecommend());
     }
 
     @ApiOperation(value = "查询", notes = "根据主键查询对象")
@@ -80,7 +80,7 @@ public class CourseController extends BaseController{
     public ApiResult getById(@PathVariable Integer id) {
         return ResultUtil.success("查询成功", this.courseService.getById(id));
     }
-
+/*
     @ApiOperation(value = "分页查询", notes = "分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "currentPage", value = "当前页", paramType = "query", required = true, dataType =
@@ -92,6 +92,6 @@ public class CourseController extends BaseController{
     public ApiResult getLimitObjects(QueryCondition condition) {
         PageQueryBean pageQueryBean = this.courseService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
-    }
+    }*/
 
 }

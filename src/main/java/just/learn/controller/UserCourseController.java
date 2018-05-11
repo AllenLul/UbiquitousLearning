@@ -67,7 +67,7 @@ public class UserCourseController extends BaseController{
         return ResultUtil.success("查询成功", this.userCourseService.getById(id));
     }
 
-    @ApiOperation(value = "分页查询", notes = "分页查询")
+/*    @ApiOperation(value = "分页查询", notes = "分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "currentPage", value = "当前页", paramType = "query", required = true, dataType =
                     "Integer"),
@@ -79,7 +79,7 @@ public class UserCourseController extends BaseController{
         UserElement ue= getCurrentUser();
         PageQueryBean pageQueryBean = this.userCourseService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
-    }
+    }*/
     @ApiOperation(value = "查询一个用户的选课情况", notes = "查询一个用户的选课情况")
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键",
             required = true, dataType = "Long")

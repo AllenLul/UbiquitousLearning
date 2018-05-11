@@ -2,8 +2,8 @@ package just.learn.service;
 
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
-import just.learn.mapper.AppendedDocumentMapper;
 import just.learn.entity.AppendedDocument;
+import just.learn.mapper.AppendedDocumentMapper;
 import org.springframework.stereotype.Service;
 import just.learn.vo.QueryCondition;
 import just.learn.entity.PageQueryBean;
@@ -57,24 +57,5 @@ public class AppendedDocumentServiceImpl implements AppendedDocumentService {
         return appendedDocument;
     }
 
-    @Override
-    public PageQueryBean getLimitObjects(QueryCondition condition) {
-//根据条件查询count记录数
-        int count = mapper.countByCondition(condition);
-//如果有记录才去查询分页数据
-        if (count < 0) {
-            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
-        }
-        PageQueryBean result = new PageQueryBean();
-        List<AppendedDocument> list = mapper.selectLimitObjects(condition);
-        result.setCurrentPage(condition.getCurrentPage());
-        result.setTotalRows(count);
-        result.setPageSize(condition.getPageSize());
-        result.setItems(list);
-        return result;
-    }
-/*    @Override
-public List<AppendedDocument> getAll() {
-    return mapper.selectAll();
-    }*/
+
 }

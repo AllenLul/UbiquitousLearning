@@ -1,6 +1,5 @@
 package just.learn;
 
-import javafx.application.Application;
 import just.learn.entity.User;
 import just.learn.mapper.UserMapper;
 import org.apache.commons.codec.digest.DigestUtils;

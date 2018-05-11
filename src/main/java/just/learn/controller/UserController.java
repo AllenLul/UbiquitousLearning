@@ -64,7 +64,7 @@ public class UserController extends BaseController{
     @ApiImplicitParam(name = "user", value = "实体对象", required = true, dataType = "User")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody User user) {
-        UserElement ue= getCurrentUser();
+        //UserElement ue= getCurrentUser();
         userService.update(user);
         return ResultUtil.success("更新成功");
     }
@@ -74,7 +74,7 @@ public class UserController extends BaseController{
             required = true, dataType = "Integer")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ApiResult getById(@PathVariable Integer id) {
-        UserElement ue= getCurrentUser();
+        //UserElement ue= getCurrentUser();
         User user=this.userService.getById(id);
         user.setPassword(null);
         return ResultUtil.success("查询成功", user);
@@ -84,13 +84,13 @@ public class UserController extends BaseController{
             required = true, dataType = "String")
     @RequestMapping(value = "/getByNumber/{number}", method = RequestMethod.GET)
     public ApiResult getByNumber(@PathVariable String number) {
-        UserElement ue= getCurrentUser();
+        //UserElement ue= getCurrentUser();
         User user=this.userService.getByNumber(number);
         user.setPassword(null);
         return ResultUtil.success("查询成功", user);
     }
 
-    @ApiOperation(value = "分页查询", notes = "分页查询")
+   /* @ApiOperation(value = "分页查询", notes = "分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "currentPage", value = "当前页", paramType = "query", required = true, dataType =
                     "Integer"),
@@ -102,7 +102,7 @@ public class UserController extends BaseController{
         PageQueryBean pageQueryBean = this.userService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
     }
-
+*/
 
 
 

@@ -57,22 +57,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Override
-    public PageQueryBean getLimitObjects(QueryCondition condition) {
-//根据条件查询count记录数
-        int count = mapper.countByCondition(condition);
-//如果有记录才去查询分页数据
-        if (count < 0) {
-            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
-        }
-        PageQueryBean result = new PageQueryBean();
-        List<User> list = mapper.selectLimitObjects(condition);
-        result.setCurrentPage(condition.getCurrentPage());
-        result.setTotalRows(count);
-        result.setPageSize(condition.getPageSize());
-        result.setItems(list);
-        return result;
-    }
+
 
     @Override
     public User getByNumber(String number) {

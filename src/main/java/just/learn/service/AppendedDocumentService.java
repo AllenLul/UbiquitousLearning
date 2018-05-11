@@ -15,6 +15,4 @@ public interface AppendedDocumentService {
 
     public AppendedDocument getById(Integer id);
 
-    PageQueryBean getLimitObjects(QueryCondition condition);
-//public   List<AppendedDocument> getAll();
 }

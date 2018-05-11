@@ -64,7 +64,7 @@ public class HomeworkController extends BaseController{
         return ResultUtil.success("查询成功", this.homeworkService.getById(id));
     }
 
-    @ApiOperation(value = "分页查询", notes = "分页查询")
+   /* @ApiOperation(value = "分页查询", notes = "分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "currentPage", value = "当前页", paramType = "query", required = true, dataType =
                     "Integer"),
@@ -76,6 +76,6 @@ public class HomeworkController extends BaseController{
         UserElement ue= getCurrentUser();
         PageQueryBean pageQueryBean = this.homeworkService.getLimitObjects(condition);
         return ResultUtil.success("查询成功", pageQueryBean);
-    }
+    }*/
 
 }

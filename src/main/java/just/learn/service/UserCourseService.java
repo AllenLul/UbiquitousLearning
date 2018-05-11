@@ -17,7 +17,6 @@ public boolean delete(Integer id);
 public int update(UserCourse userCourse);
 
 public UserCourse getById(Integer id);
-PageQueryBean getLimitObjects(QueryCondition condition);
 
     void deleteUserCourses(UserCourse[] userCourses);
 
@@ -25,5 +24,5 @@ PageQueryBean getLimitObjects(QueryCondition condition);
     List<Course> getCoursesById(Long id);
 
     List<User> getUsersByCourseId(Integer id);
-//public   List<UserCourse> getAll();
+
 }
