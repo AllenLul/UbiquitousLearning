@@ -9,21 +9,28 @@
         <result column="t_id" property="tId" jdbcType="INTEGER"/>
         <result column="type" property="type" jdbcType="CHAR"/>
         <result column="handle_type" property="handleType" jdbcType="CHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, create_time, indexPic, name, t_id, type, handle_type
+    id, create_time, indexPic, name, t_id, type, handle_type, state
   </sql>
 
+    <select id="getRecommend" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from course
+       WHERE state='recommend'
+    </select>
     <select id="getCoursesByUserId" resultMap="BaseResultMap" resultType="java.lang.Long">
-   select *from course
-     where course.id in
-  (
-  SELECT DISTINCT
+    select *from course
+    where course.id in
+    (
+    SELECT DISTINCT
     user_course.course_id
-  FROM
+    FROM
     user_course,
     user
-  WHERE user.id = user_course.user_id
+    WHERE user.id = user_course.user_id
     AND user.id = #{id}
     )
   </select>
@@ -34,10 +41,10 @@
         LIMIT #{startRow} , #{pageSize}
     </select>
     <select id="countByCondition" resultType="java.lang.Integer">
-    select
-    COUNT(*)
-    from course
-  </select>
+        select
+        COUNT(*)
+        from course
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -50,11 +57,11 @@
   </delete>
     <insert id="insert" parameterType="just.learn.entity.Course">
     insert into course (id, create_time, indexPic, 
-      name, t_id, type, handle_type
-      )
+      name, t_id, type, handle_type, 
+      state)
     values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{indexpic,jdbcType=VARCHAR}, 
-      #{name,jdbcType=CHAR}, #{tId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{handleType,jdbcType=CHAR}
-      )
+      #{name,jdbcType=CHAR}, #{tId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{handleType,jdbcType=CHAR}, 
+      #{state,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="just.learn.entity.Course">
         insert into course
@@ -80,6 +87,9 @@
             <if test="handleType != null">
                 handle_type,
             </if>
+            <if test="state != null">
+                state,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -103,8 +113,29 @@
             <if test="handleType != null">
                 #{handleType,jdbcType=CHAR},
             </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
+    <update id="pass" parameterType="java.util.List">
+        update course
+        set handle_type = '1'
+        where id IN
+        <foreach collection="list" item="item" index="index"
+                 separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+    </update>
+    <update id="noPass" parameterType="java.util.List">
+        update course
+        set handle_type = '2'
+        where id IN
+        <foreach collection="list" item="item" index="index"
+                 separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+    </update>
     <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Course">
         update course
         <set>
@@ -126,6 +157,9 @@
             <if test="handleType != null">
                 handle_type = #{handleType,jdbcType=CHAR},
             </if>
+            <if test="state != null">
+                state = #{state,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -136,25 +170,8 @@
       name = #{name,jdbcType=CHAR},
       t_id = #{tId,jdbcType=INTEGER},
       type = #{type,jdbcType=CHAR},
-      handle_type = #{handleType,jdbcType=CHAR}
+      handle_type = #{handleType,jdbcType=CHAR},
+      state = #{state,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <update id="pass" parameterType="java.util.List">
-        update course
-        set handle_type = '1'
-        where id IN
-        <foreach collection="list" item="item" index="index"
-                 separator="," open="(" close=")">
-            #{item.id}
-        </foreach>
-    </update>
-    <update id="noPass" parameterType="java.util.List">
-        update course
-        set handle_type = '2'
-        where id IN
-        <foreach collection="list" item="item" index="index"
-                 separator="," open="(" close=")">
-            #{item.id}
-        </foreach>
-    </update>
 </mapper>

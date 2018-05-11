@@ -1,12 +1,10 @@
 package just.learn.mapper;
 
 import just.learn.entity.Course;
-import just.learn.entity.User;
 import just.learn.vo.QueryCondition;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
 @Component
 public interface CourseMapper {
     int deleteByPrimaryKey(Integer id);
@@ -20,7 +18,6 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
-
     void pass(List list);
 
     void noPass(List list);
@@ -32,5 +29,5 @@ public interface CourseMapper {
 
     List<Course> getCoursesByUserId(Long id);
 
-
+    List<Course> getRecommend();
 }

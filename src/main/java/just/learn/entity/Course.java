@@ -1,8 +1,8 @@
 package just.learn.entity;
 
 import java.util.Date;
-/*课程*/
-public class Course extends Review{
+
+public class Course {
     private Integer id;
 
     private Date createTime;
@@ -16,6 +16,8 @@ public class Course extends Review{
     private String type;
 
     private String handleType;
+
+    private String state;
 
     public Integer getId() {
         return id;
@@ -71,5 +73,13 @@ public class Course extends Review{
 
     public void setHandleType(String handleType) {
         this.handleType = handleType == null ? null : handleType.trim();
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state == null ? null : state.trim();
     }
 }

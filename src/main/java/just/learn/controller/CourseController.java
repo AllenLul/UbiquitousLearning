@@ -65,6 +65,13 @@ public class CourseController extends BaseController{
         courseService.update(course);
         return ResultUtil.success("更新成功");
     }
+    @ApiOperation(value = "查询推荐的课程", notes = "查询推荐的课程")
+    @RequestMapping(value = "/getRecommend", method = RequestMethod.GET)
+    public ApiResult getRecommend() {
+
+       //UserElement ue=getCurrentUser();
+        return ResultUtil.success("更新成功", courseService.getRecommend());
+    }
 
     @ApiOperation(value = "查询", notes = "根据主键查询对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键",

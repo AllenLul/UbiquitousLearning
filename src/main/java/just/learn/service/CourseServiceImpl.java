@@ -73,6 +73,12 @@ public class CourseServiceImpl implements CourseService {
         result.setItems(list);
         return result;
     }
+
+    @Override
+    public List<Course> getRecommend() {
+
+        return mapper.getRecommend();
+    }
 /*    @Override
 public List<Course> getAll() {
     return mapper.selectAll();

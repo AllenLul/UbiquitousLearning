@@ -4,6 +4,8 @@ import just.learn.entity.Course;
 import just.learn.entity.PageQueryBean;
 import just.learn.vo.QueryCondition;
 
+import java.util.List;
+
 public interface CourseService {
 
 
@@ -16,5 +18,7 @@ public interface CourseService {
     public Course getById(Integer id);
 
     PageQueryBean getLimitObjects(QueryCondition condition);
-//public   List<Course> getAll();
+
+
+    List<Course> getRecommend();
 }
