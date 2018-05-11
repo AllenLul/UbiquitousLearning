@@ -80,10 +80,10 @@ public class UserController extends BaseController{
         return ResultUtil.success("查询成功", user);
     }
     @ApiOperation(value = "根据编号查询对象", notes = "根据编号查询对象")
-    @ApiImplicitParam(paramType = "query", name = "number", value = "编号",
+    @ApiImplicitParam(paramType = "path", name = "number", value = "编号",
             required = true, dataType = "String")
-    @RequestMapping(value = "/getByNumber", method = RequestMethod.POST)
-    public ApiResult getByNumber(@RequestParam String number) {
+    @RequestMapping(value = "/getByNumber/{number}", method = RequestMethod.GET)
+    public ApiResult getByNumber(@PathVariable String number) {
         UserElement ue= getCurrentUser();
         User user=this.userService.getByNumber(number);
         user.setPassword(null);
