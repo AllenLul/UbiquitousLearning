@@ -25,4 +25,5 @@ public UserCourse getById(Integer id);
 
     List<User> getUsersByCourseId(Integer id);
 
+    List<UserCourse>  findStudentsInfo(Integer pageNum, Integer pageSize);
 }

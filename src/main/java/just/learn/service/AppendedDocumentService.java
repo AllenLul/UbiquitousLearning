@@ -4,6 +4,8 @@ import just.learn.entity.AppendedDocument;
 import just.learn.entity.PageQueryBean;
 import just.learn.vo.QueryCondition;
 
+import java.util.List;
+
 public interface AppendedDocumentService {
 
 
@@ -15,4 +17,5 @@ public interface AppendedDocumentService {
 
     public AppendedDocument getById(Integer id);
 
+    List<AppendedDocument> findStudentsInfo(Integer pageNum, Integer pageSize);
 }

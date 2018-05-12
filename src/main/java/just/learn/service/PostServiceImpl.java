@@ -1,5 +1,6 @@
 package just.learn.service;
 
+import com.github.pagehelper.PageHelper;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.entity.Post;
@@ -56,6 +57,12 @@ public class PostServiceImpl implements PostService {
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
         return post;
+    }
+
+    @Override
+    public List<Post> findStudentsInfo(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return mapper.selectAll();
     }
 
 

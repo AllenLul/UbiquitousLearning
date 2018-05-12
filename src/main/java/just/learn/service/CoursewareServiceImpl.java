@@ -1,5 +1,6 @@
 package just.learn.service;
 
+import com.github.pagehelper.PageHelper;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.entity.Courseware;
@@ -57,21 +58,11 @@ public class CoursewareServiceImpl implements CoursewareService {
         return courseware;
     }
 
-/*    @Override
-    public PageQueryBean getLimitObjects(QueryCondition condition) {
-//根据条件查询count记录数
-        int count = mapper.countByCondition(condition);
-//如果有记录才去查询分页数据
-        if (count < 0) {
-            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
-        }
-        PageQueryBean result = new PageQueryBean();
-        List<Courseware> list = mapper.selectLimitObjects(condition);
-        result.setCurrentPage(condition.getCurrentPage());
-        result.setTotalRows(count);
-        result.setPageSize(condition.getPageSize());
-        result.setItems(list);
-        return result;
-    }*/
+    @Override
+    public List<Courseware> findStudentsInfo(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return mapper.selectAll();
+    }
+
 
 }

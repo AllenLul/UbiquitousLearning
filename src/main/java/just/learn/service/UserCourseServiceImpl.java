@@ -1,5 +1,6 @@
 package just.learn.service;
 
+import com.github.pagehelper.PageHelper;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.entity.Course;
@@ -97,6 +98,12 @@ public class UserCourseServiceImpl implements UserCourseService {
         }
 
         return userMapper.getUsersByCourseId(id);
+    }
+
+    @Override
+    public List<UserCourse> findStudentsInfo(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return mapper.selectAll();
     }
 
 }

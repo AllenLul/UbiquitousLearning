@@ -1,5 +1,6 @@
 package just.learn.service;
 
+import com.github.pagehelper.PageHelper;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.entity.Video;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @Service
@@ -54,6 +56,12 @@ public class VideoServiceImpl implements VideoService {
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
         return video;
+    }
+
+    @Override
+    public List<Video> findStudentsInfo(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return mapper.selectAll();
     }
 
 

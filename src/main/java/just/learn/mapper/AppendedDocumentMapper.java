@@ -29,4 +29,6 @@ public interface AppendedDocumentMapper {
     int updateByPrimaryKeySelective(AppendedDocument record);
 
     int updateByPrimaryKey(AppendedDocument record);
+
+    List<AppendedDocument> selectAll();
 }

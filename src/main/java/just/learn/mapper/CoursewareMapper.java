@@ -31,4 +31,6 @@ public interface CoursewareMapper {
     void pass(List<Courseware> pass);
 
     void noPass(List<Courseware> noPass);
+
+    List<Courseware> selectAll();
 }

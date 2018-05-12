@@ -72,6 +72,11 @@
   <sql id="Base_Column_List" >
     id, name, detail, create_time, can_reply, is_top, reply_id, user_id
   </sql>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from post
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="just.learn.entity.PostExample" >
     select
     <if test="distinct" >

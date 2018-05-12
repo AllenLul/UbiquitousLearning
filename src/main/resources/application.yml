@@ -35,12 +35,9 @@ mybatis:
 logging:
   config: classpath:logback.xml
 
-jwt:
-  header: Authorization
-  secret: mySecret
-  expiration: 604800
-  tokenHead: "Bearer"
-  route:
-    authentication:
-      path: auth
-      refresh: refresh
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

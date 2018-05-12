@@ -69,6 +69,11 @@
   <sql id="Base_Column_List" >
     id, name, url, type, t_id
   </sql>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from appended_document
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="just.learn.entity.AppendedDocumentExample" >
     select
     <if test="distinct" >

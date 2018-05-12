@@ -29,4 +29,6 @@ public interface VideoMapper {
     int updateByPrimaryKeySelective(Video record);
 
     int updateByPrimaryKey(Video record);
+
+    List<Video> selectAll();
 }

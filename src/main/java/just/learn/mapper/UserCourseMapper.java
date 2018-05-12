@@ -31,4 +31,6 @@ public interface UserCourseMapper {
     int updateByPrimaryKey(UserCourse record);
 
     void deleteUserCourseByObject(UserCourse u);
+
+    List<UserCourse> selectAll();
 }

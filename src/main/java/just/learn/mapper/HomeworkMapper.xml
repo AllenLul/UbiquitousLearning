@@ -71,6 +71,11 @@
   <sql id="Base_Column_List" >
     id, course_id, name, type, end_time, detail, user_id
   </sql>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from homework
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="just.learn.entity.HomeworkExample" >
     select
     <if test="distinct" >

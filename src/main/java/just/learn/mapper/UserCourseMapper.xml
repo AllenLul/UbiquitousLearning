@@ -72,6 +72,11 @@
     delete from user_course
     where user_id=#{userId} AND course_id=#{courseId}
   </delete>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from user_course
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="just.learn.entity.UserCourseExample" >
     select
     <if test="distinct" >

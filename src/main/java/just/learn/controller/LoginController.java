@@ -25,11 +25,6 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("user")
 public class LoginController {
 
-    @Value("${jwt.header}")
-    private String tokenHeader;
-
-    @Value("${jwt.expiration}")
-    private Long expiration;
     @Autowired
     @Qualifier("loginServiceImpl")
     private LoginServiceImpl loginService;
@@ -43,16 +38,6 @@ public class LoginController {
     }
 
 
-    @ApiOperation(value = "登出", notes = "用户登出")
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ApiResult logout(HttpServletResponse httpResponse) {
-        CookieUtil.deleteCookie(tokenHeader, httpResponse);
-        return ResultUtil.success("退出成功");
-    }
 
-
-    private void addAuthCookie(HttpServletResponse response,String token)throws UnsupportedEncodingException{
-        CookieUtil.addCookie(response,tokenHeader,token,Math.toIntExact(expiration));
-    }
 
 }

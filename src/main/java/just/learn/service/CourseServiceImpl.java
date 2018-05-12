@@ -1,5 +1,6 @@
 package just.learn.service;
 
+import com.github.pagehelper.PageHelper;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.entity.Course;
@@ -60,6 +61,12 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> getRecommend() {
         return mapper.getRecommend();
+    }
+
+    @Override
+    public List<Course> findStudentsInfo(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return mapper.selectAll();
     }
 
 

@@ -29,4 +29,6 @@ public interface HomeworkMapper {
     int updateByPrimaryKeySelective(Homework record);
 
     int updateByPrimaryKey(Homework record);
+
+    List<Homework> selectAll();
 }

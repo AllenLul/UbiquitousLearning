@@ -72,7 +72,13 @@
   <sql id="Base_Column_List" >
     id, create_time, indexPic, name, t_id, type, handle_type, state
   </sql>
-  <select id="getCoursesByUserId" resultMap="BaseResultMap" resultType="java.lang.Long">
+
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from course
+  </select>
+  <select id="getCoursesByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
     select *from course
     where course.id in
     (

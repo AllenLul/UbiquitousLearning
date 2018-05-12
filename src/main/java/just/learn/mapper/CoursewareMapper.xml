@@ -90,6 +90,11 @@
       #{item.id}
     </foreach>
   </update>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from courseware
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="just.learn.entity.CoursewareExample" >
     select
     <if test="distinct" >

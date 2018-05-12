@@ -1,5 +1,6 @@
 package just.learn.service;
 
+import com.github.pagehelper.PageHelper;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.entity.AppendedDocument;
@@ -55,6 +56,13 @@ public class AppendedDocumentServiceImpl implements AppendedDocumentService {
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
         return appendedDocument;
+    }
+
+    @Override
+    public List<AppendedDocument> findStudentsInfo(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return mapper.selectAll();
+
     }
 
 

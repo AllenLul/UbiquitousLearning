@@ -2,6 +2,8 @@ package just.learn.service;
 
 import just.learn.entity.Video;
 
+import java.util.List;
+
 
 public interface VideoService {
 
@@ -14,4 +16,5 @@ public interface VideoService {
 
     public Video getById(Integer id);
 
+    List<Video> findStudentsInfo(Integer pageNum, Integer pageSize);
 }

@@ -4,6 +4,8 @@ import just.learn.entity.PageQueryBean;
 import just.learn.entity.User;
 import just.learn.vo.QueryCondition;
 
+import java.util.List;
+
 public interface UserService {
 
 
@@ -19,4 +21,5 @@ public interface UserService {
 
     User getByNumber(String number);
 
+    List<User> findStudentsInfo(Integer pageNum, Integer pageSize);
 }

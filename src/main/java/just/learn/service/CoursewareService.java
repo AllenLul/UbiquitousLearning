@@ -4,6 +4,8 @@ import just.learn.entity.Courseware;
 import just.learn.entity.PageQueryBean;
 import just.learn.vo.QueryCondition;
 
+import java.util.List;
+
 public interface CoursewareService {
 
 
@@ -15,4 +17,5 @@ public interface CoursewareService {
 
     public Courseware getById(Integer id);
 
+    List<Courseware> findStudentsInfo(Integer pageNum, Integer pageSize);
 }

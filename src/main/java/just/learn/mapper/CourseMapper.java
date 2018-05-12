@@ -42,4 +42,6 @@ public interface CourseMapper {
     List<Course> getCoursesByUserId(Long id);
 
     List<Course> getRecommend();
+
+    List<Course> selectAll();
 }

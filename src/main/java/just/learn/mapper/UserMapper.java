@@ -34,4 +34,6 @@ public interface UserMapper {
 
     User selectByNumberAndPassword(String number, String password);
     List<User> getUsersByCourseId(Integer id);
+
+    List<User> selectAll();
 }
