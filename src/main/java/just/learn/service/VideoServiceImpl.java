@@ -64,5 +64,13 @@ public class VideoServiceImpl implements VideoService {
         return mapper.selectAll();
     }
 
+    @Override
+    public List<Video> getVideo(Video video) {
+        if (video == null) {
+            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
+        }
+        return mapper.getVideo(video);
+    }
+
 
 }

@@ -93,4 +93,13 @@ public class CourseController extends BaseController{
         return ResultUtil.success("查询成功", courseService.findStudentsInfo(pageNum,pageSize));
     }
 
+    @ApiOperation(value = "条件查询对象", notes = "条件查询对象")
+    @ApiImplicitParam(name = "course", value = "条件查询对象", required = true, dataType = "Course")
+    @RequestMapping(value = "/getCourse", method = RequestMethod.POST)
+    public ApiResult getCourse(@RequestBody Course course) {
+        //UserElement ue= getCurrentUser();
+
+        return ResultUtil.success("更新成功",  courseService.getCourse(course));
+    }
+
 }

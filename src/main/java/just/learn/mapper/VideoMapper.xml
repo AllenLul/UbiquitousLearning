@@ -85,6 +85,29 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="getVideo" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from video
+    <where>
+    <if test="id!=null and id!='' ">
+      id=#{id}
+    </if>
+    <if test="name!= null and name!= '' ">
+      AND name = #{name}
+    </if>
+    <if test="courseId!= null and courseId!= '' ">
+      AND courseId = #{courseId}
+    </if>
+      <if test="isPass!= null and isPass!= '' ">
+        AND isPass = #{isPass}
+      </if>
+      <if test="length!= null and length!= '' ">
+        AND length = #{length}
+      </if>
+    </where>
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List"/>

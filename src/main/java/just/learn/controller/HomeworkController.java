@@ -76,5 +76,13 @@ public class HomeworkController extends BaseController{
 
         return ResultUtil.success("查询成功", homeworkService.findStudentsInfo(pageNum,pageSize));
     }
+    @ApiOperation(value = "条件查询对象", notes = "条件查询对象")
+    @ApiImplicitParam(name = "homework", value = "条件查询对象", required = true, dataType = "Homework")
+    @RequestMapping(value = "/getHomework", method = RequestMethod.POST)
+    public ApiResult getHomework(@RequestBody Homework homework) {
+        //UserElement ue= getCurrentUser();
+
+        return ResultUtil.success("更新成功",  homeworkService.getHomework(homework));
+    }
 
 }

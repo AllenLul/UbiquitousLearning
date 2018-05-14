@@ -73,6 +73,31 @@
     id, create_time, indexPic, name, t_id, type, handle_type, state
   </sql>
 
+  <select id="getCourse" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from course
+    <where>
+      <if test="id!=null and id!='' ">
+        id=#{id}
+      </if>
+      <if test="name!= null and name!= '' ">
+        AND name = #{name}
+      </if>
+      <if test="tId!= null and tId!= '' ">
+        AND tId = #{tId}
+      </if>
+      <if test="type!= null and type!= '' ">
+        AND type = #{type}
+      </if>
+      <if test="handleType!= null and handleType!= '' ">
+        AND handleType = #{handleType}
+      </if>
+      <if test="state!= null and state!= '' ">
+        AND state = #{state}
+      </if>
+    </where>
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List"/>

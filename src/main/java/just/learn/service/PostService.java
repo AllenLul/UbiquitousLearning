@@ -19,4 +19,6 @@ public interface PostService {
 
 
     List<Post> findStudentsInfo(Integer pageNum, Integer pageSize);
+
+    List<Post> getPost(Post post);
 }

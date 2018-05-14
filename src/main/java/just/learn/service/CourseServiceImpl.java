@@ -69,5 +69,10 @@ public class CourseServiceImpl implements CourseService {
         return mapper.selectAll();
     }
 
+    @Override
+    public List<Course> getCourse(Course course) {
+        return mapper.getCourse(course);
+    }
+
 
 }

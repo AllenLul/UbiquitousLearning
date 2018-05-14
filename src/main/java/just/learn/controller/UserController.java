@@ -103,6 +103,13 @@ public class UserController extends BaseController{
         return ResultUtil.success("查询成功", userService.findStudentsInfo(pageNum,pageSize));
     }
 
+    @ApiOperation(value = "条件查询对象", notes = "条件查询对象")
+    @ApiImplicitParam(name = "user", value = "条件查询对象", required = true, dataType = "User")
+    @RequestMapping(value = "/getUser", method = RequestMethod.POST)
+    public ApiResult getUser(@RequestBody User user) {
+        //UserElement ue= getCurrentUser();
 
+        return ResultUtil.success("更新成功",  userService.getUser(user));
+    }
 
 }

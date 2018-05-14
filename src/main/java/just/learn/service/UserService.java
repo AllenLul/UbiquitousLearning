@@ -22,4 +22,6 @@ public interface UserService {
     User getByNumber(String number);
 
     List<User> findStudentsInfo(Integer pageNum, Integer pageSize);
+
+    List<User> getUser(User user);
 }

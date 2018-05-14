@@ -64,5 +64,13 @@ public class HomeworkServiceImpl implements HomeworkService {
         return mapper.selectAll();
     }
 
+    @Override
+    public List<Homework> getHomework(Homework homework) {
+        if (homework == null) {
+            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
+        }
+        return mapper.getHomework(homework);
+    }
+
 
 }

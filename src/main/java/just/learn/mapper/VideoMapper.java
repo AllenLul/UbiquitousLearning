@@ -31,4 +31,6 @@ public interface VideoMapper {
     int updateByPrimaryKey(Video record);
 
     List<Video> selectAll();
+
+    List<Video> getVideo(Video video);
 }

@@ -72,6 +72,32 @@
   <sql id="Base_Column_List" >
     id, name, detail, create_time, can_reply, is_top, reply_id, user_id
   </sql>
+
+  <select id="getPost" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from post
+    <where>
+    <if test="id!=null and id!='' ">
+      id=#{id}
+    </if>
+    <if test="name!= null and name!= '' ">
+      AND name = #{name}
+    </if>
+    <if test="canReply!= null and canReply!= '' ">
+      AND canReply = #{canReply}
+    </if>
+      <if test="isTop!= null and isTop!= '' ">
+        AND isTop = #{isTop}
+      </if>
+      <if test="replyId!= null and replyId!= '' ">
+        AND replyId = #{replyId}
+      </if>
+      <if test="userId!= null and userId!= '' ">
+        AND userId = #{userId}
+      </if>
+    </where>
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List"/>

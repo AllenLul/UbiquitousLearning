@@ -31,4 +31,6 @@ public interface HomeworkMapper {
     int updateByPrimaryKey(Homework record);
 
     List<Homework> selectAll();
+
+    List<Homework> getHomework(Homework homework);
 }

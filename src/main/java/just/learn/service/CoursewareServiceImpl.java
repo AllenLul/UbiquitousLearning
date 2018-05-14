@@ -64,5 +64,13 @@ public class CoursewareServiceImpl implements CoursewareService {
         return mapper.selectAll();
     }
 
+    @Override
+    public List<Courseware> getCourseware(Courseware courseware) {
+        if (courseware == null) {
+            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
+        }
+        return mapper.getCourseware(courseware);
+    }
+
 
 }

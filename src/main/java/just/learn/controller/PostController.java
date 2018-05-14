@@ -73,5 +73,13 @@ public class PostController {
 
         return ResultUtil.success("查询成功", postService.findStudentsInfo(pageNum,pageSize));
     }
+    @ApiOperation(value = "条件查询对象", notes = "条件查询对象")
+    @ApiImplicitParam(name = "post", value = "条件查询对象", required = true, dataType = "Post")
+    @RequestMapping(value = "/getPost", method = RequestMethod.POST)
+    public ApiResult getPost(@RequestBody Post post) {
+        //UserElement ue= getCurrentUser();
+
+        return ResultUtil.success("更新成功",  postService.getPost(post));
+    }
 
 }

@@ -21,4 +21,6 @@ public interface CourseService {
     List<Course> getRecommend();
 
     List<Course> findStudentsInfo(int pageNum, int pageSize);
+
+    List<Course> getCourse(Course course);
 }

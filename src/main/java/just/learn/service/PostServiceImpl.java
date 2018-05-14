@@ -65,5 +65,13 @@ public class PostServiceImpl implements PostService {
         return mapper.selectAll();
     }
 
+    @Override
+    public List<Post> getPost(Post post) {
+        if (post == null) {
+            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
+        }
+        return mapper.getPost(post);
+    }
+
 
 }

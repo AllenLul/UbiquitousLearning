@@ -77,6 +77,14 @@ public class UserServiceImpl implements UserService {
         PageHelper.startPage(pageNum,pageSize);
         return mapper.selectAll();
     }
+
+    @Override
+    public List<User> getUser(User user) {
+        if (user == null) {
+            throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
+        }
+        return mapper.getUser(user);
+    }
 /*    @Override
 public List<User> getAll() {
     return mapper.selectAll();

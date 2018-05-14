@@ -17,4 +17,6 @@ public interface VideoService {
     public Video getById(Integer id);
 
     List<Video> findStudentsInfo(Integer pageNum, Integer pageSize);
+
+    List<Video>  getVideo(Video video);
 }

@@ -36,4 +36,6 @@ public interface UserMapper {
     List<User> getUsersByCourseId(Integer id);
 
     List<User> selectAll();
+
+    List<User> getUser(User user);
 }

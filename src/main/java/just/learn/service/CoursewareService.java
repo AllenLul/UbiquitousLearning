@@ -18,4 +18,6 @@ public interface CoursewareService {
     public Courseware getById(Integer id);
 
     List<Courseware> findStudentsInfo(Integer pageNum, Integer pageSize);
+
+    List<Courseware> getCourseware(Courseware courseware);
 }

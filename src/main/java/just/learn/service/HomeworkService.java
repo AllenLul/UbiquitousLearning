@@ -18,4 +18,6 @@ public interface HomeworkService {
     public Homework getById(Integer id);
 
     List<Homework> findStudentsInfo(Integer pageNum, Integer pageSize);
+
+    List<Homework>  getHomework(Homework homework);
 }

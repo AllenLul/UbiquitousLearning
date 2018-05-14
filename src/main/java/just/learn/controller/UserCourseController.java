@@ -84,7 +84,7 @@ public class UserCourseController extends BaseController{
             required = true, dataType = "Long")
     @RequestMapping(value = "/getCoursesByUserId/{id}", method = RequestMethod.GET)
     public ApiResult getCoursesById(@PathVariable Long id) {
-        UserElement ue= getCurrentUser();
+        //UserElement ue= getCurrentUser();
         return ResultUtil.success("查询成功", this.userCourseService.getCoursesById(id));
     }
     @ApiOperation(value = "查询一个课程的所有选课的同学", notes = "查询一个课程的所有选课的同学")
@@ -92,7 +92,7 @@ public class UserCourseController extends BaseController{
             required = true, dataType = "Integer")
     @RequestMapping(value = "/getUsersByCourseId/{id}", method = RequestMethod.GET)
     public ApiResult getUsersByCourseId(@PathVariable Integer id) {
-        UserElement ue= getCurrentUser();
+        //UserElement ue= getCurrentUser();
         return ResultUtil.success("查询成功", this.userCourseService.getUsersByCourseId(id));
     }
 

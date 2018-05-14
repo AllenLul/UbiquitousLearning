@@ -90,6 +90,32 @@
       #{item.id}
     </foreach>
   </update>
+
+  <select id="getCourseware" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from courseware
+    <where>
+    <if test="id!=null and id!='' ">
+      id=#{id}
+    </if>
+    <if test="courseId!= null and courseId!= '' ">
+      AND courseId = #{courseId}
+    </if>
+      <if test="type!= null and type!= '' ">
+        AND type = #{type}
+      </if>
+      <if test="isPass!= null and isPass!= '' ">
+        AND isPass = #{isPass}
+      </if>
+      <if test="courseCap!= null and courseCap!= '' ">
+        AND courseCap = #{courseCap}
+      </if>
+      <if test="handleType!= null and handleType!= '' ">
+        AND handleType = #{handleType}
+      </if>
+    </where>
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List"/>

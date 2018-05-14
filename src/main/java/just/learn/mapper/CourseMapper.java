@@ -44,4 +44,6 @@ public interface CourseMapper {
     List<Course> getRecommend();
 
     List<Course> selectAll();
+
+    List<Course> getCourse(Course course);
 }

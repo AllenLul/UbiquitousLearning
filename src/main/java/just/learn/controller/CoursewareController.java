@@ -90,5 +90,12 @@ public class CoursewareController extends BaseController{
 
         return ResultUtil.success("查询成功", coursewareService.findStudentsInfo(pageNum,pageSize));
     }
+    @ApiOperation(value = "条件查询对象", notes = "条件查询对象")
+    @ApiImplicitParam(name = "courseware", value = "条件查询对象", required = true, dataType = "Courseware")
+    @RequestMapping(value = "/getCourseware", method = RequestMethod.POST)
+    public ApiResult getCourseware(@RequestBody Courseware courseware) {
+        //UserElement ue= getCurrentUser();
 
+        return ResultUtil.success("更新成功",  coursewareService.getCourseware(courseware));
+    }
 }
