@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="just.learn.mapper.SubmitHomeworkMapper" >
+  <resultMap id="BaseResultMap" type="just.learn.entity.SubmitHomework" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="homework_id" property="homeworkId" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_update" property="gmtUpdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, homework_id, url, score, gmt_create, gmt_update
+  </sql>
+
+  <select id="selectSubmitHomworkByObject" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from submit_homework
+    <where>
+      <if test="id!=null and id!='' ">
+        id=#{id}
+      </if>
+      <if test="userId!= null and userId!= '' ">
+        AND user_id = #{userId}
+      </if>
+      <if test="homeworkId!= null and homeworkId!= '' ">
+        AND homework_id = #{homeworkId}
+      </if>
+      <if test="score!= null and score!= '' ">
+        AND score = #{score}
+      </if>
+
+    </where>
+  </select>
+  <select id="selectSubmitHomeworkByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from submit_homework
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectSubmitHomeworkByHomeworkId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from submit_homework
+    where homework_id = #{homeworkId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from submit_homework
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from submit_homework
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="just.learn.entity.SubmitHomework" >
+    insert into submit_homework (id, user_id, homework_id, 
+      url, score, gmt_create, 
+      gmt_update)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{homeworkId,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtUpdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="just.learn.entity.SubmitHomework" >
+    insert into submit_homework
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="homeworkId != null" >
+        homework_id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null" >
+        gmt_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="homeworkId != null" >
+        #{homeworkId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.SubmitHomework" >
+    update submit_homework
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="homeworkId != null" >
+        homework_id = #{homeworkId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="just.learn.entity.SubmitHomework" >
+    update submit_homework
+    set user_id = #{userId,jdbcType=INTEGER},
+      homework_id = #{homeworkId,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
