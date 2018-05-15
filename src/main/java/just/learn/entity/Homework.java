@@ -5,17 +5,17 @@ import java.util.Date;
 public class Homework {
     private Integer id;
 
-    private Integer courseId;
+    private Integer courseId;//关联的课程id
 
     private String name;
 
     private String type;//规定上传文件的类型
 
-    private Date endTime;
+    private Date endTime;//截止日期
 
-    private String detail;
+    private String detail;//详细信息
 
-    private Integer userId;
+    private Integer userId;//关联的教师id
 
     public Integer getId() {
         return id;

@@ -7,17 +7,17 @@ public class Course {
 
     private Date createTime;
 
-    private String indexpic;
+    private String indexpic;//课程图片路径
 
     private String name;
 
-    private Integer tId;
+    private Integer tId;//课程所属教师id
 
-    private String type;
+    private String type;//课程类型
 
-    private String handleType;
+    private String handleType;//课程是否已经处理 1 已经处理 0 未处理
 
-    private String state;
+    private String state;//课程是否通过 1通过 0未通过
 
     public Integer getId() {
         return id;

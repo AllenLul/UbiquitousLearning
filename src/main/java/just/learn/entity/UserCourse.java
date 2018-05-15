@@ -5,9 +5,9 @@ import java.util.Date;
 public class UserCourse {
     private Integer id;
 
-    private Integer userId;
+    private Integer userId;//关联的学生id
 
-    private Integer courseId;
+    private Integer courseId;//关联的课程id
 
     private Date gmtCreate;
 

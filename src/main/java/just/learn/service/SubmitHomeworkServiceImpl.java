@@ -52,8 +52,7 @@ public class SubmitHomeworkServiceImpl implements SubmitHomeworkService {
         }
 
 
-        if ("docx".equals(GetTypeByHead.getFileType(file)) || "ppt".equals(GetTypeByHead.getFileType(file)) || "pptx"
-                .equals(GetTypeByHead.getFileType(file))) {
+        if ("docx".equals(GetTypeByHead.getFileType(file))) {
             String url = "E:\\" + file.getOriginalFilename();
             file.transferTo(new File(url));//保存文件
             //重复提交

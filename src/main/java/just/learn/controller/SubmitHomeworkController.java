@@ -37,7 +37,7 @@ public class SubmitHomeworkController extends BaseController{
     @Autowired
     @Qualifier("submitHomeworkServiceImpl")
     private SubmitHomeworkService service;
-    @ApiOperation(value = "提交作业（只需要传入userId和homeworkId这两个字段）", notes = "提交作业（只需要传入userId和homeworkId这两个字段）")
+    @ApiOperation(value = "提交作业（只需要传入userId和homeworkId这两个字段，以及文件）", notes = "提交作业（只需要传入userId和homeworkId这两个字段，以及文件）")
     @PostMapping(value = "/submitHomework")
     public ApiResult submitHomework(@ApiParam(value = "上传的文件", required = true) MultipartFile file, @ApiParam(value = "对象", required = true) SubmitHomework submitHomework) throws IOException {
         //UserElement ue= getCurrentUser();
@@ -52,7 +52,7 @@ public class SubmitHomeworkController extends BaseController{
         //UserElement ue= getCurrentUser();
         return ResultUtil.success("查询成功",  service.getSubmitHomwork(submitHomework));
     }
-    @ApiOperation(value = "给作业打分", notes = "给作业打分")
+    @ApiOperation(value = "给作业打分(传入提交作业记录的id和分数)", notes = "给作业打分（传入提交作业记录的id和分数）")
     @GetMapping(value = "/grade/{submitHomeworkId}/{score}")
     public ApiResult grade(@PathVariable Integer submitHomeworkId,@PathVariable String score ){
      /*   UserElement ue= getCurrentUser();

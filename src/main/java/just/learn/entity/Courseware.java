@@ -3,19 +3,19 @@ package just.learn.entity;
 public class Courseware {
     private Integer id;
 
-    private Integer courseId;
+    private Integer courseId;//关联的课程id
 
-    private Integer downlaodTimes;
+    private Integer downlaodTimes;//下载次数
 
-    private String type;
+    private String type;//课件类型
 
-    private String url;
+    private String url;//课件文件路径
 
-    private String isPass;
+    private String isPass;//课件是否通过 1通过 0未通过
 
-    private String courseCap;
+    private String courseCap;//忘记了
 
-    private String handleType;
+    private String handleType;//课件是否已经处理 1 已经处理 0 未处理
 
     public Integer getId() {
         return id;
