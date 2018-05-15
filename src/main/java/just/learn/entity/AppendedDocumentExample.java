@@ -374,63 +374,63 @@ public class AppendedDocumentExample {
             return (Criteria) this;
         }
 
-        public Criteria andTIdIsNull() {
-            addCriterion("t_id is null");
+        public Criteria andHomeworkIdIsNull() {
+            addCriterion("homework_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTIdIsNotNull() {
-            addCriterion("t_id is not null");
+        public Criteria andHomeworkIdIsNotNull() {
+            addCriterion("homework_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTIdEqualTo(Integer value) {
-            addCriterion("t_id =", value, "tId");
+        public Criteria andHomeworkIdEqualTo(Integer value) {
+            addCriterion("homework_id =", value, "homeworkId");
             return (Criteria) this;
         }
 
-        public Criteria andTIdNotEqualTo(Integer value) {
-            addCriterion("t_id <>", value, "tId");
+        public Criteria andHomeworkIdNotEqualTo(Integer value) {
+            addCriterion("homework_id <>", value, "homeworkId");
             return (Criteria) this;
         }
 
-        public Criteria andTIdGreaterThan(Integer value) {
-            addCriterion("t_id >", value, "tId");
+        public Criteria andHomeworkIdGreaterThan(Integer value) {
+            addCriterion("homework_id >", value, "homeworkId");
             return (Criteria) this;
         }
 
-        public Criteria andTIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("t_id >=", value, "tId");
+        public Criteria andHomeworkIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("homework_id >=", value, "homeworkId");
             return (Criteria) this;
         }
 
-        public Criteria andTIdLessThan(Integer value) {
-            addCriterion("t_id <", value, "tId");
+        public Criteria andHomeworkIdLessThan(Integer value) {
+            addCriterion("homework_id <", value, "homeworkId");
             return (Criteria) this;
         }
 
-        public Criteria andTIdLessThanOrEqualTo(Integer value) {
-            addCriterion("t_id <=", value, "tId");
+        public Criteria andHomeworkIdLessThanOrEqualTo(Integer value) {
+            addCriterion("homework_id <=", value, "homeworkId");
             return (Criteria) this;
         }
 
-        public Criteria andTIdIn(List<Integer> values) {
-            addCriterion("t_id in", values, "tId");
+        public Criteria andHomeworkIdIn(List<Integer> values) {
+            addCriterion("homework_id in", values, "homeworkId");
             return (Criteria) this;
         }
 
-        public Criteria andTIdNotIn(List<Integer> values) {
-            addCriterion("t_id not in", values, "tId");
+        public Criteria andHomeworkIdNotIn(List<Integer> values) {
+            addCriterion("homework_id not in", values, "homeworkId");
             return (Criteria) this;
         }
 
-        public Criteria andTIdBetween(Integer value1, Integer value2) {
-            addCriterion("t_id between", value1, value2, "tId");
+        public Criteria andHomeworkIdBetween(Integer value1, Integer value2) {
+            addCriterion("homework_id between", value1, value2, "homeworkId");
             return (Criteria) this;
         }
 
-        public Criteria andTIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("t_id not between", value1, value2, "tId");
+        public Criteria andHomeworkIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("homework_id not between", value1, value2, "homeworkId");
             return (Criteria) this;
         }
     }

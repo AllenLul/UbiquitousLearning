@@ -82,7 +82,8 @@ public class HomeworkController extends BaseController{
     public ApiResult getHomework(@RequestBody Homework homework) {
         //UserElement ue= getCurrentUser();
 
-        return ResultUtil.success("更新成功",  homeworkService.getHomework(homework));
+        return ResultUtil.success("查询成功",  homeworkService.getHomework(homework));
     }
+
 
 }

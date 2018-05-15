@@ -4,7 +4,9 @@ import java.util.List;
 import just.learn.entity.Courseware;
 import just.learn.entity.CoursewareExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface CoursewareMapper {
     int countByExample(CoursewareExample example);
 

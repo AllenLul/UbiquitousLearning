@@ -6,8 +6,6 @@ import just.learn.common.execption.CustomException;
 import just.learn.entity.AppendedDocument;
 import just.learn.mapper.AppendedDocumentMapper;
 import org.springframework.stereotype.Service;
-import just.learn.vo.QueryCondition;
-import just.learn.entity.PageQueryBean;
 
 import javax.annotation.Resource;
 import java.util.List;

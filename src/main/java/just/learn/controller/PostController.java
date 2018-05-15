@@ -79,7 +79,7 @@ public class PostController {
     public ApiResult getPost(@RequestBody Post post) {
         //UserElement ue= getCurrentUser();
 
-        return ResultUtil.success("更新成功",  postService.getPost(post));
+        return ResultUtil.success("查询成功",  postService.getPost(post));
     }
 
 }

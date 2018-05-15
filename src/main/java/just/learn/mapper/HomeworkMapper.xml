@@ -84,13 +84,13 @@
       AND name = #{name}
     </if>
       <if test="courseId!= null and courseId!= '' ">
-        AND courseId = #{courseId}
+        AND course_id = #{courseId}
       </if>
       <if test="type!= null and type!= '' ">
         AND type = #{type}
       </if>
       <if test="userId!= null and userId!= '' ">
-        AND userId = #{userId}
+        AND user_id = #{userId}
       </if>
     </where>
   </select>

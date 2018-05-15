@@ -109,7 +109,7 @@ public class UserController extends BaseController{
     public ApiResult getUser(@RequestBody User user) {
         //UserElement ue= getCurrentUser();
 
-        return ResultUtil.success("更新成功",  userService.getUser(user));
+        return ResultUtil.success("查询成功",  userService.getUser(user));
     }
 
 }

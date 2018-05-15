@@ -96,6 +96,6 @@ public class CoursewareController extends BaseController{
     public ApiResult getCourseware(@RequestBody Courseware courseware) {
         //UserElement ue= getCurrentUser();
 
-        return ResultUtil.success("更新成功",  coursewareService.getCourseware(courseware));
+        return ResultUtil.success("查询成功",  coursewareService.getCourseware(courseware));
     }
 }

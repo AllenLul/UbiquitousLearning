@@ -5,11 +5,11 @@ public class AppendedDocument {
 
     private String name;
 
-    private String url;
+    private String url;//附件文件id
 
-    private String type;
+    private String type;//文件类型
 
-    private Integer tId;
+    private Integer homeworkId;//关联的作业id
 
     public Integer getId() {
         return id;
@@ -43,11 +43,11 @@ public class AppendedDocument {
         this.type = type == null ? null : type.trim();
     }
 
-    public Integer gettId() {
-        return tId;
+    public Integer getHomeworkId() {
+        return homeworkId;
     }
 
-    public void settId(Integer tId) {
-        this.tId = tId;
+    public void setHomeworkId(Integer homeworkId) {
+        this.homeworkId = homeworkId;
     }
 }

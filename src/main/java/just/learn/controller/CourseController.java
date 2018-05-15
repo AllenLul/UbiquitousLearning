@@ -99,7 +99,7 @@ public class CourseController extends BaseController{
     public ApiResult getCourse(@RequestBody Course course) {
         //UserElement ue= getCurrentUser();
 
-        return ResultUtil.success("更新成功",  courseService.getCourse(course));
+        return ResultUtil.success("查询成功",  courseService.getCourse(course));
     }
 
 }

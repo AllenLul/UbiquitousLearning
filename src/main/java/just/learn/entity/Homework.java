@@ -9,7 +9,7 @@ public class Homework {
 
     private String name;
 
-    private String type;
+    private String type;//规定上传文件的类型
 
     private Date endTime;
 

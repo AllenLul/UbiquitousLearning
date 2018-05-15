@@ -94,7 +94,7 @@ public class VideoController extends BaseController{
     public ApiResult getVideo(@RequestBody Video video) {
         //UserElement ue= getCurrentUser();
 
-        return ResultUtil.success("更新成功",  videoService.getVideo(video));
+        return ResultUtil.success("查询成功",  videoService.getVideo(video));
     }
 
 }
