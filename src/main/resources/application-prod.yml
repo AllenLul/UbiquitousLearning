@@ -1,7 +1,7 @@
 spring:
   datasource:
     name: bike
-    password: root
+    password: 935377012
     username: root
     url: jdbc:mysql://localhost:3306/ubiquitouslearning?useUnicode=true&characterEncoding=utf8
 #reids

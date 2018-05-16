@@ -24,4 +24,5 @@ public interface SubmitHomeworkMapper {
     SubmitHomework selectSubmitHomeworkByUserId(Integer userId);
 
     List<SubmitHomework> selectSubmitHomeworkByObject(SubmitHomework submitHomework);
+
 }

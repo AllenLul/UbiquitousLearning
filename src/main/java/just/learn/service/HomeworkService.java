@@ -4,6 +4,7 @@ import just.learn.entity.Homework;
 import just.learn.entity.PageQueryBean;
 import just.learn.vo.QueryCondition;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -23,5 +24,5 @@ public interface HomeworkService {
 
     List<Homework>  getHomework(Homework homework);
 
-    String batchDownload(Integer id) throws IOException;
+    String batchDownload(Integer id, HttpServletResponse response) throws Exception;
 }

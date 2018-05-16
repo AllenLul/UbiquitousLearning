@@ -14,6 +14,9 @@ import just.learn.vo.QueryCondition;
 import io.swagger.annotations.ApiImplicitParam;
 import just.learn.entity.PageQueryBean;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/homework")
 public class HomeworkController extends BaseController{
@@ -89,9 +92,9 @@ public class HomeworkController extends BaseController{
     @ApiImplicitParam(paramType = "path", name = "id", value = "主键",
             required = true, dataType = "String")
     @RequestMapping(value = "/batchDownload/{id}", method = RequestMethod.GET)
-    public ApiResult batchDownload(@PathVariable Integer id) {
+    public ApiResult batchDownload(@PathVariable Integer id,HttpServletResponse response) throws Exception {
         //UserElement ue= getCurrentUser();
-        return ResultUtil.success("下载成功", this.homeworkService.batchDownload(id));
+        return ResultUtil.success("下载成功", this.homeworkService.batchDownload(id,response));
     }
 
 

@@ -152,7 +152,7 @@ public class SubmitHomeworkServiceImpl implements SubmitHomeworkService {
         if (submitHomework == null) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
-        return submitHomeworkMapper.selectSubmitHomworkByObject(submitHomework);
+        return submitHomeworkMapper.selectSubmitHomeworkByObject(submitHomework);
     }
 
 /*    private boolean isValid(String typesString,MultipartFile file) throws IOException {
