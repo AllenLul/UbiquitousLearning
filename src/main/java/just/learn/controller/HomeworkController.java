@@ -85,5 +85,14 @@ public class HomeworkController extends BaseController{
         return ResultUtil.success("查询成功",  homeworkService.getHomework(homework));
     }
 
+    @ApiOperation(value = "批量下载提交的作业", notes = "批量下载提交的作业")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "主键",
+            required = true, dataType = "String")
+    @RequestMapping(value = "/batchDownload/{id}", method = RequestMethod.GET)
+    public ApiResult batchDownload(@PathVariable Integer id) {
+        //UserElement ue= getCurrentUser();
+        return ResultUtil.success("下载成功", this.homeworkService.batchDownload(id));
+    }
+
 
 }

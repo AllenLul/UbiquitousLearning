@@ -1,5 +1,6 @@
 package just.learn.controller;
 
+import just.learn.cache.CommonCacheUtil;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.enums.RoleEnum;
 import just.learn.common.execption.CustomException;
@@ -25,7 +26,9 @@ public class VideoController extends BaseController{
     @Qualifier("videoServiceImpl")
     protected VideoService videoService;
 
-
+    @Autowired
+    @Qualifier("commonCacheUtil")
+    private CommonCacheUtil cacheUtil;
     /*@RequestMapping(value="/getAll",method= RequestMethod.GET) ApiResult getAll() {
     List<Video> videos = this.videoService.getAll();
     return ResultUtil.success("查询所有对象成功",videos);

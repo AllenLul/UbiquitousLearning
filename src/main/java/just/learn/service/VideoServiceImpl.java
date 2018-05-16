@@ -55,6 +55,8 @@ public class VideoServiceImpl implements VideoService {
         if (video == null) {
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
+        video.setTimes(video.getTimes()+1);
+        mapper.updateByPrimaryKeySelective(video);
         return video;
     }
 

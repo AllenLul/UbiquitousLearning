@@ -8,8 +8,10 @@ import just.learn.common.enums.RoleEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.common.resp.ApiResult;
 import just.learn.common.utils.ResultUtil;
+import just.learn.entity.User;
 import just.learn.entity.UserElement;
 import just.learn.service.AdminService;
+import just.learn.service.UserService;
 import just.learn.vo.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,6 +33,10 @@ public class AdminController extends BaseController{
     @Qualifier("adminServiceImpl")
     private AdminService adminService;
 
+    @Autowired
+    @Qualifier("userServiceImpl")
+    private UserService userService;
+
     @ApiOperation(value = "导入用户信息", notes = "导入用户信息")
     @PostMapping(value = "/importUser", consumes = "multipart/*", headers = "content-type=multipart/form-data")
     public ApiResult importUser(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
@@ -51,6 +57,19 @@ public class AdminController extends BaseController{
         }
         adminService.review(reviewVO);
         return ResultUtil.success("success");
+    }
+
+    @ApiOperation(value = "添加", notes = "添加对象")
+    @ApiImplicitParam(name = "user", value = "实体对象", required = true, dataType = "User")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ApiResult add(@RequestBody User user) {
+        UserElement ue= getCurrentUser();
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }
+        user.setRole(RoleEnum.MANAGER.getValue());
+        userService.insert(user);
+        return ResultUtil.success("增加成功");
     }
 
 

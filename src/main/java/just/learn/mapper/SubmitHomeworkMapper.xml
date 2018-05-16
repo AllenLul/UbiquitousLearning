@@ -14,7 +14,7 @@
     id, user_id, homework_id, url, score, gmt_create, gmt_update
   </sql>
 
-  <select id="selectSubmitHomworkByObject" resultMap="BaseResultMap"  >
+  <select id="selectSubmitHomeworkByObject" resultMap="BaseResultMap"  >
     select
     <include refid="Base_Column_List" />
     from submit_homework
