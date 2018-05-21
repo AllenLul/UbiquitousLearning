@@ -30,7 +30,7 @@ public enum ResultEnum {
     PROPERTY_NULL_ERROR(514,"值是空"),
     LOGIN_FAIL(515, "登录失败"),
     TYPE_ERROR(516,"类型异常" ),
-    EXECIL_NULL(517,"Excel数据为空" ), FILE_EMPTY(518,"文件不存在" ), IMG_HAS_EXISTED(519,"图片已经存在" ), HOMEWORK_FIND_NULL(520,"作业不存在" ), HOMEWORK_IS_END(521,"已截止提交" ), SUBMITHOMWORK_FIND_NULL(522,"作业提交记录不存在" );
+    EXECIL_NULL(517,"Excel数据为空" ), FILE_EMPTY(518,"文件不存在" ), IMG_HAS_EXISTED(519,"图片已经存在" ), HOMEWORK_FIND_NULL(520,"作业不存在" ), HOMEWORK_IS_END(521,"已截止提交" ), SUBMITHOMWORK_FIND_NULL(522,"作业提交记录不存在" ), NO_SELECT_COURSE(523,"未选择课程" );
     private Integer code;
     private String msg;
 

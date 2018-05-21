@@ -92,6 +92,13 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="selectByUserIdAndCourseId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user_course
+    where user_id = #{0} AND course_id=#{1}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -1,6 +1,7 @@
 package just.learn.service;
 
 import just.learn.entity.SubmitHomework;
+import just.learn.entity.UserElement;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +20,10 @@ public interface SubmitHomeworkService {
      * 提交作业
      * @param file
      * @param submitHomework
+     * @param ue
      * @return
      */
-    String submitHomework(MultipartFile file, SubmitHomework submitHomework) throws IOException;
+    String submitHomework(MultipartFile file, SubmitHomework submitHomework, UserElement ue) throws IOException;
 
     List<SubmitHomework> getSubmitHomeworkByHomeworkId(Integer homeworkId);
 

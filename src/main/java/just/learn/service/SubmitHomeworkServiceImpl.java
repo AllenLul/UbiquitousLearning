@@ -3,12 +3,11 @@ package just.learn.service;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.common.utils.GetTypeByHead;
-import just.learn.entity.Homework;
-import just.learn.entity.SubmitHomework;
+import just.learn.entity.*;
 import just.learn.mapper.HomeworkMapper;
 import just.learn.mapper.SubmitHomeworkMapper;
+import just.learn.mapper.UserCourseMapper;
 import just.learn.mapper.UserMapper;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,9 +32,11 @@ public class SubmitHomeworkServiceImpl implements SubmitHomeworkService {
     private HomeworkMapper homeworkMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private UserCourseMapper userCourseMapper;
 
     @Override
-    public String submitHomework(MultipartFile file, SubmitHomework submitHomework) throws IOException {
+    public String submitHomework(MultipartFile file, SubmitHomework submitHomework, UserElement ue) throws IOException {
 
         if (submitHomework == null) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
@@ -47,9 +48,15 @@ public class SubmitHomeworkServiceImpl implements SubmitHomeworkService {
         if (homework == null) {//先查询作业是否存在
             throw new CustomException(ResultEnum.HOMEWORK_FIND_NULL);
         }
+        User user=userMapper.selectByNumber(ue.getUserNumber());
+        UserCourse userCourse=userCourseMapper.selectByUserIdAndCourseId(user.getId(),homework.getCourseId());
+        if(userCourse==null){
+            throw new CustomException(ResultEnum.NO_SELECT_COURSE);
+        }
         if (homework.getEndTime().before(new Date())) {//验证截止日期
             throw new CustomException(ResultEnum.HOMEWORK_IS_END);
         }
+
 
 
         if ("docx".equals(GetTypeByHead.getFileType(file))) {

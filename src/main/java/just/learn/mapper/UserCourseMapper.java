@@ -33,4 +33,5 @@ public interface UserCourseMapper {
     void deleteUserCourseByObject(UserCourse u);
 
     List<UserCourse> selectAll();
+    UserCourse selectByUserIdAndCourseId(Integer id, Integer courseId);
 }
