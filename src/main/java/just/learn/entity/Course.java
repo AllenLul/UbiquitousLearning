@@ -7,7 +7,7 @@ public class Course {
 
     private Date createTime;
 
-    private String indexpic;
+    private String indexPic;
 
     private String name;
 
@@ -38,11 +38,11 @@ public class Course {
     }
 
     public String getIndexpic() {
-        return indexpic;
+        return indexPic;
     }
 
-    public void setIndexpic(String indexpic) {
-        this.indexpic = indexpic == null ? null : indexpic.trim();
+    public void setIndexPic(String indexPic) {
+        this.indexPic = indexPic == null ? null : indexPic.trim();
     }
 
     public String getName() {
