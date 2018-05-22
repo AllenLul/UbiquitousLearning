@@ -3,13 +3,17 @@ package just.learn.service;
 import com.github.pagehelper.PageHelper;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
+import just.learn.entity.Course;
 import just.learn.entity.User;
 import just.learn.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 import just.learn.vo.QueryCondition;
 import just.learn.entity.PageQueryBean;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -84,6 +88,19 @@ public class UserServiceImpl implements UserService {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
         return mapper.getUser(user);
+    }
+
+    @Override
+    public String uploadUserPic(MultipartFile file, Integer id) throws IOException {
+        String path="e:\\img\\user\\"+file.getOriginalFilename();
+        file.transferTo(new File(path));
+        User user=mapper.selectByPrimaryKey(id);
+        if(user==null){
+            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
+        }
+        user.setHeadpic(path);
+        mapper.updateByPrimaryKeySelective(user);
+        return path;
     }
 /*    @Override
 public List<User> getAll() {

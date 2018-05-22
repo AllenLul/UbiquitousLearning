@@ -3,7 +3,9 @@ package just.learn.service;
 import just.learn.entity.Course;
 import just.learn.entity.PageQueryBean;
 import just.learn.vo.QueryCondition;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface CourseService {
@@ -23,4 +25,6 @@ public interface CourseService {
     List<Course> findStudentsInfo(int pageNum, int pageSize);
 
     List<Course> getCourse(Course course);
+
+    String uploadCoursePic(MultipartFile file,Integer id) throws IOException;
 }

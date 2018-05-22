@@ -8,8 +8,11 @@ import just.learn.mapper.CourseMapper;
 import org.springframework.stereotype.Service;
 import just.learn.vo.QueryCondition;
 import just.learn.entity.PageQueryBean;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -72,6 +75,19 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> getCourse(Course course) {
         return mapper.getCourse(course);
+    }
+
+    @Override
+    public String uploadCoursePic(MultipartFile file,Integer id) throws IOException {
+        String path="e:\\img\\course\\"+file.getOriginalFilename();
+        file.transferTo(new File(path));
+        Course course=mapper.selectByPrimaryKey(id);
+        if(course==null){
+            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
+        }
+        course.setIndexpic(path);
+        mapper.updateByPrimaryKeySelective(course);
+        return path;
     }
 
 

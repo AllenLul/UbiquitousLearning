@@ -1,5 +1,6 @@
 package just.learn.controller;
 
+import io.swagger.annotations.ApiParam;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.enums.RoleEnum;
 import just.learn.common.execption.CustomException;
@@ -16,7 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import just.learn.vo.QueryCondition;
 import io.swagger.annotations.ApiImplicitParam;
 import just.learn.entity.PageQueryBean;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -100,6 +104,14 @@ public class CourseController extends BaseController{
         //UserElement ue= getCurrentUser();
 
         return ResultUtil.success("查询成功",  courseService.getCourse(course));
+    }
+    @ApiOperation(value = "上传课程图片", notes = "上传课程图片")
+    @PostMapping(value = "/uploadCoursePic/{id}", consumes = "multipart/*", headers = "content-type=multipart/form-data")
+    public ApiResult uploadCoursePic(@ApiParam(value = "上传的图片", required = true) MultipartFile file,@PathVariable Integer id) throws IOException {
+        //UserElement ue= getCurrentUser();
+       String url= courseService.uploadCoursePic(file,id);
+
+        return ResultUtil.success("上传成功",url);
     }
 
 }
