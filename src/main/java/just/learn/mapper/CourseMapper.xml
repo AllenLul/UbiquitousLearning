@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="just.learn.entity.Course" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="indexPic" property="indexpic" jdbcType="VARCHAR" />
+    <result column="indexPic" property="indexPic" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="CHAR" />
     <result column="t_id" property="tId" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="CHAR" />
@@ -90,7 +90,7 @@
     insert into course (id, create_time, indexPic, 
       name, t_id, type, handle_type, 
       state, description)
-    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{indexpic,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{indexPic,jdbcType=VARCHAR},
       #{name,jdbcType=CHAR}, #{tId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{handleType,jdbcType=CHAR}, 
       #{state,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
   </insert>
@@ -103,7 +103,7 @@
       <if test="createTime != null" >
         create_time,
       </if>
-      <if test="indexpic != null" >
+      <if test="indexPic != null" >
         indexPic,
       </if>
       <if test="name != null" >
@@ -132,8 +132,8 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="indexpic != null" >
-        #{indexpic,jdbcType=VARCHAR},
+      <if test="indexPic != null" >
+        #{indexPic,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
         #{name,jdbcType=CHAR},
@@ -161,8 +161,8 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="indexpic != null" >
-        indexPic = #{indexpic,jdbcType=VARCHAR},
+      <if test="indexPic != null" >
+        indexPic = #{indexPic,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=CHAR},
@@ -188,7 +188,7 @@
   <update id="updateByPrimaryKey" parameterType="just.learn.entity.Course" >
     update course
     set create_time = #{createTime,jdbcType=TIMESTAMP},
-      indexPic = #{indexpic,jdbcType=VARCHAR},
+      indexPic = #{indexPic,jdbcType=VARCHAR},
       name = #{name,jdbcType=CHAR},
       t_id = #{tId,jdbcType=INTEGER},
       type = #{type,jdbcType=CHAR},
