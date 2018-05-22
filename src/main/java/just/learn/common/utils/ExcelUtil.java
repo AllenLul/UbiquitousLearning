@@ -153,7 +153,7 @@ public class ExcelUtil {
         row2.createCell(7).setCellValue("性别");
         row2.createCell(8).setCellValue("注释");
         row2.createCell(9).setCellValue("角色");
-        row2.createCell(10).setCellValue("密码");
+
         for (int i=0;i<users.size();i++) {
             XSSFRow row=sheet.createRow(i+2);
             row.createCell(0).setCellValue(users.get(i).getId());
@@ -166,7 +166,7 @@ public class ExcelUtil {
             row.createCell(7).setCellValue(users.get(i).getGender());
             row.createCell(8).setCellValue(users.get(i).getNote());
             row.createCell(9).setCellValue(users.get(i).getRole());
-            row.createCell(10).setCellValue(users.get(i).getPassword());
+
 
         }
         wb.write(new FileOutputStream(new File(path)));
