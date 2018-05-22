@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService {
         if(!target.exists()){
             target.createNewFile();
         }
-        file.transferTo(new File(path));
+        file.transferTo(new File(path+"\\"+file.getOriginalFilename()));
         return path+"\\"+file.getOriginalFilename();
     }
 /*    @Override
