@@ -23,7 +23,7 @@ public interface UserService {
 
     User getByNumber(String number);
 
-    List<User> findStudentsInfo(Integer pageNum, Integer pageSize);
+    List<User> findStudentsInfo(QueryCondition<User> queryCondition);
 
     List<User> getUser(User user);
 

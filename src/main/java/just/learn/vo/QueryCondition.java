@@ -11,7 +11,8 @@ import lombok.Data;
  * @date 2018/4/12 18:24
  */
 @Data
-public class QueryCondition  extends PageQueryBean{//除了分页的基本条件，扩展几个条件
-    private String startDate;
-    private String endDate;
+public class QueryCondition<T> {
+    private T object;
+    private int pageNum;
+    private int pageSize;
 }

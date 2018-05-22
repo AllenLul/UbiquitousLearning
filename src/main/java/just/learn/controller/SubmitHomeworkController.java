@@ -12,6 +12,7 @@ import just.learn.entity.Homework;
 import just.learn.entity.SubmitHomework;
 import just.learn.entity.UserElement;
 import just.learn.service.SubmitHomeworkService;
+import just.learn.vo.QueryCondition;
 import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,12 +48,11 @@ public class SubmitHomeworkController extends BaseController{
         return ResultUtil.success("上传成功",url);
     }
 
-    @ApiOperation(value = "条件查询对象", notes = "条件查询对象")
-    @ApiImplicitParam(name = "submitHomework", value = "条件查询对象", required = true, dataType = "SubmitHomework")
-    @RequestMapping(value = "/getSubmitHomwork", method = RequestMethod.POST)
-    public ApiResult getSubmitHomwork(@RequestBody SubmitHomework submitHomework) {
-        //UserElement ue= getCurrentUser();
-        return ResultUtil.success("查询成功",  service.getSubmitHomwork(submitHomework));
+    @ApiOperation(value = "分页查询", notes = "分页查询")
+    @PostMapping(value = "/findLimitObjects")
+    public ApiResult getLimitObjects(@RequestBody QueryCondition<SubmitHomework> queryCondition) {
+
+        return ResultUtil.success("查询成功", service.findSubmitHomeworkInfo(queryCondition));
     }
     @ApiOperation(value = "给作业打分(传入提交作业记录的id和分数)", notes = "给作业打分（传入提交作业记录的id和分数）")
     @GetMapping(value = "/grade/{submitHomeworkId}/{score}")

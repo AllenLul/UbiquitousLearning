@@ -101,20 +101,13 @@ public class UserController extends BaseController{
             @ApiImplicitParam(name = "pageSize", value = "每页显示数目", paramType = "path", required = true, dataType =
                     "Integer")
     })
-    @GetMapping(value = "/findLimitObjects/{pageNum}/{pageSize}")
-    public ApiResult getLimitObjects(@PathVariable Integer pageNum,@PathVariable Integer pageSize) {
+    @PostMapping(value = "/findLimitObjects")
+    public ApiResult getLimitObjects(@RequestBody QueryCondition<User> queryCondition) {
 
-        return ResultUtil.success("查询成功", userService.findStudentsInfo(pageNum,pageSize));
+        return ResultUtil.success("查询成功", userService.findStudentsInfo(queryCondition));
     }
 
-    @ApiOperation(value = "条件查询对象", notes = "条件查询对象")
-    @ApiImplicitParam(name = "user", value = "条件查询对象", required = true, dataType = "User")
-    @RequestMapping(value = "/getUser", method = RequestMethod.POST)
-    public ApiResult getUser(@RequestBody User user) {
-        //UserElement ue= getCurrentUser();
 
-        return ResultUtil.success("查询成功",  userService.getUser(user));
-    }
     @ApiOperation(value = "上传头像", notes = "上传头像")
     @PostMapping(value = "/uploadUserPic", consumes = "multipart/*", headers = "content-type=multipart/form-data")
     public ApiResult uploadUserPic(@ApiParam(value = "上传头像", required = true) MultipartFile file) throws IOException {

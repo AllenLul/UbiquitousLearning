@@ -79,23 +79,11 @@ public class CoursewareController extends BaseController{
     }
 
     @ApiOperation(value = "分页查询", notes = "分页查询")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "当前页", paramType = "path", required = true, dataType =
-                    "Integer"),
-            @ApiImplicitParam(name = "pageSize", value = "每页显示数目", paramType = "path", required = true, dataType =
-                    "Integer")
-    })
-    @GetMapping(value = "/findLimitObjects/{pageNum}/{pageSize}")
-    public ApiResult getLimitObjects(@PathVariable Integer pageNum,@PathVariable Integer pageSize) {
 
-        return ResultUtil.success("查询成功", coursewareService.findStudentsInfo(pageNum,pageSize));
-    }
-    @ApiOperation(value = "条件查询对象", notes = "条件查询对象")
-    @ApiImplicitParam(name = "courseware", value = "条件查询对象", required = true, dataType = "Courseware")
-    @RequestMapping(value = "/getCourseware", method = RequestMethod.POST)
-    public ApiResult getCourseware(@RequestBody Courseware courseware) {
-        //UserElement ue= getCurrentUser();
+    @PostMapping(value = "/findLimitObjects")
+    public ApiResult getLimitObjects(@RequestBody QueryCondition<Courseware> queryCondition) {
 
-        return ResultUtil.success("查询成功",  coursewareService.getCourseware(courseware));
+        return ResultUtil.success("查询成功", coursewareService.findStudentsInfo(queryCondition));
     }
+
 }

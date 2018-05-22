@@ -1,5 +1,6 @@
 package just.learn.service;
 
+import com.github.pagehelper.PageHelper;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.common.utils.GetTypeByHead;
@@ -8,6 +9,7 @@ import just.learn.mapper.HomeworkMapper;
 import just.learn.mapper.SubmitHomeworkMapper;
 import just.learn.mapper.UserCourseMapper;
 import just.learn.mapper.UserMapper;
+import just.learn.vo.QueryCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -160,6 +162,12 @@ public class SubmitHomeworkServiceImpl implements SubmitHomeworkService {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
         return submitHomeworkMapper.selectSubmitHomeworkByObject(submitHomework);
+    }
+
+    @Override
+    public List<SubmitHomework> findSubmitHomeworkInfo(QueryCondition<SubmitHomework> queryCondition) {
+        PageHelper.startPage(queryCondition.getPageNum(),queryCondition.getPageSize());
+        return submitHomeworkMapper.selectSubmitHomeworkByObject(queryCondition.getObject());
     }
 
 /*    private boolean isValid(String typesString,MultipartFile file) throws IOException {

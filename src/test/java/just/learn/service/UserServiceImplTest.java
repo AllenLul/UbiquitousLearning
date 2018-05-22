@@ -71,7 +71,8 @@ public class UserServiceImplTest {
 
     @Test
     public void findStudentsInfo() {
-        System.out.println(userService.findStudentsInfo(1,3));
+
+
     }
 
     @Test

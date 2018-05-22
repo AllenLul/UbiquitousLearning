@@ -22,7 +22,7 @@ public interface CourseService {
 
     List<Course> getRecommend();
 
-    List<Course> findStudentsInfo(int pageNum, int pageSize);
+    List<Course> findStudentsInfo(QueryCondition<Course> queryCondition);
 
     List<Course> getCourse(Course course);
 

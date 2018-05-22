@@ -61,7 +61,7 @@ public class HomeworkServiceImplTest {
 
     @Test
     public void findStudentsInfo() {
-        System.out.println(homeworkService.findStudentsInfo(1,3));
+
     }
 
     @Test

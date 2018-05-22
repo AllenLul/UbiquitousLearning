@@ -61,7 +61,7 @@ public class VideoServiceImplTest {
 
     @Test
     public void findStudentsInfo() {
-        System.out.println(videoService.findStudentsInfo(1,3));
+
     }
 
     @Test

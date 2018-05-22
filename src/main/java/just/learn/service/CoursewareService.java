@@ -17,7 +17,7 @@ public interface CoursewareService {
 
     public Courseware getById(Integer id);
 
-    List<Courseware> findStudentsInfo(Integer pageNum, Integer pageSize);
+    List<Courseware> findStudentsInfo(QueryCondition<Courseware> queryCondition);
 
     List<Courseware> getCourseware(Courseware courseware);
 }

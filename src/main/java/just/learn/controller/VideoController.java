@@ -86,10 +86,10 @@ public class VideoController extends BaseController{
             @ApiImplicitParam(name = "pageSize", value = "每页显示数目", paramType = "path", required = true, dataType =
                     "Integer")
     })
-    @GetMapping(value = "/findLimitObjects/{pageNum}/{pageSize}")
-    public ApiResult getLimitObjects(@PathVariable Integer pageNum,@PathVariable Integer pageSize) {
+    @GetMapping(value = "/findLimitObjects")
+    public ApiResult getLimitObjects(@RequestBody QueryCondition<Video> queryCondition) {
 
-        return ResultUtil.success("查询成功", videoService.findStudentsInfo(pageNum,pageSize));
+        return ResultUtil.success("查询成功", videoService.findStudentsInfo(queryCondition));
     }
     @ApiOperation(value = "条件查询对象", notes = "条件查询对象")
     @ApiImplicitParam(name = "video", value = "条件查询对象", required = true, dataType = "Video")

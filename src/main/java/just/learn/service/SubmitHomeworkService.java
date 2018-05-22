@@ -2,6 +2,7 @@ package just.learn.service;
 
 import just.learn.entity.SubmitHomework;
 import just.learn.entity.UserElement;
+import just.learn.vo.QueryCondition;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -32,4 +33,6 @@ public interface SubmitHomeworkService {
     void download(Integer submitHomeworkId, HttpServletResponse response);
 
     List<SubmitHomework> getSubmitHomwork(SubmitHomework submitHomework);
+
+    List<SubmitHomework> findSubmitHomeworkInfo(QueryCondition<SubmitHomework> queryCondition);
 }

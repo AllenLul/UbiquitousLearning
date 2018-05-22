@@ -8,6 +8,7 @@ import just.learn.entity.Homework;
 import just.learn.entity.SubmitHomework;
 import just.learn.mapper.HomeworkMapper;
 import just.learn.mapper.SubmitHomeworkMapper;
+import just.learn.vo.QueryCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,9 +68,9 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public List<Homework> findStudentsInfo(Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        return mapper.selectAll();
+    public List<Homework> findStudentsInfo(QueryCondition<Homework> queryCondition) {
+        PageHelper.startPage(queryCondition.getPageNum(),queryCondition.getPageSize());
+        return mapper.getHomework(queryCondition.getObject());
     }
 
     @Override

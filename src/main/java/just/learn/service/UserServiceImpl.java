@@ -9,6 +9,7 @@ import just.learn.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 import just.learn.vo.QueryCondition;
 import just.learn.entity.PageQueryBean;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -77,9 +78,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findStudentsInfo(Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        return mapper.selectAll();
+    public List<User> findStudentsInfo(QueryCondition<User> queryCondition) {
+        PageHelper.startPage(queryCondition.getPageNum(),queryCondition.getPageSize());
+        return mapper.getUser(queryCondition.getObject());
     }
 
     @Override

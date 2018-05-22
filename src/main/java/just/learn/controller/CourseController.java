@@ -85,16 +85,10 @@ public class CourseController extends BaseController{
         return ResultUtil.success("查询成功", this.courseService.getById(id));
     }
     @ApiOperation(value = "分页查询", notes = "分页查询")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "当前页", paramType = "path", required = true, dataType =
-                    "Integer"),
-            @ApiImplicitParam(name = "pageSize", value = "每页显示数目", paramType = "path", required = true, dataType =
-                    "Integer")
-    })
-    @GetMapping(value = "/findLimitObjects/{pageNum}/{pageSize}")
-    public ApiResult getLimitObjects(@PathVariable Integer pageNum,@PathVariable Integer pageSize) {
+    @PostMapping(value = "/findLimitObjects")
+    public ApiResult getLimitObjects(@RequestBody QueryCondition<Course> queryCondition) {
 
-        return ResultUtil.success("查询成功", courseService.findStudentsInfo(pageNum,pageSize));
+        return ResultUtil.success("查询成功", courseService.findStudentsInfo(queryCondition));
     }
 
     @ApiOperation(value = "条件查询对象", notes = "条件查询对象")

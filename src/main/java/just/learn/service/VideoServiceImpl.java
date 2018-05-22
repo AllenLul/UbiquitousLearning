@@ -5,6 +5,7 @@ import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.entity.Video;
 import just.learn.mapper.VideoMapper;
+import just.learn.vo.QueryCondition;
 import org.springframework.stereotype.Service;
 
 
@@ -61,9 +62,9 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<Video> findStudentsInfo(Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        return mapper.selectAll();
+    public List<Video> findStudentsInfo(QueryCondition<Video> queryCondition) {
+        PageHelper.startPage(queryCondition.getPageNum(),queryCondition.getPageSize());
+        return mapper.getVideo(queryCondition.getObject());
     }
 
     @Override

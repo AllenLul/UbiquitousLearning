@@ -1,6 +1,7 @@
 package just.learn.service;
 
 import just.learn.entity.Video;
+import just.learn.vo.QueryCondition;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface VideoService {
 
     public Video getById(Integer id);
 
-    List<Video> findStudentsInfo(Integer pageNum, Integer pageSize);
+    List<Video> findStudentsInfo(QueryCondition<Video> queryCondition);
 
     List<Video>  getVideo(Video video);
 }

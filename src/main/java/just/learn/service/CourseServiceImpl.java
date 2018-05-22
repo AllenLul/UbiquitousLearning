@@ -67,9 +67,9 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> findStudentsInfo(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        return mapper.selectAll();
+    public List<Course> findStudentsInfo(QueryCondition<Course> queryCondition) {
+        PageHelper.startPage(queryCondition.getPageNum(),queryCondition.getPageSize());
+        return mapper.getCourse(queryCondition.getObject());
     }
 
     @Override
