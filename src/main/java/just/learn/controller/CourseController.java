@@ -106,10 +106,10 @@ public class CourseController extends BaseController{
         return ResultUtil.success("查询成功",  courseService.getCourse(course));
     }
     @ApiOperation(value = "上传课程图片", notes = "上传课程图片")
-    @PostMapping(value = "/uploadCoursePic/{id}", consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public ApiResult uploadCoursePic(@ApiParam(value = "上传的图片", required = true) MultipartFile file,@PathVariable Integer id) throws IOException {
+    @PostMapping(value = "/uploadCoursePic", consumes = "multipart/*", headers = "content-type=multipart/form-data")
+    public ApiResult uploadCoursePic(@ApiParam(value = "上传的图片", required = true) MultipartFile file) throws IOException {
         //UserElement ue= getCurrentUser();
-       String url= courseService.uploadCoursePic(file,id);
+       String url= courseService.uploadCoursePic(file);
 
         return ResultUtil.success("上传成功",url);
     }

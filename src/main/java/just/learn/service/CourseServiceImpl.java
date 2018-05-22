@@ -78,15 +78,9 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public String uploadCoursePic(MultipartFile file,Integer id) throws IOException {
+    public String uploadCoursePic(MultipartFile file) throws IOException {
         String path="e:\\img\\course\\"+file.getOriginalFilename();
         file.transferTo(new File(path));
-        Course course=mapper.selectByPrimaryKey(id);
-        if(course==null){
-            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
-        }
-        course.setIndexpic(path);
-        mapper.updateByPrimaryKeySelective(course);
         return path;
     }
 

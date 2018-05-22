@@ -116,11 +116,10 @@ public class UserController extends BaseController{
         return ResultUtil.success("查询成功",  userService.getUser(user));
     }
     @ApiOperation(value = "上传头像", notes = "上传头像")
-    @PostMapping(value = "/uploadUserPic/{id}", consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public ApiResult uploadUserPic(@ApiParam(value = "上传头像", required = true) MultipartFile file, @PathVariable Integer id) throws IOException {
+    @PostMapping(value = "/uploadUserPic", consumes = "multipart/*", headers = "content-type=multipart/form-data")
+    public ApiResult uploadUserPic(@ApiParam(value = "上传头像", required = true) MultipartFile file) throws IOException {
         //UserElement ue= getCurrentUser();
-        String url= userService.uploadUserPic(file,id);
-
+        String url= userService.uploadUserPic(file);
         return ResultUtil.success("上传成功",url);
     }
 

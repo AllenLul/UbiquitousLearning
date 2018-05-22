@@ -27,5 +27,5 @@ public interface UserService {
 
     List<User> getUser(User user);
 
-    String uploadUserPic(MultipartFile file, Integer id) throws IOException;
+    String uploadUserPic(MultipartFile file) throws IOException;
 }

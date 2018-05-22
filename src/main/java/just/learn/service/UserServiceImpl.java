@@ -91,15 +91,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String uploadUserPic(MultipartFile file, Integer id) throws IOException {
+    public String uploadUserPic(MultipartFile file) throws IOException {
         String path="e:\\img\\user\\"+file.getOriginalFilename();
         file.transferTo(new File(path));
-        User user=mapper.selectByPrimaryKey(id);
-        if(user==null){
-            throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
-        }
-        user.setHeadpic(path);
-        mapper.updateByPrimaryKeySelective(user);
         return path;
     }
 /*    @Override
