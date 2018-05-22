@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2018-05-15 16:45:42
+Date: 2018-05-22 14:32:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,24 +39,25 @@ DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `create_time` datetime NOT NULL,
-  `indexPic` varchar(255) COLLATE utf8_bin NOT NULL,
+  `indexPic` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `name` char(30) COLLATE utf8_bin NOT NULL,
   `t_id` int(11) NOT NULL,
   `type` char(10) COLLATE utf8_bin DEFAULT NULL,
   `handle_type` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0',
   `state` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT 'common',
+  `description` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES ('1', '2018-04-12 08:00:00', 'string', 'string1', '0', '1', '1', 'common');
-INSERT INTO `course` VALUES ('2', '2018-04-13 08:00:00', 'string', 'string1', '0', '1', '2', 'recommend');
-INSERT INTO `course` VALUES ('3', '2018-04-13 08:00:00', 'string', 'string1', '0', '1', '1', 'recommend');
-INSERT INTO `course` VALUES ('4', '2018-04-13 08:00:00', 'string', 'string2', '0', '1', '2', 'recommend');
-INSERT INTO `course` VALUES ('5', '2018-04-13 08:00:00', 'string', 'string2', '0', '1', '0', 'common');
-INSERT INTO `course` VALUES ('6', '2018-04-13 08:00:00', 'string', 'string3', '0', '1', '0', 'common');
+INSERT INTO `course` VALUES ('1', '2018-04-12 08:00:00', 'e:\\img\\course\\6b695b58a8c141161d5b9d9c39259579_r.jpg', 'string1', '0', '1', '1', 'common', null);
+INSERT INTO `course` VALUES ('2', '2018-04-13 08:00:00', 'string', 'string1', '0', '1', '2', 'recommend', null);
+INSERT INTO `course` VALUES ('3', '2018-04-13 08:00:00', 'string', 'string1', '0', '1', '1', 'recommend', null);
+INSERT INTO `course` VALUES ('4', '2018-04-13 08:00:00', 'string', 'string2', '0', '1', '2', 'recommend', null);
+INSERT INTO `course` VALUES ('5', '2018-04-13 08:00:00', 'string', 'string2', '0', '1', '0', 'common', null);
+INSERT INTO `course` VALUES ('6', '2018-04-13 08:00:00', 'string', 'string3', '0', '1', '0', 'common', null);
 
 -- ----------------------------
 -- Table structure for courseware
@@ -101,7 +102,7 @@ CREATE TABLE `homework` (
 -- ----------------------------
 -- Records of homework
 -- ----------------------------
-INSERT INTO `homework` VALUES ('1', '1', 'test', 'docx', '2018-05-17 15:16:31', 'asdas', '58');
+INSERT INTO `homework` VALUES ('1', '1', 'test', 'docx', '2018-05-27 15:16:31', 'asdas', '58');
 
 -- ----------------------------
 -- Table structure for post
@@ -147,7 +148,7 @@ CREATE TABLE `submit_homework` (
 -- Records of submit_homework
 -- ----------------------------
 INSERT INTO `submit_homework` VALUES ('1', '54', '1', 'E:\\50条SQL.docx', '99', '2018-05-15 15:18:58', '2018-05-15 15:18:58');
-INSERT INTO `submit_homework` VALUES ('3', '55', '1', 'E:\\说明.docx', '', '2018-05-15 15:45:18', '2018-05-15 15:50:54');
+INSERT INTO `submit_homework` VALUES ('3', '55', '1', 'E:\\50条SQL.docx', '', '2018-05-15 15:45:18', '2018-05-21 19:47:36');
 
 -- ----------------------------
 -- Table structure for user
@@ -191,7 +192,7 @@ CREATE TABLE `user_course` (
 -- ----------------------------
 -- Records of user_course
 -- ----------------------------
-INSERT INTO `user_course` VALUES ('2', '54', '1', '2018-04-15 11:50:48');
+INSERT INTO `user_course` VALUES ('2', '58', '1', '2018-04-15 11:50:48');
 INSERT INTO `user_course` VALUES ('3', '54', '2', '2018-04-15 11:55:05');
 INSERT INTO `user_course` VALUES ('4', '9', '2', '2018-04-15 13:26:46');
 
@@ -206,9 +207,12 @@ CREATE TABLE `video` (
   `url` varchar(255) COLLATE utf8_bin NOT NULL,
   `is_pass` char(1) COLLATE utf8_bin NOT NULL DEFAULT '1',
   `length` double NOT NULL,
+  `times` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of video
 -- ----------------------------
+INSERT INTO `video` VALUES ('1', '1', '1', '1', '1', '1', '0');
+INSERT INTO `video` VALUES ('2', '1', 'junit测试数据', 'test', '1', '3600', '3600');
