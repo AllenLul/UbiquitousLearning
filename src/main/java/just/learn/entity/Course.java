@@ -37,7 +37,7 @@ public class Course {
         this.createTime = createTime;
     }
 
-    public String getIndexpic() {
+    public String getIndexPic() {
         return indexPic;
     }
 
