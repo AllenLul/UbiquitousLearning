@@ -80,13 +80,17 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public String uploadCoursePic(MultipartFile file) throws Exception {
         if ("png".equals(GetTypeByHead.getFileType(file)) || "jpg".equals(GetTypeByHead.getFileType(file))) {
-            String path = "e:\\img\\course\\" + file.getOriginalFilename();
-            File target = new File(path);
-            if (!target.exists()) {
-                target.mkdirs();
+            String path = "e:\\img\\course" ;
+            File targetDir=new File(path);
+            if(!targetDir.exists()){
+                targetDir.mkdirs();
+            }
+            File target=new File(path+"\\"+file.getOriginalFilename());
+            if(!target.exists()){
+                target.createNewFile();
             }
             file.transferTo(target);
-            return path;
+            return path+"\\"+file.getOriginalFilename();
         } else {
             throw new CustomException(ResultEnum.FILE_FORMAT_ERROR);
         }

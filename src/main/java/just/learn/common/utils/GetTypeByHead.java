@@ -29,14 +29,14 @@ public class GetTypeByHead {
         mFileTypes.put("3c3f786d6c", "xml");
         mFileTypes.put("68746d6c3e", "html");
         mFileTypes.put("44656c69766572792d646174653a", "eml"); // 邮件
-        mFileTypes.put("d0cf11e0", "doc");
+        mFileTypes.put("d0cf11", "doc");
         mFileTypes.put("5374616e64617264204a", "mdb");
         mFileTypes.put("252150532d41646f6265", "ps");
         mFileTypes.put("255044462d312e", "pdf");
         mFileTypes.put("504b03", "docx");
         mFileTypes.put("52617221", "rar");
         mFileTypes.put("57415645", "wav");
-        mFileTypes.put("41564920", "avi");
+        mFileTypes.put("3026b2", "avi");
         mFileTypes.put("000000", "mp4");
         mFileTypes.put("000001ba", "mpg");
         mFileTypes.put("000001b3", "mpg");
@@ -89,7 +89,7 @@ public class GetTypeByHead {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(test(new File("E:\\图片\\pexels-photo-440731.jpeg")));
+        System.out.println(test(new File("E:\\test.doc")));
     }
 
 } 
