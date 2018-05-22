@@ -42,8 +42,8 @@ public class FileController extends BaseController{
         return ResultUtil.success("上传成功",url);
     }
     @ApiOperation(value = "上传视频", notes = "上传视频")
-    @PostMapping(value = "/uploaVideo", consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public ApiResult uploaVideo(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
+    @PostMapping(value = "/uploadVideo", consumes = "multipart/*", headers = "content-type=multipart/form-data")
+    public ApiResult uploadVideo(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
         //UserElement ue= getCurrentUser();
         String url= fileService.uploadVideo(file);
         return ResultUtil.success("上传成功",url);
