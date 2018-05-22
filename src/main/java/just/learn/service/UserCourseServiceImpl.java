@@ -5,14 +5,12 @@ import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
 import just.learn.entity.Course;
 import just.learn.entity.User;
-import just.learn.mapper.CourseMapper;
 import just.learn.entity.UserCourse;
+import just.learn.mapper.CourseMapper;
 import just.learn.mapper.UserCourseMapper;
 import just.learn.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import just.learn.vo.QueryCondition;
-import just.learn.entity.PageQueryBean;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;

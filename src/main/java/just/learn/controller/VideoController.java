@@ -80,13 +80,7 @@ public class VideoController extends BaseController{
     }
 
     @ApiOperation(value = "分页查询", notes = "分页查询")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "当前页", paramType = "path", required = true, dataType =
-                    "Integer"),
-            @ApiImplicitParam(name = "pageSize", value = "每页显示数目", paramType = "path", required = true, dataType =
-                    "Integer")
-    })
-    @GetMapping(value = "/findLimitObjects")
+    @PostMapping(value = "/findLimitObjects")
     public ApiResult getLimitObjects(@RequestBody QueryCondition<Video> queryCondition) {
 
         return ResultUtil.success("查询成功", videoService.findStudentsInfo(queryCondition));
@@ -95,7 +89,7 @@ public class VideoController extends BaseController{
     @ApiImplicitParam(name = "video", value = "条件查询对象", required = true, dataType = "Video")
     @RequestMapping(value = "/getVideo", method = RequestMethod.POST)
     public ApiResult getVideo(@RequestBody Video video) {
-        //UserElement ue= getCurrentUser();
+        UserElement ue= getCurrentUser();
 
         return ResultUtil.success("查询成功",  videoService.getVideo(video));
     }

@@ -35,17 +35,17 @@ public class FileController extends BaseController{
     private FileService fileService;
     @ApiOperation(value = "上传课件", notes = "上传课件")
     @PostMapping(value = "/uploadCourseware")
-    public ApiResult uploaCourseware(@ApiParam(value = "上传的文件", required = true) MultipartFile file, @ApiParam(value = "对象", required = true) Courseware courseware) throws IOException {
-        UserElement ue= getCurrentUser();
+    public ApiResult uploaCourseware(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
+        //UserElement ue= getCurrentUser();
 
-       String url= fileService.uploaCourseware(file,courseware);
+       String url= fileService.uploadCourseware(file);
         return ResultUtil.success("上传成功",url);
     }
     @ApiOperation(value = "上传视频", notes = "上传视频")
     @PostMapping(value = "/uploaVideo", consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public ApiResult uploaVideo(@ApiParam(value = "上传的文件", required = true) MultipartFile file,@ApiParam(value = "对象", required = true) Video video) throws IOException {
-        UserElement ue= getCurrentUser();
-        String url= fileService.uploaVideo(file,video);
+    public ApiResult uploaVideo(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
+        //UserElement ue= getCurrentUser();
+        String url= fileService.uploadVideo(file);
         return ResultUtil.success("上传成功",url);
     }
 }

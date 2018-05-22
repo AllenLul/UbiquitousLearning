@@ -7,17 +7,19 @@ public class Course {
 
     private Date createTime;
 
-    private String indexpic;//课程图片路径
+    private String indexpic;
 
     private String name;
 
-    private Integer tId;//课程所属教师id
+    private Integer tId;
 
-    private String type;//课程类型
+    private String type;
 
-    private String handleType;//课程是否已经处理 1 已经处理 0 未处理
+    private String handleType;
 
-    private String state;//课程是否通过 1通过 0未通过
+    private String state;
+
+    private String description;
 
     public Integer getId() {
         return id;
@@ -81,5 +83,13 @@ public class Course {
 
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

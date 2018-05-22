@@ -40,7 +40,7 @@ public class SubmitHomeworkController extends BaseController{
     private SubmitHomeworkService service;
     @ApiOperation(value = "提交作业（只需要传入userId和homeworkId这两个字段，以及文件）", notes = "提交作业（只需要传入userId和homeworkId这两个字段，以及文件）")
     @PostMapping(value = "/submitHomework")
-    public ApiResult submitHomework(@ApiParam(value = "上传的文件", required = true) MultipartFile file, @ApiParam(value = "对象", required = true) SubmitHomework submitHomework) throws IOException {
+    public ApiResult submitHomework(@ApiParam(value = "上传的文件", required = true) MultipartFile file, @ApiParam(value = "对象", required = true) SubmitHomework submitHomework) throws Exception {
         UserElement ue= getCurrentUser();
 //        UserElement ue=new UserElement();
 //        ue.setUserNumber("testMd5");

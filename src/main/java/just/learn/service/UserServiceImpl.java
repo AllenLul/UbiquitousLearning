@@ -41,14 +41,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int update(User user) {
+    public User update(User user) {
         if (user == null) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
         }
         if (getById(user.getId()) == null) {
             throw new CustomException(ResultEnum.OBJECT_FIND_NULL);
         }
-        return mapper.updateByPrimaryKeySelective(user);
+       mapper.updateByPrimaryKeySelective(user);
+        return mapper.selectByPrimaryKey(user.getId());
     }
 
     @Override
@@ -94,6 +95,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public String uploadUserPic(MultipartFile file) throws IOException {
         String path="e:\\img\\user\\"+file.getOriginalFilename();
+        File target=new File(path);
+        if(!target.exists()){
+            target.mkdirs();
+        }
         file.transferTo(new File(path));
         return path;
     }

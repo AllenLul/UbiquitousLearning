@@ -26,5 +26,5 @@ public interface CourseService {
 
     List<Course> getCourse(Course course);
 
-    String uploadCoursePic(MultipartFile file) throws IOException;
+    String uploadCoursePic(MultipartFile file) throws Exception;
 }

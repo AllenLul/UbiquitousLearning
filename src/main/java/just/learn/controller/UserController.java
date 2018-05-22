@@ -69,8 +69,8 @@ public class UserController extends BaseController{
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody User user) {
         //UserElement ue= getCurrentUser();
-        userService.update(user);
-        return ResultUtil.success("更新成功");
+
+        return ResultUtil.success("更新成功",userService.update(user));
     }
 
     @ApiOperation(value = "查询", notes = "根据主键查询对象")
@@ -95,12 +95,6 @@ public class UserController extends BaseController{
     }
 
     @ApiOperation(value = "分页查询", notes = "分页查询")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "当前页", paramType = "path", required = true, dataType =
-                    "Integer"),
-            @ApiImplicitParam(name = "pageSize", value = "每页显示数目", paramType = "path", required = true, dataType =
-                    "Integer")
-    })
     @PostMapping(value = "/findLimitObjects")
     public ApiResult getLimitObjects(@RequestBody QueryCondition<User> queryCondition) {
 

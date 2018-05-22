@@ -15,6 +15,6 @@ import java.io.IOException;
  */
 public interface FileService {
 
-    String uploaCourseware(MultipartFile file, Courseware courseware) throws IOException;
-    String uploaVideo(MultipartFile file, Video video) throws IOException;
+    String uploadCourseware(MultipartFile file) throws Exception;
+    String uploadVideo(MultipartFile file) throws Exception;
 }

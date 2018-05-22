@@ -3,11 +3,11 @@ package just.learn.service;
 import com.github.pagehelper.PageHelper;
 import just.learn.common.enums.ResultEnum;
 import just.learn.common.execption.CustomException;
+import just.learn.common.utils.GetTypeByHead;
 import just.learn.entity.Course;
 import just.learn.mapper.CourseMapper;
 import org.springframework.stereotype.Service;
 import just.learn.vo.QueryCondition;
-import just.learn.entity.PageQueryBean;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -78,10 +78,18 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public String uploadCoursePic(MultipartFile file) throws IOException {
-        String path="e:\\img\\course\\"+file.getOriginalFilename();
-        file.transferTo(new File(path));
-        return path;
+    public String uploadCoursePic(MultipartFile file) throws Exception {
+        if ("png".equals(GetTypeByHead.getFileType(file)) || "jpg".equals(GetTypeByHead.getFileType(file))) {
+            String path = "e:\\img\\course\\" + file.getOriginalFilename();
+            File target = new File(path);
+            if (!target.exists()) {
+                target.mkdirs();
+            }
+            file.transferTo(target);
+            return path;
+        } else {
+            throw new CustomException(ResultEnum.FILE_FORMAT_ERROR);
+        }
     }
 
 

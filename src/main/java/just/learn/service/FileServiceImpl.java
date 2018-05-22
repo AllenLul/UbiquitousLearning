@@ -28,35 +28,46 @@ public class FileServiceImpl implements FileService {
     @Autowired
     private VideoMapper videoMapper;
     @Override
-    public String uploaCourseware(MultipartFile file, Courseware courseware) throws IOException {
-        if(courseware==null){
-            throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);
-        }
+    public String uploadCourseware(MultipartFile file) throws Exception {
+
         if(file==null||file.isEmpty()){
             throw new CustomException(ResultEnum.FILE_EMPTY);
         }
         if("docx".equals(GetTypeByHead.getFileType(file))||"mp4".equals(GetTypeByHead.getFileType(file))||"avi".equals(GetTypeByHead.getFileType(file))){
-            file.transferTo(new File("/var/www/img/learn/courseware/"+file.getOriginalFilename()));
-            coursewareMapper.insertSelective(courseware);
-            return "url";
+            String path="E:\\courseware";
+            File targetDir=new File(path);
+            if(!targetDir.exists()){
+                targetDir.mkdirs();
+            }
+            File target=new File(path+"\\"+file.getOriginalFilename());
+            if(!target.exists()){
+                target.createNewFile();
+            }
+            file.transferTo(target);
+            return path+"\\"+file.getOriginalFilename();
         }else {
             throw new CustomException(ResultEnum.FILE_FORMAT_ERROR);
         }
 
     }
     @Override
-    public String uploaVideo(MultipartFile file, Video video) throws IOException {
+    public String uploadVideo(MultipartFile file) throws Exception {
 
         if(file==null||file.isEmpty()){
             throw new CustomException(ResultEnum.FILE_EMPTY);
         }
-        if(!"docx".equals(GetTypeByHead.getFileType(file))){
-            throw new CustomException(ResultEnum.FILE_FORMAT_ERROR);
-        }
-        if("docx".equals(GetTypeByHead.getFileType(file))||"mp4".equals(GetTypeByHead.getFileType(file))||"avi".equals(GetTypeByHead.getFileType(file))){
-            file.transferTo(new File("/var/www/img/learn/courseware/"+file.getOriginalFilename()));
-            videoMapper.insertSelective(video);
-            return "url";
+        if("mp4".equals(GetTypeByHead.getFileType(file))||"avi".equals(GetTypeByHead.getFileType(file))){
+            String path="E:\\video";
+            File targetDir=new File(path);
+            if(!targetDir.exists()){
+                targetDir.mkdirs();
+            }
+            File target=new File(path+"\\"+file.getOriginalFilename());
+            if(!target.exists()){
+                target.createNewFile();
+            }
+            file.transferTo(target);
+            return path+"\\"+file.getOriginalFilename();
         }else {
             throw new CustomException(ResultEnum.FILE_FORMAT_ERROR);
         }

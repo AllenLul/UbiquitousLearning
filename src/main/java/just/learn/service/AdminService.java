@@ -5,6 +5,8 @@ import just.learn.entity.Courseware;
 import just.learn.vo.ReviewVO;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -19,4 +21,6 @@ public interface AdminService {
 
 
     void review(ReviewVO reviewVO);
+
+    void exportUserInfo(HttpServletResponse response) throws IOException;
 }

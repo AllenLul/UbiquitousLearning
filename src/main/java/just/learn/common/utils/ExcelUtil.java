@@ -1,11 +1,10 @@
 package just.learn.common.utils;
 
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import just.learn.entity.User;
+import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -134,6 +133,45 @@ public class ExcelUtil {
         }
     }
 
+    public static void exportUserInfo(String path, List<User> users) throws IOException {
+         XSSFWorkbook wb = new  XSSFWorkbook();
+
+        XSSFSheet sheet = wb.createSheet("用户信息");
+        XSSFRow row1 = sheet.createRow(0);
+        XSSFCell cell=row1.createCell(0);
+        cell.setCellValue("用户详细信息");
+        sheet.addMergedRegion(new CellRangeAddress(0,0,0,10));
+        XSSFRow row2=sheet.createRow(1);
+        //创建单元格并设置单元格内容
+        row2.createCell(0).setCellValue("ID");
+        row2.createCell(1).setCellValue("姓名");
+        row2.createCell(2).setCellValue("昵称");
+        row2.createCell(3).setCellValue("学院");
+        row2.createCell(4).setCellValue("手机");
+        row2.createCell(5).setCellValue("头像");
+        row2.createCell(6).setCellValue("学号");
+        row2.createCell(7).setCellValue("性别");
+        row2.createCell(8).setCellValue("注释");
+        row2.createCell(9).setCellValue("角色");
+        row2.createCell(10).setCellValue("密码");
+        for (int i=0;i<users.size();i++) {
+            XSSFRow row=sheet.createRow(i+2);
+            row.createCell(0).setCellValue(users.get(i).getId());
+            row.createCell(1).setCellValue(users.get(i).getName());
+            row.createCell(2).setCellValue(users.get(i).getNickname());
+            row.createCell(3).setCellValue(users.get(i).getDepartment());
+            row.createCell(4).setCellValue(users.get(i).getPhone());
+            row.createCell(5).setCellValue(users.get(i).getHeadpic());
+            row.createCell(6).setCellValue(users.get(i).getNumber());
+            row.createCell(7).setCellValue(users.get(i).getGender());
+            row.createCell(8).setCellValue(users.get(i).getNote());
+            row.createCell(9).setCellValue(users.get(i).getRole());
+            row.createCell(10).setCellValue(users.get(i).getPassword());
+
+        }
+        wb.write(new FileOutputStream(new File(path)));
+
+    }
 
 
     public class ExcelData {
@@ -246,24 +284,22 @@ public class ExcelUtil {
     }
 
     public static void main(String[] args) throws Exception {
-//        List<List<Map<String, String>>> outer= ExcelUtil.readExcelWithTitle(new File
-// ("C:\\Users\\PXC\\Desktop\\test\\test.xlsx"));
-//        List<Map<String,String>> result=outer.get(0);
-//        for (Map<String,String> map:result) {
-//            User user=new User();
-//            user.setHeadpic(map.get("headPic"));
-//            user.setDepartment(map.get("department"));
-//            user.setGender(map.get("gender"));
-//            user.setPassword(map.get("password"));
-//            user.setName(map.get("name"));
-//            user.setNickname(map.get("nickname"));
-//            user.setNote(map.get("note"));
-//            user.setRole(map.get("role"));
-//            user.setStuNum(map.get("stuNum"));
-//            user.setTeaNum(map.get("teaNum"));
-//            user.setPhone(map.get("phone"));
-//            System.out.println(user);
-//        }
+        List<User> users=new ArrayList<>();
+        for (int i = 0; i <3 ; i++) {
+            User user=new User();
+            user.setId(100+i);
+            user.setHeadpic(i+"");
+            user.setNickname("dasd");
+            user.setPhone("dasd");
+            user.setDepartment("dsadsa");
+            user.setPassword("dasdsa");
+            user.setNote("dsada");
+            user.setGender("sad");
+            user.setNumber("dasda");
+            user.setName("dasd");
+            users.add(user);
 
+        }
+        exportUserInfo("e://userInfo.xlsx",users);
     }
 }

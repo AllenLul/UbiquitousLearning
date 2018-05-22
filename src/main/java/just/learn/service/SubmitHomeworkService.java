@@ -24,7 +24,7 @@ public interface SubmitHomeworkService {
      * @param ue
      * @return
      */
-    String submitHomework(MultipartFile file, SubmitHomework submitHomework, UserElement ue) throws IOException;
+    String submitHomework(MultipartFile file, SubmitHomework submitHomework, UserElement ue) throws Exception;
 
     List<SubmitHomework> getSubmitHomeworkByHomeworkId(Integer homeworkId);
 

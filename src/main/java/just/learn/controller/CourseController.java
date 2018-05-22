@@ -101,7 +101,7 @@ public class CourseController extends BaseController{
     }
     @ApiOperation(value = "上传课程图片", notes = "上传课程图片")
     @PostMapping(value = "/uploadCoursePic", consumes = "multipart/*", headers = "content-type=multipart/form-data")
-    public ApiResult uploadCoursePic(@ApiParam(value = "上传的图片", required = true) MultipartFile file) throws IOException {
+    public ApiResult uploadCoursePic(@ApiParam(value = "上传的图片", required = true) MultipartFile file) throws Exception {
         //UserElement ue= getCurrentUser();
        String url= courseService.uploadCoursePic(file);
 

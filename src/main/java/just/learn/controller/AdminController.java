@@ -18,6 +18,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
  * @author Ethanp
  * @version V1.0
@@ -40,10 +43,10 @@ public class AdminController extends BaseController{
     @ApiOperation(value = "导入用户信息", notes = "导入用户信息")
     @PostMapping(value = "/importUser", consumes = "multipart/*", headers = "content-type=multipart/form-data")
     public ApiResult importUser(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
-        UserElement ue= getCurrentUser();
+      /*  UserElement ue= getCurrentUser();
         if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
             throw new CustomException(ResultEnum.NO_AUTHORITY);
-        }
+        }*/
         return ResultUtil.success("导入成功", adminService.importInfo(file));
     }
 
@@ -63,13 +66,24 @@ public class AdminController extends BaseController{
     @ApiImplicitParam(name = "user", value = "实体对象", required = true, dataType = "User")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody User user) {
-        UserElement ue= getCurrentUser();
+        /*UserElement ue= getCurrentUser();
         if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
             throw new CustomException(ResultEnum.NO_AUTHORITY);
-        }
+        }*/
         user.setRole(RoleEnum.MANAGER.getValue());
         userService.insert(user);
         return ResultUtil.success("增加成功");
+    }
+    @ApiOperation(value = "管理员导出用户信息", notes = "管理员导出用户信息")
+
+    @GetMapping(value = "/exportUserInfo")
+    public ApiResult exportUserInfo(HttpServletResponse response) throws IOException {
+         /*UserElement ue= getCurrentUser();
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
+            throw new CustomException(ResultEnum.NO_AUTHORITY);
+        }*/
+         adminService.exportUserInfo(response);
+         return null;
     }
 
 

@@ -38,7 +38,7 @@ public class SubmitHomeworkServiceImpl implements SubmitHomeworkService {
     private UserCourseMapper userCourseMapper;
 
     @Override
-    public String submitHomework(MultipartFile file, SubmitHomework submitHomework, UserElement ue) throws IOException {
+    public String submitHomework(MultipartFile file, SubmitHomework submitHomework, UserElement ue) throws Exception {
 
         if (submitHomework == null) {
             throw new CustomException(ResultEnum.OBJECT_NULL_ERROR);

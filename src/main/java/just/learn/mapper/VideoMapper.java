@@ -1,9 +1,10 @@
 package just.learn.mapper;
 
 import just.learn.entity.Video;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface VideoMapper {
     int deleteByPrimaryKey(Integer id);
 
