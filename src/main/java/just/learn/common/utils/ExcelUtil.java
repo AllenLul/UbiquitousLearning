@@ -151,7 +151,7 @@ public class ExcelUtil {
         row2.createCell(5).setCellValue("头像");
         row2.createCell(6).setCellValue("学号");
         row2.createCell(7).setCellValue("性别");
-        row2.createCell(8).setCellValue("注释");
+        row2.createCell(8).setCellValue("备注");
         row2.createCell(9).setCellValue("角色");
 
         for (int i=0;i<users.size();i++) {
