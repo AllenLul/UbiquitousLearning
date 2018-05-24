@@ -39,7 +39,7 @@ public class VideoController extends BaseController{
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ApiResult delete(@PathVariable Integer id) {
         UserElement ue=getCurrentUser();
-        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
             throw new CustomException(ResultEnum.NO_AUTHORITY);
         }
         videoService.delete(id);
@@ -51,7 +51,7 @@ public class VideoController extends BaseController{
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody Video video) {
         UserElement ue=getCurrentUser();
-        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
             throw new CustomException(ResultEnum.NO_AUTHORITY);
         }
         videoService.insert(video);
@@ -63,7 +63,7 @@ public class VideoController extends BaseController{
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ApiResult update(@RequestBody Video video) {
         UserElement ue=getCurrentUser();
-        if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
+        if(RoleEnum.STUDENT.getValue().equalsIgnoreCase(ue.getRole())){
             throw new CustomException(ResultEnum.NO_AUTHORITY);
         }
         videoService.update(video);

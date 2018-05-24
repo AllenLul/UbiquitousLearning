@@ -116,7 +116,7 @@ public class AdminServiceImpl implements AdminService {
 
 
             List<User> users=userMapper.selectAll();
-            String path = "e://userInfo.xlsx";
+            String path = "/Library/WebServer/Documents/";
             ExcelUtil.exportUserInfo(path,users);
             response.setContentType("application/force-download");// 设置强制下载不打开
             response.addHeader("Content-Disposition", "attachment;fileName=" + "userInfo.xlsx");// 设置文件名

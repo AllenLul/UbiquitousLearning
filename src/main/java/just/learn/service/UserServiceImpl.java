@@ -94,17 +94,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String uploadUserPic(MultipartFile file) throws IOException {
-        String path="e:\\img\\user";
+        String path="/Library/WebServer/Documents/";
         File targetDir=new File(path);
         if(!targetDir.exists()){
             targetDir.mkdirs();
         }
-        File target=new File(path+"\\"+file.getOriginalFilename());
+        File target=new File(path+"/"+file.getOriginalFilename());
         if(!target.exists()){
             target.createNewFile();
         }
         file.transferTo(new File(path+"\\"+file.getOriginalFilename()));
-        return path+"\\"+file.getOriginalFilename();
+        return "http://127.0.0.1"+"/"+file.getOriginalFilename();
     }
 /*    @Override
 public List<User> getAll() {

@@ -34,17 +34,17 @@ public class FileServiceImpl implements FileService {
             throw new CustomException(ResultEnum.FILE_EMPTY);
         }
         if("docx".equals(GetTypeByHead.getFileType(file))||"mp4".equals(GetTypeByHead.getFileType(file))||"avi".equals(GetTypeByHead.getFileType(file))){
-            String path="E:\\courseware";
+            String path="/Library/WebServer/Documents/";
             File targetDir=new File(path);
             if(!targetDir.exists()){
                 targetDir.mkdirs();
             }
-            File target=new File(path+"\\"+file.getOriginalFilename());
+            File target=new File(path+"/"+file.getOriginalFilename());
             if(!target.exists()){
                 target.createNewFile();
             }
             file.transferTo(target);
-            return path+"\\"+file.getOriginalFilename();
+            return "http://127.0.0.1"+"/"+file.getOriginalFilename();
         }else {
             throw new CustomException(ResultEnum.FILE_FORMAT_ERROR);
         }
@@ -57,17 +57,17 @@ public class FileServiceImpl implements FileService {
             throw new CustomException(ResultEnum.FILE_EMPTY);
         }
         if("mp4".equals(GetTypeByHead.getFileType(file))||"avi".equals(GetTypeByHead.getFileType(file))){
-            String path="E:\\video";
+            String path="/Library/WebServer/Documents";
             File targetDir=new File(path);
             if(!targetDir.exists()){
                 targetDir.mkdirs();
             }
-            File target=new File(path+"\\"+file.getOriginalFilename());
+            File target=new File(path+"/"+file.getOriginalFilename());
             if(!target.exists()){
                 target.createNewFile();
             }
             file.transferTo(target);
-            return path+"\\"+file.getOriginalFilename();
+            return "http://127.0.0.1"+"/"+file.getOriginalFilename();
         }else {
             throw new CustomException(ResultEnum.FILE_FORMAT_ERROR);
         }

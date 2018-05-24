@@ -40,7 +40,7 @@ public class HomeworkController extends BaseController{
         return ResultUtil.success("删除成功");
     }
 
-    @ApiOperation(value = "学生交作业", notes = "学生交作业")
+    @ApiOperation(value = "老师布置作业接口", notes = "学生交作业")
     @ApiImplicitParam(name = "homework", value = "实体对象", required = true, dataType = "Homework")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ApiResult add(@RequestBody Homework homework) {
