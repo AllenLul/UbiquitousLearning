@@ -35,7 +35,7 @@ public class FileController extends BaseController{
     private FileService fileService;
     @ApiOperation(value = "上传课件", notes = "上传课件")
     @PostMapping(value = "/uploadCourseware")
-    public ApiResult uploaCourseware(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
+    public ApiResult uploadCourseware(@ApiParam(value = "上传的文件", required = true) MultipartFile file) throws Exception {
         //UserElement ue= getCurrentUser();
 
        String url= fileService.uploadCourseware(file);
