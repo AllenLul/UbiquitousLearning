@@ -155,6 +155,24 @@
       </if>
     </trim>
   </insert>
+  <update id="pass" parameterType="java.util.List">
+    update course
+    set handle_type = '1'
+    where id IN
+    <foreach collection="list" item="item" index="index"
+             separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+  <update id="noPass" parameterType="java.util.List">
+    update course
+    set handle_type = '2'
+    where id IN
+    <foreach collection="list" item="item" index="index"
+             separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Course" >
     update course
     <set >

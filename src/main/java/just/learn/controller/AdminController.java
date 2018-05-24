@@ -50,14 +50,14 @@ public class AdminController extends BaseController{
         return ResultUtil.success("导入成功", adminService.importInfo(file));
     }
 
-    @ApiOperation(value = "管理员审核课件", notes = "管理员审核课件")
-    @ApiImplicitParam(name = "reviewVO", value = "审核对象", required = true, dataType = "ReviewVO")
+    @ApiOperation(value = "管理员审核", notes = "管理员审核 handletype只能是1或者2 id表示课程或者课件的id")
+    @ApiImplicitParam(name = "reviewVO", value = "审核对象（type course或者courseware）", required = true, dataType = "ReviewVO")
     @PostMapping(value = "/review")
     public ApiResult review(@RequestBody ReviewVO reviewVO) throws Exception {
-        UserElement ue= getCurrentUser();
+      /*  UserElement ue= getCurrentUser();
         if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
             throw new CustomException(ResultEnum.NO_AUTHORITY);
-        }
+        }*/
         adminService.review(reviewVO);
         return ResultUtil.success("success");
     }
