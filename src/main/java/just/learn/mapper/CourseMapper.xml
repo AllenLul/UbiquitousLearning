@@ -91,7 +91,7 @@
       name, t_id, type, handle_type, 
       state, description)
     values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{indexPic,jdbcType=VARCHAR},
-      #{name,jdbcType=CHAR}, #{tId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{handleType,jdbcType=CHAR}, 
+      #{name,jdbcType=CHAR}, #{tId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{handleType,jdbcType=CHAR},
       #{state,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="just.learn.entity.Course" >
@@ -139,7 +139,7 @@
         #{name,jdbcType=CHAR},
       </if>
       <if test="tId != null" >
-        #{t_id,jdbcType=INTEGER},
+        #{tId,jdbcType=INTEGER},
       </if>
       <if test="type != null" >
         #{type,jdbcType=CHAR},
