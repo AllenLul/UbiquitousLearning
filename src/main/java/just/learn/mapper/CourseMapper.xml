@@ -27,7 +27,7 @@
         AND name = #{name}
       </if>
       <if test="tId!= null and tId!= '' ">
-        AND tId = #{tId}
+        AND t_id = #{tId}
       </if>
       <if test="type!= null and type!= '' ">
         AND type = #{type}
@@ -139,7 +139,7 @@
         #{name,jdbcType=CHAR},
       </if>
       <if test="tId != null" >
-        #{tId,jdbcType=INTEGER},
+        #{t_id,jdbcType=INTEGER},
       </if>
       <if test="type != null" >
         #{type,jdbcType=CHAR},
@@ -155,24 +155,6 @@
       </if>
     </trim>
   </insert>
-  <update id="pass" parameterType="java.util.List">
-    update course
-    set handle_type = '1'
-    where id IN
-    <foreach collection="list" item="item" index="index"
-             separator="," open="(" close=")">
-      #{item.id}
-    </foreach>
-  </update>
-  <update id="noPass" parameterType="java.util.List">
-    update course
-    set handle_type = '2'
-    where id IN
-    <foreach collection="list" item="item" index="index"
-             separator="," open="(" close=")">
-      #{item.id}
-    </foreach>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="just.learn.entity.Course" >
     update course
     <set >

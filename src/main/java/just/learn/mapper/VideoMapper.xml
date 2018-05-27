@@ -15,7 +15,7 @@
   </sql>
 
   <select id="getVideo" resultMap="BaseResultMap">
-    select
+    sele
     <include refid="Base_Column_List" />
     from video
     <where>
@@ -36,6 +36,9 @@
       </if>
       <if test="times!= null and times!= '' ">
         AND times = #{times}
+      </if>
+      <if test="courseId!= null and courseId!= '' ">
+        AND course_id = #{courseId}
       </if>
     </where>
   </select>

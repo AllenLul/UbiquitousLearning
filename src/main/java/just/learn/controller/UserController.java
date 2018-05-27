@@ -11,6 +11,7 @@ import just.learn.entity.UserElement;
 import just.learn.service.UserService;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,7 @@ public class UserController extends BaseController{
         if(!RoleEnum.MANAGER.getValue().equalsIgnoreCase(ue.getRole())){
             throw new CustomException(ResultEnum.NO_AUTHORITY);
         }
+        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
         userService.insert(user);
         return ResultUtil.success("增加成功");
     }

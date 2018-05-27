@@ -13,6 +13,7 @@ import just.learn.entity.UserElement;
 import just.learn.service.AdminService;
 import just.learn.service.UserService;
 import just.learn.vo.ReviewVO;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +72,7 @@ public class AdminController extends BaseController{
             throw new CustomException(ResultEnum.NO_AUTHORITY);
         }*/
         user.setRole(RoleEnum.MANAGER.getValue());
+        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
         userService.insert(user);
         return ResultUtil.success("增加成功");
     }
