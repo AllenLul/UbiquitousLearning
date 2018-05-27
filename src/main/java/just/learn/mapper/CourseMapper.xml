@@ -33,7 +33,7 @@
         AND type = #{type}
       </if>
       <if test="handleType!= null and handleType!= '' ">
-        AND handleType = #{handleType}
+        AND handle_type = #{handleType}
       </if>
       <if test="state!= null and state!= '' ">
         AND state = #{state}

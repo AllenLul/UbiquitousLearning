@@ -15,7 +15,7 @@
   </sql>
 
   <select id="getVideo" resultMap="BaseResultMap">
-    sele
+    SELECT
     <include refid="Base_Column_List" />
     from video
     <where>

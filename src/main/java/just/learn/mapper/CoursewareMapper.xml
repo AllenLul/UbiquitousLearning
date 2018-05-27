@@ -105,13 +105,13 @@
         AND type = #{type}
       </if>
       <if test="isPass!= null and isPass!= '' ">
-        AND isPass = #{isPass}
+        AND is_pass = #{isPass}
       </if>
       <if test="courseCap!= null and courseCap!= '' ">
-        AND courseCap = #{courseCap}
+        AND course_cap = #{courseCap}
       </if>
       <if test="handleType!= null and handleType!= '' ">
-        AND handleType = #{handleType}
+        AND handle_type = #{handleType}
       </if>
     </where>
   </select>
