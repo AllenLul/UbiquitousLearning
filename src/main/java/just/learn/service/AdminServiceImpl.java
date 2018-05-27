@@ -59,7 +59,7 @@ public class AdminServiceImpl implements AdminService {
             user.setPassword(DigestUtils.md5Hex(map.get("密码")));
             user.setName(map.get("姓名"));
             user.setNickname(map.get("昵称"));
-            user.setNote(map.get("说明"));
+            user.setNote(map.get("备注"));
             user.setRole(map.get("角色"));
             user.setPhone(getNumber(map.get("手机"))+"");
             if(userMapper.selectByNumber(number)==null){
